@@ -1,3 +1,8 @@
+import 'package:booking_app/core/localization/cubit/locale_cubit.dart';
+import 'package:booking_app/core/localization/setup/app_localization.dart';
+import 'package:booking_app/core/localization/setup/app_localizations_setup.dart';
+import 'package:booking_app/core/main_blocs/blocs.dart';
+import 'package:booking_app/core/main_blocs/providers.dart';
 import 'package:flutter/material.dart';
 import 'resources/themes/theme.dart';
 
@@ -11,12 +16,34 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Booking App',
-      theme: ownThemeData,
-      home: const Test(),
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => LocaleCubit()..getSavedLanguage(),
+          ),
+        ],
+        child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
+            builder: (context, state) {
+          return MultiBlocProvider(
+            providers: BlocProviders.providers,
+            child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
+              builder: (context, state) {
+                return MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Booking App',
+                  theme: ownThemeData,
+                  locale: state.locale,
+                  supportedLocales: AppLocalizationsSetup.supportedLocales,
+                  localizationsDelegates:
+                      AppLocalizationsSetup.localizationsDelegates,
+                  localeResolutionCallback:
+                      AppLocalizationsSetup.localeResolutionCallback,
+                  home: Test(),
+                );
+              },
+            ),
+          );
+        }));
   }
 }
 
@@ -28,10 +55,23 @@ class Test extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Test'),
+        title: Text(AppLocalizations.of(context)!.translate('saveBtn')),
+      ),
+      body: Column(
+        children: [
+          Text('cancelBtn'.tr(context)),
+          ElevatedButton(
+              onPressed: () {
+                context.read<LocaleCubit>().changeLanguage('en');
+              },
+              child: Text('en')),
+          ElevatedButton(
+              onPressed: () {
+                context.read<LocaleCubit>().changeLanguage('ar');
+              },
+              child: Text('ar')),
+        ],
       ),
     );
   }
 }
-
-
