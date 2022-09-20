@@ -1,49 +1,55 @@
+import 'package:booking_app/core/connectivity/cubit/connectivity_cubit.dart';
+import 'package:booking_app/core/connectivity/pages/connectivity_Screen.dart';
 import 'package:booking_app/core/localization/cubit/locale_cubit.dart';
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/localization/setup/app_localizations_setup.dart';
 import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/core/main_blocs/providers.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'resources/themes/theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp(
+    connectivity: Connectivity(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final Connectivity connectivity;
+
+  const MyApp({Key? key, required this.connectivity}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => LocaleCubit()..getSavedLanguage(),
-          ),
-        ],
-        child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
-            builder: (context, state) {
-          return MultiBlocProvider(
-            providers: BlocProviders.providers,
-            child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
-              builder: (context, state) {
-                return MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Booking App',
-                  theme: ownThemeData,
-                  locale: state.locale,
-                  supportedLocales: AppLocalizationsSetup.supportedLocales,
-                  localizationsDelegates:
-                      AppLocalizationsSetup.localizationsDelegates,
-                  localeResolutionCallback:
-                      AppLocalizationsSetup.localeResolutionCallback,
-                  home: Test(),
-                );
-              },
-            ),
+      providers: BlocProviders.providers,
+      child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Booking App',
+            theme: ownThemeData,
+            locale: state.locale,
+            supportedLocales: AppLocalizationsSetup.supportedLocales,
+            localizationsDelegates:
+                AppLocalizationsSetup.localizationsDelegates,
+            localeResolutionCallback:
+                AppLocalizationsSetup.localeResolutionCallback,
+            home: BlocBuilder<ConnectivityCubit, ConnectivityState>(
+                builder: (context, state) {
+              if (state is InternetConnected) {
+                return Test();
+              } else if (state is InternetDisconnected) {
+                return ConnectivityScreen();
+              }
+              return CircularProgressIndicator();
+            }),
           );
-        }));
+        },
+      ),
+    );
   }
 }
 
