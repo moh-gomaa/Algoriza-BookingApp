@@ -6,5 +6,14 @@
 
   "common-Section----------------------------": "CommonSection-------------------------",
   "saveBtn": "حفظ",
-  "cancelBtn": "الغاء"
+  "cancelBtn": "الغاء",
+
+  "ProfileScreen----------------------------": "ProfileScreen-------------------------",
+  "view_edit_profile_txt": "عرض وتعديل الملف الشخصي",
+  "change_pass_txt": "تغيير كلمة السر",
+  "invite_friend_txt": "دعوة صديق",
+  "credit_coupons_txt": "الكوبونات والخصم",
+  "help_center_txt": "مركز المساعدة",
+  "payment_txt": "الدفع",
+  "setting_txt": "الاعدادات"
 }
