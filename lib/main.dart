@@ -5,8 +5,11 @@ import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/localization/setup/app_localizations_setup.dart';
 import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/core/main_blocs/providers.dart';
+import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
+import 'package:booking_app/resources/constants/constants.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 import 'resources/themes/theme.dart';
 
 void main() {
@@ -27,25 +30,30 @@ class MyApp extends StatelessWidget {
       providers: BlocProviders.providers,
       child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
         builder: (context, state) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Booking App',
-            theme: ownThemeData,
-            locale: state.locale,
-            supportedLocales: AppLocalizationsSetup.supportedLocales,
-            localizationsDelegates:
-                AppLocalizationsSetup.localizationsDelegates,
-            localeResolutionCallback:
-                AppLocalizationsSetup.localeResolutionCallback,
-            home: BlocBuilder<ConnectivityCubit, ConnectivityState>(
-                builder: (context, state) {
-              if (state is InternetConnected) {
-                return Test();
-              } else if (state is InternetDisconnected) {
-                return ConnectivityScreen();
-              }
-              return CircularProgressIndicator();
-            }),
+          return Sizer(
+            builder: (BuildContext context, Orientation orientation,
+                DeviceType deviceType) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Booking App',
+                theme: ownThemeData,
+                locale: state.locale,
+                supportedLocales: AppLocalizationsSetup.supportedLocales,
+                localizationsDelegates:
+                    AppLocalizationsSetup.localizationsDelegates,
+                localeResolutionCallback:
+                    AppLocalizationsSetup.localeResolutionCallback,
+                home: BlocBuilder<ConnectivityCubit, ConnectivityState>(
+                    builder: (context, state) {
+                  if (state is InternetConnected) {
+                    return Test();
+                  } else if (state is InternetDisconnected) {
+                    return ConnectivityScreen();
+                  }
+                  return CircularProgressIndicator();
+                }),
+              );
+            },
           );
         },
       ),
@@ -65,7 +73,11 @@ class Test extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Text('cancelBtn'.tr(context)),
+          Text(
+            'loginBtn'.tr(context),
+            style: OwnTheme.titleBoldTextStyle(lang: lang)
+                .colorChange(color: 'primary'),
+          ),
           ElevatedButton(
               onPressed: () {
                 context.read<LocaleCubit>().changeLanguage('en');
