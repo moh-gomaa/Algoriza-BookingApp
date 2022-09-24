@@ -1,5 +1,10 @@
 {
-  "common-Section----------------------------": "CommonSection-------------------------",
+  "BottomNavigation----------------------------": "BottomNavigation-------------------",
+  "explore_txt": "Explore",
+  "trips_txt": "Trips",
+  "profile_txt": "Profile",
+
+  "CommonSection----------------------------": "CommonSection-------------------------",
   "saveBtn": "Save",
   "cancelBtn": "Cancel"
 }

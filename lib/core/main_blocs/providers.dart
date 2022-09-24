@@ -1,3 +1,4 @@
+
 import 'blocs.dart';
 
   class BlocProviders {
@@ -5,6 +6,8 @@ import 'blocs.dart';
     BlocProvider<LocaleCubit>(create: (_) => LocaleCubit()..getSavedLanguage()),
 
     BlocProvider<ConnectivityCubit>(create: (_) => ConnectivityCubit()),
+
+    BlocProvider<NavigationCubit>(create: (_) => NavigationCubit()),
 
 
     // .

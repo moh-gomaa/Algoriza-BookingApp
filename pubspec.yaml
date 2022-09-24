@@ -29,6 +29,7 @@ dependencies:
   lottie: ^1.4.2
   connectivity_plus: ^2.3.7
   internet_connection_checker: ^0.0.1+4
+  equatable: ^2.0.5
 
 
 dev_dependencies:
@@ -56,6 +57,7 @@ flutter:
   assets:
     - assets/
     - assets/lang/
+    - assets/icons/
 
 
 

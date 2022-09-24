@@ -1,4 +1,9 @@
 {
+  "BottomNavigation----------------------------": "BottomNavigation-------------------",
+  "explore_txt": "استكشف",
+  "trips_txt": "الرحلات",
+  "profile_txt": "الملف الشخصي",
+
   "common-Section----------------------------": "CommonSection-------------------------",
   "saveBtn": "حفظ",
   "cancelBtn": "الغاء"
