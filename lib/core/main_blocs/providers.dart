@@ -1,11 +1,13 @@
 
-import 'package:booking_app/core/localization/cubit/locale_cubit.dart';
-
 import 'blocs.dart';
 
   class BlocProviders {
-  static final List<BlocProvider> providers = [
+    static final List<BlocProvider> providers = [
     BlocProvider<LocaleCubit>(create: (_) => LocaleCubit()..getSavedLanguage()),
+
+    BlocProvider<ConnectivityCubit>(create: (_) => ConnectivityCubit()),
+
+    BlocProvider<NavigationCubit>(create: (_) => NavigationCubit()),
 
 
     // .
@@ -13,4 +15,5 @@ import 'blocs.dart';
     // .
     // other blocs or cubits...
   ];
+
 }

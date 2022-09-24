@@ -1,6 +1,19 @@
 {
-  "common-Section----------------------------": "CommonSection-------------------------",
-  "saveBtn": "Save",
-  "cancelBtn": "Cancel"
+  "BottomNavigation----------------------------": "BottomNavigation-------------------",
+  "explore_txt": "Explore",
+  "trips_txt": "Trips",
+  "profile_txt": "Profile",
 
+  "CommonSection----------------------------": "CommonSection-------------------------",
+  "saveBtn": "Save",
+  "cancelBtn": "Cancel",
+
+  "ProfileScreen----------------------------": "ProfileScreen-------------------------",
+  "view_edit_profile_txt": "View and Edit profile",
+  "change_pass_txt": "Change Password",
+  "invite_friend_txt": "Invite Friend",
+  "credit_coupons_txt": "Credit & Coupons",
+  "help_center_txt": "Help Center",
+  "payment_txt": "Payment",
+  "setting_txt": "Setting"
 }

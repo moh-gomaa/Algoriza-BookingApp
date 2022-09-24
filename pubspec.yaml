@@ -27,6 +27,9 @@ dependencies:
   shared_preferences: ^2.0.15
   image_picker: ^0.8.5+3
   lottie: ^1.4.2
+  connectivity_plus: ^2.3.7
+  internet_connection_checker: ^0.0.1+4
+  equatable: ^2.0.5
   smooth_page_indicator: ^1.0.0+2
   flutter_facebook_auth: ^4.4.1+1
   firebase_auth: ^3.10.0
@@ -58,6 +61,7 @@ flutter:
     - assets/
     - assets/lang/
     - assets/images/
+    - assets/icons/
 
 
 

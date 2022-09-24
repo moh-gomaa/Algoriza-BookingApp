@@ -1,13 +1,25 @@
+import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
+import 'package:booking_app/resources/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 final ThemeData ownThemeData = ThemeData(
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        selectedItemColor: OwnTheme.colorPalette['primary'],
+        unselectedItemColor: OwnTheme.colorPalette['gray'],
+        selectedLabelStyle: OwnTheme.smallTextStyle(lang: lang)
+            .colorChange(color: 'primary'),
+    unselectedLabelStyle: OwnTheme.smallTextStyle(lang: lang)
+        .colorChange(color: 'gray'),
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+    ),
     appBarTheme: const AppBarTheme(
       backwardsCompatibility: false,
       elevation: 0.0,
       backgroundColor: Colors.white,
     ),
-    primarySwatch: Colors.blue,
+    primarySwatch: Colors.red,
     scaffoldBackgroundColor: OwnTheme.colorPalette['white'],
     bottomSheetTheme: const BottomSheetThemeData(
         backgroundColor: Colors.transparent,
@@ -20,10 +32,10 @@ class OwnTheme {
     'white': Color(0xFFFFFFFF),
     'black': Color(0xFF000000),
     'disable': Color(0xFFe8e8e8),
-    'gray': Color(0xFF8b8b98),
+    'gray': Color(0xFF555555),
     'lightGray': Color(0xFFF9F9F9),
     'link': Color(0xFF3784fc),
-    'primary': Color(0xFF91C0F2),
+    'primary': Color(0xFF4FBE9F),
     'secondary': Color(0xFFF9C60A),
     'bg': Color(0xFF7EB1F2),
     'drawer': Color(0xFF313A42)

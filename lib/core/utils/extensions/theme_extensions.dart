@@ -11,6 +11,8 @@ extension ThemeX on TextStyle {
       case 'white':
         return this.copyWith(color: OwnTheme.colorPalette['white']);
       case 'gray':
+        return this.copyWith(color: OwnTheme.colorPalette['gray']);
+      case 'disabled':
         return this.copyWith(color: OwnTheme.colorPalette['disable']);
       default:
         return this.copyWith(color: OwnTheme.colorPalette['black']);
