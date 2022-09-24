@@ -3,7 +3,9 @@ import 'package:sizer/sizer.dart';
 
 final ThemeData ownThemeData = ThemeData(
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.deepPurple,
+      backwardsCompatibility: false,
+      elevation: 0.0,
+      backgroundColor: Colors.white,
     ),
     primarySwatch: Colors.blue,
     scaffoldBackgroundColor: OwnTheme.colorPalette['white'],
