@@ -7,7 +7,7 @@ import 'package:booking_app/core/localization/setup/app_localizations_setup.dart
 import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/core/main_blocs/providers.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
-import 'package:booking_app/features/home/pages/home_screen.dart';
+import 'package:booking_app/features/screens/splash_screen.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -31,13 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider<LocaleCubit>(create: (context) => LocaleCubit()..getSavedLanguage()),
-
-        BlocProvider<ConnectivityCubit>(create: (context) => ConnectivityCubit()),
-
-        BlocProvider<NavigationCubit>(create: (context) => NavigationCubit()),
-      ],
+      providers: BlocProviders.providers,
       child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
         builder: (context, state) {
           return Sizer(
@@ -56,7 +50,7 @@ class MyApp extends StatelessWidget {
                 home: BlocBuilder<ConnectivityCubit, ConnectivityState>(
                     builder: (context, state) {
                   if (state is InternetConnected) {
-                    return MainScreen();
+                    return SplashScreen();
                   } else if (state is InternetDisconnected) {
                     return ConnectivityScreen();
                   }
