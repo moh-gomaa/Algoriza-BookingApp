@@ -1,14 +1,11 @@
-import 'package:booking_app/core/bottom_navigation/pages/main_screen.dart';
 import 'package:booking_app/core/connectivity/cubit/connectivity_cubit.dart';
 import 'package:booking_app/core/connectivity/pages/connectivity_Screen.dart';
 import 'package:booking_app/core/localization/cubit/locale_cubit.dart';
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/localization/setup/app_localizations_setup.dart';
 import 'package:booking_app/core/main_blocs/blocs.dart';
-import 'package:booking_app/core/main_blocs/providers.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/core/utils/routes/app_router.dart';
-import 'package:booking_app/features/home/pages/home_screen.dart';
 import 'package:booking_app/features/screens/splash_screen.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
