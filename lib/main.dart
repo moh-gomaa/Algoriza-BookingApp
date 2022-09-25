@@ -4,6 +4,7 @@ import 'package:booking_app/core/localization/cubit/locale_cubit.dart';
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/localization/setup/app_localizations_setup.dart';
 import 'package:booking_app/core/main_blocs/blocs.dart';
+import 'package:booking_app/core/main_blocs/providers.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/core/utils/routes/app_router.dart';
 import 'package:booking_app/features/screens/splash_screen.dart';
@@ -12,7 +13,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'resources/themes/theme.dart';
-import 'package:booking_app/core/bottom_navigation/cubit/navigation_cubit.dart';
 
 
 void main() {
@@ -30,13 +30,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider<LocaleCubit>(create: (context) => LocaleCubit()..getSavedLanguage()),
-
-        BlocProvider<ConnectivityCubit>(create: (context) => ConnectivityCubit()),
-
-        BlocProvider<NavigationCubit>(create: (context) => NavigationCubit()),
-      ],
+      providers: BlocProviders.providers,
       child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
         builder: (context, state) {
           return Sizer(
