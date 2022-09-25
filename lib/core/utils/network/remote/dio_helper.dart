@@ -1,12 +1,13 @@
+import 'package:booking_app/core/utils/network/remote/end_points.dart';
 import 'package:dio/dio.dart' show BaseOptions, Dio, Response;
 
 class DioHelper {
   static Dio? dio;
 
-  static void init(){
+  static void init() {
     dio = Dio(
       BaseOptions(
-        baseUrl:'',
+        baseUrl: baseUrl,
         receiveDataWhenStatusError: true,
       ),
     );
@@ -14,84 +15,87 @@ class DioHelper {
 
   static Future<Response> getData({
     required String url,
-    Map<String , dynamic>? query,
-    String? token ,
-  }) async{
-
+    Map<String, dynamic>? query,
+    String? token,
+  }) async {
     dio!.options.headers = {
-      'Content-Type':'application/json',
-      'Authorization': 'Bearer ''$token',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' '$token',
     };
 
-    return await dio!.get(
+    return await dio!
+        .get(
       url,
       queryParameters: query,
-    ).catchError((error) {
+    )
+        .catchError((error) {
       print('error in getData Dio ${error.toString()}');
     });
   }
 
   static Future<Response> postData({
     required String url,
-    Map<String , dynamic>? query,
-    required Map<String , dynamic> data,
-    String? token ,
-  }) async{
-
+    Map<String, dynamic>? query,
+    required Map<String, dynamic> data,
+    String? token,
+  }) async {
     dio!.options.headers = {
-      'Content-Type':'application/json',
-      'Authorization': token??'',
+      'Content-Type': 'application/json',
+      'Authorization': token ?? '',
     };
 
-    return await dio!.post(
+    return await dio!
+        .post(
       url,
       queryParameters: query,
       data: data,
-    ).catchError((error) {
+    )
+        .catchError((error) {
       print('error in getData Dio ${error.toString()}');
     });
   }
 
   static Future<Response> putData({
     required String url,
-    Map<String , dynamic>? query,
-    required Map<String , dynamic> data,
-    String? token ,
-  }) async{
-
+    Map<String, dynamic>? query,
+    required Map<String, dynamic> data,
+    String? token,
+  }) async {
     dio!.options.headers = {
-      'Content-Type':'application/json',
-      'Authorization': token??'',
+      'Content-Type': 'application/json',
+      'Authorization': token ?? '',
     };
 
-    return await dio!.put(
+    return await dio!
+        .put(
       url,
       queryParameters: query,
       data: data,
-    ).catchError((error) {
+    )
+        .catchError((error) {
       print('error in getData Dio ${error.toString()}');
     });
   }
 
   static Future<Response> patchData({
     required String url,
-    Map<String , dynamic>? query,
-    required Map<String , dynamic> data,
-    String? token ,
-  }) async{
-
+    Map<String, dynamic>? query,
+    required Map<String, dynamic> data,
+    String? token,
+  }) async {
     dio!.options.headers = {
-      'Content-Type':'application/json',
-      'Authorization': 'Bearer ''$token',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' '$token',
     };
 
-    return await dio!.patch(
+    return await dio!
+        .patch(
       url,
       queryParameters: query,
       data: data,
-    ).catchError((error) {
+    )
+        .catchError((error) {
       print('error in patchData Dio ${error.toString()}');
     });
   }
-
 }

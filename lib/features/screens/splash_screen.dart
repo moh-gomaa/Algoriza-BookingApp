@@ -1,3 +1,4 @@
+import 'package:booking_app/core/bottom_navigation/pages/main_screen.dart';
 import 'package:booking_app/features/screens/home_screen.dart';
 import 'package:booking_app/resources/assets_manager/assets_manager.dart';
 import 'package:booking_app/resources/themes/theme.dart';
@@ -18,9 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
 
     Future.delayed(const Duration(seconds: 4),(){
-      return Navigator.push(context, MaterialPageRoute(builder: (_){
-        return const HomeScreen();
-      }));
+      debugPrint('amHere');
+       Navigator.pushNamed(context, '/main');
     });
 
     super.initState();

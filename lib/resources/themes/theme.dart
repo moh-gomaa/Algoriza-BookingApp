@@ -17,7 +17,7 @@ final ThemeData ownThemeData = ThemeData(
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.deepPurple,
     ),
-    primarySwatch: Colors.red,
+    primarySwatch: Colors.blue,
     scaffoldBackgroundColor: OwnTheme.colorPalette['white'],
     bottomSheetTheme: const BottomSheetThemeData(
         backgroundColor: Colors.transparent,
