@@ -4,7 +4,7 @@ List<BoardingModel> boarding =[
   BoardingModel(
     image: 'assets/images/loading.json',
     title: 'Plan your trips',
-    subtitle: 'book one of your unique hotel to \n escape the ordinary',
+    subtitle: 'Book one of your unique hotel to \n Escape the ordinary',
 
 
   ),
@@ -20,6 +20,7 @@ List<BoardingModel> boarding =[
     subtitle: 'Find deals for any season from cosy \n country homes to city flats' ,
 
   ),
+
 
 ];
 

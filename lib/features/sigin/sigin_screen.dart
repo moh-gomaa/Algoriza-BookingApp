@@ -1,3 +1,5 @@
+import 'package:booking_app/features/login/login_screen.dart';
+import 'package:booking_app/resources/buttonkey/button.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +9,7 @@ class SiginScreen extends StatelessWidget {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +38,7 @@ class SiginScreen extends StatelessWidget {
                   textAlign: TextAlign.start,
                   style: TextStyle(
                       fontSize: 14,
-                    color:  Color(0xFF8b8b98),
+                      color: Color(0xFF8b8b98),
                       fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
                 ),
                 TextFormField(
@@ -54,8 +57,7 @@ class SiginScreen extends StatelessWidget {
                     return null;
                   },
                   decoration: InputDecoration(
-                    labelText:  'Enter first name',
-
+                    labelText: 'Enter first name',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -88,8 +90,7 @@ class SiginScreen extends StatelessWidget {
                     return null;
                   },
                   decoration: InputDecoration(
-                    labelText:  'Last name',
-
+                    labelText: 'Last name',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -103,7 +104,7 @@ class SiginScreen extends StatelessWidget {
                   textAlign: TextAlign.start,
                   style: TextStyle(
                       fontSize: 14,
-                      color:  Color(0xFF8b8b98),
+                      color: Color(0xFF8b8b98),
                       fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
                 ),
                 TextFormField(
@@ -122,14 +123,12 @@ class SiginScreen extends StatelessWidget {
                     return null;
                   },
                   decoration: InputDecoration(
-                    labelText:  'Eg.example@gmail.com',
+                    labelText: 'Eg.example@gmail.com',
                     prefixIcon: Icon(
                       Icons.email,
                     ),
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.white
-                      ),
+                      borderSide: BorderSide(color: Colors.white),
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
@@ -142,7 +141,7 @@ class SiginScreen extends StatelessWidget {
                   textAlign: TextAlign.start,
                   style: TextStyle(
                       fontSize: 14,
-                      color:  Color(0xFF8b8b98),
+                      color: Color(0xFF8b8b98),
                       fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
                 ),
                 TextFormField(
@@ -177,37 +176,29 @@ class SiginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                // ButtonKey(
-                //   text: 'LOGIN',
-                //   background: Colors.teal,
-                //   textColor: Colors.white,
-                //   function: () {
-                //     if (formKey.currentState!.validate())
-                //       print(emailController.text);
-                //     print(passwordController.text);
-                //   },
-                // ),
-
                 SizedBox(
-                  height: 30.0,
+                  height: 15,
+                ),
+                ButtonKey(
+                  function: () {
+                    Navigator.pushNamed(context, '/login');
+                    if (formKey.currentState!.validate())
+                      print(emailController.text);
+                    print(passwordController.text);
+                  },
+                  buttonText: 'Sign up',
+                ),
+                SizedBox(
+                  height: 15.0,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'By Signing up,you agreed with our terms \n of  Services and privacy policy',
-           textAlign:TextAlign.center,
+                      textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.teal),
                     ),
-                    // TextButton(
-                    //   onPressed: () {
-                    //     navigateTo(context, SigninScreen());
-                    //   },
-                    //   child: Text(
-                    //     'Login',
-                    //     style: TextStyle(color: Colors.teal),
-                    //   ),
-                    // ),
                   ],
                 ),
                 Row(
@@ -223,7 +214,7 @@ class SiginScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        // navigateTo(context, SigninScreen());
+                        Navigator.pushNamed(context, '/login');
                       },
                       child: Text(
                         'Login',
@@ -240,7 +231,6 @@ class SiginScreen extends StatelessWidget {
           ),
         ),
       ),
-
     );
   }
 }
