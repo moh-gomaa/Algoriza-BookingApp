@@ -1,6 +1,8 @@
 import 'package:booking_app/core/main_blocs/blocs.dart';
+import 'package:booking_app/resources/buttonkey/button.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class StartedScreen extends StatelessWidget {
   const StartedScreen({Key? key}) : super(key: key);
@@ -13,8 +15,9 @@ class StartedScreen extends StatelessWidget {
         padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
-            Image.asset('assets/images/page_start.png',
-            height: 65,
+            Image.asset(
+              'assets/images/page_start.png',
+              height: 65,
             ),
             SizedBox(
               height: 15,
@@ -22,27 +25,42 @@ class StartedScreen extends StatelessWidget {
             Center(
               child: Text(
                 'Booking App',
-                style:TextStyle(
+                style: TextStyle(
                     fontSize: 14,
-                    color:  Color(0xFF8b8b98),
+                    color: Color(0xFF8b8b98),
                     fontWeight: FontWeight.w500,
                     fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"),
               ),
             ),
-           Column(
-             children: [
-               Center(
-                 child: Text('Best hotel deals for your holiday',
-                   style:TextStyle(
-                       fontSize: 14,
-                       color:  Color(0xFF8b8b98),
-                       fontWeight: FontWeight.w500,
-                       fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"),
-                 ),
-               ),
-             ],
-           ),
-            Spacer(),
+            Column(
+              children: [
+                Center(
+                  child: Text(
+                    'Best hotel deals for your holiday',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF8b8b98),
+                        fontWeight: FontWeight.w500,
+                        fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"),
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Lottie.asset(
+                      'assets/images/temp.json',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            ButtonKey(
+              buttonText: 'Get Started',
+              function: (){ Navigator.pushNamed(context, '/onboard'); },
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -57,7 +75,7 @@ class StartedScreen extends StatelessWidget {
 
                 TextButton(
                   onPressed: () {
-                    // navigateTo(context, SigninScreen());
+                    Navigator.pushNamed(context, '/login');
                   },
                   child: Text(
                     'Log in',

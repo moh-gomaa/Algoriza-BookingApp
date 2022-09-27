@@ -1,7 +1,6 @@
 import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/data/model_onboard/model.dart';
 import 'package:booking_app/features/login/login_screen.dart';
-import 'package:booking_app/features/sigin/sigin_screen.dart';
 import 'package:booking_app/resources/buttonkey/button.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:flutter/material.dart';
@@ -24,51 +23,55 @@ class OnBoardScreen extends StatelessWidget {
           },
         ),
       ]),
-      body: Column(
-        children: [
-          Expanded(
-            child: PageView.builder(
-              physics: BouncingScrollPhysics(),
-              controller: boardController,
-              itemBuilder: (context, index) =>
-                  buildOnBoardItem(boarding[index]),
-              itemCount: boarding.length,
-            ),
-          ),
-          Column(
-            children: [
-              SmoothPageIndicator(
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: PageView.builder(
+                physics: BouncingScrollPhysics(),
                 controller: boardController,
-                count: boarding.length,
-                effect: ExpandingDotsEffect(
-                  dotColor: Colors.blue,
-                  expansionFactor: 3,
-                  activeDotColor: Colors.blue,
-                  spacing: 5,
-                  dotHeight: 10,
-                  dotWidth: 10,
-                ),
+                itemBuilder: (context, index) =>
+                    buildOnBoardItem(boarding[index]),
+                itemCount: boarding.length,
               ),
-            ],
-          ),
-          ButtonKey(
-            function: () {
-              Navigator.pushNamed(context, '/login');
-            },
-            buttonText: 'Login',
-          ),
-          ButtonKey(
-            padding: const EdgeInsets.only(
-              left: 30,
-              right: 30,
-              bottom: 5,
             ),
-            buttonText: 'Create account',
-            function: () {
-              Navigator.pushNamed(context, '/login');
-            },
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  SmoothPageIndicator(
+                    controller: boardController,
+                    count: boarding.length,
+                    effect: ExpandingDotsEffect(
+                      dotColor: Colors.blue,
+                      expansionFactor: 3,
+                      activeDotColor: Colors.blue,
+                      spacing: 5,
+                      dotHeight: 10,
+                      dotWidth: 10,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ButtonKey(
+              function: () {
+                Navigator.pushNamed(context, '/login');
+              },
+              buttonText: 'Login',
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            ButtonKey(
+              buttonText: 'Create account',
+              function: () {
+                Navigator.pushNamed(context, '/sigin');
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -80,7 +83,7 @@ class OnBoardScreen extends StatelessWidget {
               '${model.image}',
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(space1),
               child: Text(
                 '${model.title}',
                 style: TextStyle(

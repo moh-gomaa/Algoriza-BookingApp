@@ -28,14 +28,16 @@ class ButtonKey extends StatelessWidget {
         function != null ? function!() : null;
       },
       child: Container(
-        padding: padding ?? EdgeInsets.all(space1),
+        padding: padding ?? EdgeInsets.only( bottom: 8, top: 5),
         decoration: BoxDecoration(
             color: backgroundColor ?? OwnTheme.colorPalette['primary'],
             borderRadius: BorderRadius.circular(radius)),
-        child: Text(
-          '${buttonText}',
-          style: OwnTheme.suitableTextStyle(lang: lang)
-              .copyWith(color: textColor ?? OwnTheme.colorPalette['white']),
+        child: Center(
+          child: Text(
+            '${buttonText}',
+            style: OwnTheme.suitableTextStyle(lang: lang)
+                .copyWith(color: textColor ?? OwnTheme.colorPalette['white']),
+          ),
         ),
       ),
     );
