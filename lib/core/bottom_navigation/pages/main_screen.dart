@@ -2,6 +2,7 @@ import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/features/home/pages/home_screen.dart';
 import 'package:booking_app/features/profile/pages/profile_main_screen.dart';
+import 'package:booking_app/features/trips/trips_screen.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 
 class MainScreen extends StatelessWidget {
@@ -46,7 +47,7 @@ class MainScreen extends StatelessWidget {
         if (state.navbarItem == NavbarItem.home) {
           return HomeScreen();
         } else if (state.navbarItem == NavbarItem.settings) {
-          return ProfileMainScreen();
+          return TripsScreen();
         } else if (state.navbarItem == NavbarItem.profile) {
           return ProfileMainScreen();
         }
