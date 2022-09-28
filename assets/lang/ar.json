@@ -27,9 +27,9 @@
   "OnBoarding----------------------------": "OnBoarding------------------------------------------",
   "onboarding_title1_txt": "خطط لرحلاتك",
   "onboarding_desc1": "احجز فندقك الفريد من نوعه \n للهروب من المألوف",
-  "onboarding_title2_txt": "Find best deals",
+  "onboarding_title2_txt": "البحث عن أفضل الصفقات",
   "onboarding_desc2": "اعثر على صفقات لأي موسم من المنازل الريفية المريحة \n إلى شقق المدينة",
-  "onboarding_title3_txt": "Best travelling all time",
+  "onboarding_title3_txt": "سفر افضل طوال الوقت",
   "onboarding_desc3": "اعثر على صفقات لأي موسم من المنازل الريفية المريحة \n إلى شقق المدينة",
 
   "HomeScreen----------------------------": "HomeScreen-------------------------",
@@ -42,5 +42,8 @@
   "up_coming": "القادمه",
   "finished": "انتهت",
   "favorites": "المفضله",
-  "explore": "استكشاف"
+  "explore": "استكشاف",
+  "ProfileDetailsScreen----------------------------": "ProfileDetailsScreen-----------------------",
+  "user_name_txt": "الاسم",
+  "email_txt": "البريد الالكتروني"
 }

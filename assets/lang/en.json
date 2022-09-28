@@ -31,16 +31,17 @@
   "onboarding_desc2": "Find deals for any season from cosy \n country homes to city flats",
   "onboarding_title3_txt": "Best travelling all time",
   "onboarding_desc3": "Find deals for any season from cosy \n country homes to city flats",
-
   "HomeScreen----------------------------": "HomeScreen-------------------------",
   "popular_destination": "Popular Destination",
   "best_deals": "Best Deals",
   "view_all": "View All",
-
   "TripsScreen----------------------------": "TripsScreen-------------------------",
   "my_trip": "My Trip",
   "up_coming": "Up Coming",
   "finished": "Finished",
   "favorites": "Favorites",
-  "explore": "Explore"
+  "explore": "Explore",
+  "ProfileDetailsScreen----------------------------": "ProfileDetailsScreen-----------------------",
+  "user_name_txt": "User Name",
+  "email_txt": "Email"
 }

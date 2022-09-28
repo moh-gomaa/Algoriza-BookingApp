@@ -1,7 +1,5 @@
-import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 
 class ButtonKey extends StatelessWidget {
@@ -11,6 +9,7 @@ class ButtonKey extends StatelessWidget {
   final Color? textColor, backgroundColor;
   final double radius;
   final bool isLoading;
+  final String? language;
 
   const ButtonKey({
     Key? key,
@@ -20,7 +19,8 @@ class ButtonKey extends StatelessWidget {
     this.backgroundColor,
     this.padding,
     this.radius = round,
-    this.isLoading = false
+    this.isLoading = false,
+    this.language
   }) : super(key: key);
 
   @override
@@ -40,7 +40,7 @@ class ButtonKey extends StatelessWidget {
           child: Center(
             child: Text(
               '${buttonText}',
-              style: OwnTheme.suitableTextStyle(lang: lang)
+              style: OwnTheme.suitableTextStyle(lang: language?? lang)
                   .copyWith(color: textColor ?? OwnTheme.colorPalette['white']),
             ),
           ),

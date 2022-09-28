@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:booking_app/core/main_blocs/blocs.dart';
+import 'package:booking_app/core/utils/shared_preferences/shared_preferences_helper.dart';
 import 'package:booking_app/data/database/user_helper.dart';
 import 'package:booking_app/data/models/user_model.dart';
 import 'package:booking_app/data/repositories/authentication_repository.dart';
@@ -21,6 +22,8 @@ class RegisterCubit extends Bloc<LoginCubit, RegisterStates> {
         await db.deleteAll();
         db.savePost(userData);
         debugPrint('UserName==${userData.name}');
+        await addStringToSF('userID', '${userData.id}');
+        await addStringToSF('name', '${userData.name}');
         emit(RegisterSuccessState(model: userData));
       }
     } catch (e) {

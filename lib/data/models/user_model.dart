@@ -60,7 +60,7 @@ class UserModel {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    // map['id'] = _id;
+    map['id'] = _id;
     map['name'] = _name;
     map['email'] = _email;
     // map['api_token'] = _apiToken;

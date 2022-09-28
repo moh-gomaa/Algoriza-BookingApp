@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) {
-        if(state is LoginSuccessState){
+        if (state is LoginSuccessState) {
           Navigator.pushNamed(context, '/main');
         }
       },
@@ -120,7 +120,7 @@ class LoginScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               Navigator.pushNamed(context, '/password');
                             },
                             child: Text(
@@ -138,10 +138,8 @@ class LoginScreen extends StatelessWidget {
                       ButtonKey(
                         isLoading: (state is LoginLoadingState),
                         buttonText: 'LOGIN',
-                        function: ()
-                        {
-                          if (formKey.currentState!.validate())
-                          {
+                        function: () {
+                          if (formKey.currentState!.validate()) {
                             LoginCubit.get(context).login
                               (
                               email: emailController.text,
@@ -158,7 +156,6 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
         );
-
       },
     );
   }

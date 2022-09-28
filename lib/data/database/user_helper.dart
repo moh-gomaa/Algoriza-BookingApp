@@ -53,9 +53,10 @@ class UserHelper {
 
   Future<bool> deleteAll() async {
     List<UserModel> result = await getAll();
-
+    print(result.length.toString());
     if (result.length > 0) {
       for (var row in result) {
+        print(row.id);
         await delete(row.id.toString());
       }
     }

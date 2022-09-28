@@ -1,4 +1,5 @@
 import 'package:booking_app/core/bottom_navigation/pages/main_screen.dart';
+import 'package:booking_app/data/models/user_model.dart';
 import 'package:booking_app/features/home/pages/home_screen.dart';
 import 'package:booking_app/features/login/login_screen.dart';
 import 'package:booking_app/features/onboarding/pages/onboarding_screen.dart';
@@ -50,8 +51,9 @@ class AppRouter {
         );
 
         case '/profileDetails':
-        return PageTransition(
-          child: ProfileDetailsScreen(),
+          UserModel obj = settings.arguments as UserModel;
+          return PageTransition(
+          child: ProfileDetailsScreen(user: obj),
           type: PageTransitionType.rightToLeft,
           duration: animationDuration,
           settings: settings,
