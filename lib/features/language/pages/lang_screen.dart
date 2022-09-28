@@ -1,3 +1,4 @@
+import 'package:booking_app/core/localization/helpers/language_helper.dart';
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/core/utils/extensions/layout_extensions.dart';
@@ -13,6 +14,7 @@ class LangScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: OwnTheme.colorPalette['white'],
       bottomSheet: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
@@ -32,7 +34,8 @@ class LangScreen extends StatelessWidget {
             buttonText: 'عربي',
             language: 'ar',
             function: (){
-              context.read<LocaleCubit>().changeLanguage('ar');
+              LanguageHelper().setLang('ar');
+              Navigator.pushReplacementNamed(context, '/getStarted');
             },
           ),
           SizedBox(
@@ -43,7 +46,8 @@ class LangScreen extends StatelessWidget {
             language: 'en',
             backgroundColor: OwnTheme.colorPalette['gray'],
             function: (){
-              context.read<LocaleCubit>().changeLanguage('en');
+              LanguageHelper().setLang('en');
+              Navigator.pushReplacementNamed(context, '/getStarted');
             },
           ),
         ],

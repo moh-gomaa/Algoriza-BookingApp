@@ -11,36 +11,36 @@ class ButtonKey extends StatelessWidget {
   final bool isLoading;
   final String? language;
 
-  const ButtonKey({
-    Key? key,
-    this.function,
-    this.buttonText,
-    this.textColor,
-    this.backgroundColor,
-    this.padding,
-    this.radius = round,
-    this.isLoading = false,
-    this.language
-  }) : super(key: key);
+  const ButtonKey(
+      {Key? key,
+      this.function,
+      this.buttonText,
+      this.textColor,
+      this.backgroundColor,
+      this.padding,
+      this.radius = round,
+      this.isLoading = false,
+      this.language})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if(isLoading)
-      return CircularProgressIndicator();
+    if (isLoading)
+      return Center(child: CircularProgressIndicator());
     else
       return GestureDetector(
         onTap: () {
           function != null ? function!() : null;
         },
         child: Container(
-          padding: padding ?? EdgeInsets.only( bottom: 8, top: 5),
+          padding: padding ?? EdgeInsets.all(space1),
           decoration: BoxDecoration(
               color: backgroundColor ?? OwnTheme.colorPalette['primary'],
               borderRadius: BorderRadius.circular(radius)),
           child: Center(
             child: Text(
               '${buttonText}',
-              style: OwnTheme.suitableTextStyle(lang: language?? lang)
+              style: OwnTheme.suitableTextStyle(lang: language ?? lang)
                   .copyWith(color: textColor ?? OwnTheme.colorPalette['white']),
             ),
           ),

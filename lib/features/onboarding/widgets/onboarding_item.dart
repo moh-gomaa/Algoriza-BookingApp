@@ -21,13 +21,14 @@ class OnboardingItem extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: space2),
-          child:
-              Text('${row.title}', style: OwnTheme.avBoldTextStyle(lang: lang)),
+          child: Text('${row.title}',
+              style: OwnTheme.avBoldTextStyle(lang: lang)
+                  .colorChange(color: 'white')),
         ),
         Text('${row.subtitle}',
             textAlign: TextAlign.center,
-            style: OwnTheme.normalTextStyle(lang: lang)
-                .colorChange(color: 'gray')),
+            style: OwnTheme.prNormalTextStyle(lang: lang)
+                .colorChange(color: 'white')),
       ],
     );
   }

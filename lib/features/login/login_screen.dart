@@ -1,12 +1,14 @@
+import 'package:booking_app/core/localization/setup/app_localization.dart';
+import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/features/login/bloc/login_cubit.dart';
 
 import 'package:booking_app/resources/buttonkey/button.dart';
 import 'package:booking_app/resources/constants/constants.dart';
+import 'package:booking_app/resources/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
-
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -37,21 +39,16 @@ class LoginScreen extends StatelessWidget {
                             fontSize: 40,
                             color: Color(0xFF000000),
                             fontWeight: FontWeight.w500,
-                            fontFamily: lang == "ar"
-                                ? "fontArBold"
-                                : "fontEnBold"),
+                            fontFamily:
+                                lang == "ar" ? "fontArBold" : "fontEnBold"),
                       ),
                       SizedBox(
                         height: 10.0,
                       ),
-                      Text(
-                        'Your Email',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Color(0xFF8b8b98),
-                            fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
-                      ),
+                      Text('lang_txt'.tr(context),
+                          textAlign: TextAlign.start,
+                          style: OwnTheme.normalTextStyle(lang: lang)
+                              .colorChange(color: 'gray')),
                       TextFormField(
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
@@ -67,9 +64,7 @@ class LoginScreen extends StatelessWidget {
                             Icons.email,
                           ),
                           border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Colors.white
-                            ),
+                            borderSide: BorderSide(color: Colors.white),
                             borderRadius: BorderRadius.circular(15),
                           ),
                         ),
@@ -103,7 +98,6 @@ class LoginScreen extends StatelessWidget {
                           suffixIcon: Icon(
                             Icons.remove_red_eye,
                           ),
-
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
                             borderSide: BorderSide(
@@ -111,7 +105,6 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-
                       ),
                       SizedBox(
                         height: 10,
@@ -129,7 +122,6 @@ class LoginScreen extends StatelessWidget {
                               style: TextStyle(color: Colors.teal),
                             ),
                           ),
-
                         ],
                       ),
                       SizedBox(
@@ -140,15 +132,13 @@ class LoginScreen extends StatelessWidget {
                         buttonText: 'LOGIN',
                         function: () {
                           if (formKey.currentState!.validate()) {
-                            LoginCubit.get(context).login
-                              (
+                            LoginCubit.get(context).login(
                               email: emailController.text,
                               pass: passwordController.text,
                             );
                           }
                         },
                       ),
-
                     ],
                   ),
                 ),

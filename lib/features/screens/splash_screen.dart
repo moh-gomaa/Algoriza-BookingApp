@@ -1,6 +1,8 @@
+import 'package:booking_app/core/localization/setup/app_localization.dart';
+import 'package:booking_app/data/models/basic_model.dart';
 import 'package:booking_app/resources/assets_manager/assets_manager.dart';
+import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
-import 'package:flutter/services.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 
@@ -12,47 +14,51 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
-    //
-    Future.delayed(const Duration(seconds: 4),(){
-      debugPrint('amHere');
-       Navigator.pushNamed(context, '/main');
+    super.initState();
+    new Future.delayed(const Duration(seconds: 4), () {
+      if (mounted) {
+        if (lang == '')
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/lang', (Route<dynamic> route) => false);
+        else if (BasicModel.isLogin)
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/main', (Route<dynamic> route) => false);
+        else
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/onboarding', (Route<dynamic> route) => false);
+      }
     });
 
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var size=MediaQuery.of(context).size;
-    return  Scaffold(
-      backgroundColor:OwnTheme.colorPalette['primary'],
-      appBar: AppBar(
-          toolbarHeight: 0.0,
-          elevation: 0.0,
-          backwardsCompatibility: false,
-          systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: OwnTheme.colorPalette['primary'],
-              statusBarIconBrightness: Brightness.light
-          )
+    var size = MediaQuery.of(context).size;
+    return Scaffold(
+      backgroundColor: OwnTheme.colorPalette['white'],
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/gradient_bg.webp'),
+                fit: BoxFit.cover)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Lottie.asset(AssetsManager.splashScreenImage,
+                height: size.height * .35, width: size.width),
+            SizedBox(
+              height: space2,
+            ),
+            Text(
+              'booking_app_txt'.tr(context),
+              style: OwnTheme.suitableBoldTextStyle(lang: lang),
+            )
+          ],
+        ),
       ),
-      body:  Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children:  [
-
-          Lottie.asset(
-
-              AssetsManager.splashScreenImage,
-              height: size.height*.35,
-              width: size.width
-          )
-
-        ],
-      ),
-
     );
   }
 }
