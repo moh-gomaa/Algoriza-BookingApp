@@ -13,6 +13,8 @@ import 'blocs.dart';
 
     BlocProvider<RegisterCubit>(create: (_) => RegisterCubit()),
 
+    BlocProvider<AppCubit>(create: (_) => AppCubit()),
+
 
     // .
     // .
