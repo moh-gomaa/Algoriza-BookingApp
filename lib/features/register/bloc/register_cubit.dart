@@ -1,35 +1,30 @@
 import 'dart:async';
 import 'package:booking_app/core/main_blocs/blocs.dart';
-import 'package:booking_app/core/utils/network/remote/dio_helper.dart';
+import 'package:booking_app/data/database/user_helper.dart';
+import 'package:booking_app/data/models/user_model.dart';
+import 'package:booking_app/data/repositories/authentication_repository.dart';
 import 'package:booking_app/features/register/bloc/register_state.dart';
-
 
 class RegisterCubit extends Bloc<LoginCubit, RegisterStates> {
   RegisterCubit() : super(RegisterInitial());
 
   static RegisterCubit get(context) => BlocProvider.of(context);
 
-  void userRegister({
-    required String firstname,
-    required String lastname,
-    required String email,
-    required String password,
-
-  }) {
+  Future<void> register({
+    required UserModel obj,
+  }) async {
     emit(RegisterLoadingState());
-    DioHelper.postData(
-        url: 'auth/register', data: {
-      'firstname': firstname,
-      'lastname' : lastname,
-      'email': email,
-      'password': password,
-    }).then((value) {
-      print(value.data);
-      emit(RegisterSuccessState());
-    }).catchError((error) {
-      emit(
-        RegisterErrorState(error.toString()),
-      );
-    });
+    try {
+      UserModel userData = await AuthenticationRepository().register(obj);
+      if (userData != null) {
+        UserHelper db = UserHelper();
+        await db.deleteAll();
+        db.savePost(userData);
+        debugPrint('UserName==${userData.name}');
+        emit(RegisterSuccessState(model: userData));
+      }
+    } catch (e) {
+      emit(RegisterErrorState(error: e.toString()));
+    }
   }
 }

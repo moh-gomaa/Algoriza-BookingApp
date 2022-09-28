@@ -1,3 +1,4 @@
+import 'package:booking_app/data/models/user_model.dart';
 import 'package:booking_app/features/login/login_screen.dart';
 import 'package:booking_app/features/register/bloc/register_cubit.dart';
 import 'package:booking_app/features/register/bloc/register_state.dart';
@@ -13,10 +14,16 @@ class RegisterScreen extends StatelessWidget {
   var passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
+  UserModel user = UserModel();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterCubit, RegisterStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is RegisterLoadingState){
+          Navigator.pushNamed(context, '/main');
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(),
@@ -190,16 +197,17 @@ class RegisterScreen extends StatelessWidget {
                       function: () {
                         {
                           if (formKey.currentState!.validate()) {
-                            RegisterCubit.get(context).userRegister(
-                              firstname: firstNameController.text,
-                              lastname: firstNameController.text,
-                              email: emailController.text,
-                              password: passwordController.text,
-                            );
+                            user = UserModel(
+                                name: firstNameController.text,
+                                email: emailController.text,
+                                password: passwordController.text,
+                                passwordConfirmation: passwordController.text);
+                            RegisterCubit.get(context).register(obj: user);
                           }
                         }
                       },
                       buttonText: 'Sign up',
+                      isLoading: (state is RegisterLoadingState),
                     ),
                     SizedBox(
                       height: 15.0,
