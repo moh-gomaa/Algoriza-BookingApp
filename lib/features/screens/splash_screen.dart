@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-
+    //
     Future.delayed(const Duration(seconds: 4),(){
       debugPrint('amHere');
        Navigator.pushNamed(context, '/main');
@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     var size=MediaQuery.of(context).size;
     return  Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor:OwnTheme.colorPalette['primary'],
       appBar: AppBar(
           toolbarHeight: 0.0,
           elevation: 0.0,
@@ -39,13 +39,15 @@ class _SplashScreenState extends State<SplashScreen> {
           )
       ),
       body:  Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children:  [
 
           Lottie.asset(
 
               AssetsManager.splashScreenImage,
-              height: size.height*.2,
-              width: size.width*.5
+              height: size.height*.35,
+              width: size.width
           )
 
         ],

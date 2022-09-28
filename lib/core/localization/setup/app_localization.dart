@@ -35,6 +35,7 @@ class AppLocalizations {
 
 extension TranslateX on String {
   String tr(BuildContext context) {
+    // debugPrint('String=${this}');
     return AppLocalizations.of(context)!.translate(this);
   }
 }

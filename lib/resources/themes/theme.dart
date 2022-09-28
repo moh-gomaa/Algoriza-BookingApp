@@ -15,9 +15,8 @@ final ThemeData ownThemeData = ThemeData(
       showUnselectedLabels: true,
     ),
     appBarTheme: const AppBarTheme(
-      backwardsCompatibility: false,
       elevation: 0.0,
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
     ),
     primarySwatch: Colors.blue,
     scaffoldBackgroundColor: OwnTheme.colorPalette['white'],
@@ -78,7 +77,7 @@ class OwnTheme {
         fontSize: 18.sp,
         fontWeight: FontWeight.w500,
         color: colorPalette['black'],
-        fontFamily: lang == "ar" ? "fontAr" : "fontEn");
+        fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold");
   }
 
   static TextStyle prNormalTextStyle({required String lang}) {

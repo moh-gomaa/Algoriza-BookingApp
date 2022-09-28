@@ -15,6 +15,9 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) {
+        if (state is LoginSuccessState) {
+          Navigator.pushNamed(context, '/main');
+        }
       },
       builder: (context, state) {
         return Scaffold(
@@ -52,12 +55,6 @@ class LoginScreen extends StatelessWidget {
                       TextFormField(
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
-                        onFieldSubmitted: (String value) {
-                          print(value);
-                        },
-                        onChanged: (String value) {
-                          print(value);
-                        },
                         validator: (String? value) {
                           if (value!.isEmpty) {
                             return 'Email must be not be empty';
@@ -92,12 +89,6 @@ class LoginScreen extends StatelessWidget {
                         controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
                         obscureText: true,
-                        onFieldSubmitted: (String value) {
-                          print(value);
-                        },
-                        onChanged: (String value) {
-                          print(value);
-                        },
                         validator: (String? value) {
                           if (value!.isEmpty) {
                             return 'Password must be not be empty';
@@ -129,7 +120,7 @@ class LoginScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               Navigator.pushNamed(context, '/password');
                             },
                             child: Text(
@@ -145,17 +136,16 @@ class LoginScreen extends StatelessWidget {
                         height: 15,
                       ),
                       ButtonKey(
+                        isLoading: (state is LoginLoadingState),
                         buttonText: 'LOGIN',
-                        function: ()
-                        {
-                          if (formKey.currentState!.validate())
-                        {
-                          LoginCubit.get(context).userLogin
-                            (
+                        function: () {
+                          if (formKey.currentState!.validate()) {
+                            LoginCubit.get(context).login
+                              (
                               email: emailController.text,
-                              password: passwordController.text,
-                          );
-                        }
+                              pass: passwordController.text,
+                            );
+                          }
                         },
                       ),
 
@@ -166,7 +156,6 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
         );
-
       },
     );
   }

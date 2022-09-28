@@ -1,6 +1,6 @@
 //  ------------------------------- Main Variables ----------------------------
 
-String lang = 'en';
+String lang = '';
 String db = "mainDB.db";
 
 RegExp regexpSuffix = RegExp(r'([.]*0)(?!.*\d)');
