@@ -10,6 +10,7 @@ class ButtonKey extends StatelessWidget {
   final String? buttonText;
   final Color? textColor, backgroundColor;
   final double radius;
+  final bool isLoading;
 
   const ButtonKey({
     Key? key,
@@ -19,27 +20,31 @@ class ButtonKey extends StatelessWidget {
     this.backgroundColor,
     this.padding,
     this.radius = round,
+    this.isLoading = false
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        function != null ? function!() : null;
-      },
-      child: Container(
-        padding: padding ?? EdgeInsets.only( bottom: 8, top: 5),
-        decoration: BoxDecoration(
-            color: backgroundColor ?? OwnTheme.colorPalette['primary'],
-            borderRadius: BorderRadius.circular(radius)),
-        child: Center(
-          child: Text(
-            '${buttonText}',
-            style: OwnTheme.suitableTextStyle(lang: lang)
-                .copyWith(color: textColor ?? OwnTheme.colorPalette['white']),
+    if(isLoading)
+      return CircularProgressIndicator();
+    else
+      return GestureDetector(
+        onTap: () {
+          function != null ? function!() : null;
+        },
+        child: Container(
+          padding: padding ?? EdgeInsets.only( bottom: 8, top: 5),
+          decoration: BoxDecoration(
+              color: backgroundColor ?? OwnTheme.colorPalette['primary'],
+              borderRadius: BorderRadius.circular(radius)),
+          child: Center(
+            child: Text(
+              '${buttonText}',
+              style: OwnTheme.suitableTextStyle(lang: lang)
+                  .copyWith(color: textColor ?? OwnTheme.colorPalette['white']),
+            ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

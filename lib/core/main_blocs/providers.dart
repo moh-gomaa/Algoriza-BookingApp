@@ -1,4 +1,3 @@
-
 import 'blocs.dart';
 
   class BlocProviders {
@@ -11,6 +10,8 @@ import 'blocs.dart';
     BlocProvider<NavigationCubit>(create: (_) => NavigationCubit()),
 
     BlocProvider<LoginCubit>(create: (_) => LoginCubit()),
+
+    BlocProvider<RegisterCubit>(create: (_) => RegisterCubit()),
 
 
     // .

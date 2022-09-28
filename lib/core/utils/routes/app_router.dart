@@ -1,4 +1,5 @@
 import 'package:booking_app/core/bottom_navigation/pages/main_screen.dart';
+import 'package:booking_app/features/home/pages/home_screen.dart';
 import 'package:booking_app/features/login/login_screen.dart';
 import 'package:booking_app/features/onboarding/pages/onboarding_screen.dart';
 import 'package:booking_app/features/profile/pages/profile_details_screen.dart';
@@ -13,6 +14,13 @@ class AppRouter {
       case '/main':
         return PageTransition(
           child: MainScreen(),
+          type: PageTransitionType.rightToLeft,
+          duration: animationDuration,
+          settings: settings,
+        );
+        case '/tt':
+        return PageTransition(
+          child: HomeScreen(),
           type: PageTransitionType.rightToLeft,
           duration: animationDuration,
           settings: settings,

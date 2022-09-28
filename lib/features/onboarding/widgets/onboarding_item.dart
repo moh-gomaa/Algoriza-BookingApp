@@ -16,6 +16,8 @@ class OnboardingItem extends StatelessWidget {
       children: [
         Lottie.asset(
           '${row.image}',
+          width: MediaQuery.of(context).size.width * 0.6,
+          height: MediaQuery.of(context).size.width * 0.6,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: space2),
