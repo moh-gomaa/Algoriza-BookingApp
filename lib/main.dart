@@ -1,4 +1,3 @@
-import 'package:booking_app/core/bottom_navigation/pages/main_screen.dart';
 import 'package:booking_app/core/connectivity/cubit/connectivity_cubit.dart';
 import 'package:booking_app/core/connectivity/pages/connectivity_Screen.dart';
 import 'package:booking_app/core/localization/cubit/locale_cubit.dart';
@@ -8,17 +7,12 @@ import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/core/main_blocs/providers.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/core/utils/routes/app_router.dart';
-import 'package:booking_app/features/getstarted/started_screen.dart';
-import 'package:booking_app/features/login/login_screen.dart';
-import 'package:booking_app/features/onboarding/pages/onboarding_screen.dart';
-import 'package:booking_app/features/password/password_screen.dart';
-import 'package:booking_app/features/screens/splash_screen.dart';
+import 'package:booking_app/features/get_started/pages/get_started_screen.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'resources/themes/theme.dart';
-import 'package:booking_app/core/bottom_navigation/cubit/navigation_cubit.dart';
-
 
 void main() {
   runApp(MyApp(
@@ -55,7 +49,7 @@ class MyApp extends StatelessWidget {
                 home: BlocBuilder<ConnectivityCubit, ConnectivityState>(
                     builder: (context, state) {
                   if (state is InternetConnected) {
-                    return StartedScreen();
+                    return GetStartedScreen();
                   } else if (state is InternetDisconnected) {
                     return ConnectivityScreen();
                   }

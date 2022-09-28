@@ -3,11 +3,10 @@
   "explore_txt": "Explore",
   "trips_txt": "Trips",
   "profile_txt": "Profile",
-
   "CommonSection----------------------------": "CommonSection-------------------------",
   "saveBtn": "Save",
   "cancelBtn": "Cancel",
-
+  "skip_btn": "Skip",
   "ProfileScreen----------------------------": "ProfileScreen-------------------------",
   "view_edit_profile_txt": "View and Edit profile",
   "change_pass_txt": "Change Password",
@@ -15,5 +14,21 @@
   "credit_coupons_txt": "Credit & Coupons",
   "help_center_txt": "Help Center",
   "payment_txt": "Payment",
-  "setting_txt": "Setting"
+  "setting_txt": "Setting",
+  "GetStarted----------------------------": "GetStarted-------------------------",
+  "booking_app_txt": "Booking App",
+  "booking_app_desc1": "Best hotel deals for your",
+  "booking_app_desc2": "holiday",
+  "get_started_btn": "Get Started",
+  "have_account_txt": "Already have an account ?",
+  "AuthenticationSection----------------------------": "AuthenticationSection--------------------",
+  "login_btn": "Login",
+  "create_account_btn": "Create account",
+  "OnBoarding----------------------------": "OnBoarding------------------------------------------",
+  "onboarding_title1_txt": "Plan your trips",
+  "onboarding_desc1": "Book one of your unique hotel to \n Escape the ordinary",
+  "onboarding_title2_txt": "Find best deals",
+  "onboarding_desc2": "Find deals for any season from cosy \n country homes to city flats",
+  "onboarding_title3_txt": "Best travelling all time",
+  "onboarding_desc3": "Find deals for any season from cosy \n country homes to city flats"
 }

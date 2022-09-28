@@ -3,11 +3,10 @@
   "explore_txt": "استكشف",
   "trips_txt": "الرحلات",
   "profile_txt": "الملف الشخصي",
-
   "common-Section----------------------------": "CommonSection-------------------------",
   "saveBtn": "حفظ",
   "cancelBtn": "الغاء",
-
+  "skip_btn": "تخطي",
   "ProfileScreen----------------------------": "ProfileScreen-------------------------",
   "view_edit_profile_txt": "عرض وتعديل الملف الشخصي",
   "change_pass_txt": "تغيير كلمة السر",
@@ -15,5 +14,21 @@
   "credit_coupons_txt": "الكوبونات والخصم",
   "help_center_txt": "مركز المساعدة",
   "payment_txt": "الدفع",
-  "setting_txt": "الاعدادات"
+  "setting_txt": "الاعدادات",
+  "GetStarted----------------------------": "GetStarted-------------------------",
+  "booking_app_txt": "تطبيق حجز الفنادق",
+  "booking_app_desc1": "أفضل عروض الفنادق لقضاء",
+  "booking_app_desc2": "عطلتك",
+  "get_started_btn": "ابدأ",
+  "have_account_txt": "لديك حساب بالفعل؟",
+  "AuthenticationSection----------------------------": "AuthenticationSection-------------------------",
+  "login_btn": "تسجيل الدخول",
+  "create_account_btn": "انشاء حساب",
+  "OnBoarding----------------------------": "OnBoarding------------------------------------------",
+  "onboarding_title1_txt": "خطط لرحلاتك",
+  "onboarding_desc1": "احجز فندقك الفريد من نوعه \n للهروب من المألوف",
+  "onboarding_title2_txt": "Find best deals",
+  "onboarding_desc2": "اعثر على صفقات لأي موسم من المنازل الريفية المريحة \n إلى شقق المدينة",
+  "onboarding_title3_txt": "Best travelling all time",
+  "onboarding_desc3": "اعثر على صفقات لأي موسم من المنازل الريفية المريحة \n إلى شقق المدينة"
 }

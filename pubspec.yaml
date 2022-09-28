@@ -31,8 +31,8 @@ dependencies:
   internet_connection_checker: ^0.0.1+4
   equatable: ^2.0.5
   smooth_page_indicator: ^1.0.0+2
-  firebase_auth: ^3.10.0
-  firebase_core: ^1.23.0
+#  firebase_auth: ^3.10.0
+#  firebase_core: ^1.23.0
 
 
 dev_dependencies:

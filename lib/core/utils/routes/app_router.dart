@@ -1,5 +1,4 @@
 import 'package:booking_app/core/bottom_navigation/pages/main_screen.dart';
-import 'package:booking_app/features/getstarted/started_screen.dart';
 import 'package:booking_app/features/login/login_screen.dart';
 import 'package:booking_app/features/onboarding/pages/onboarding_screen.dart';
 import 'package:booking_app/features/profile/pages/profile_details_screen.dart';
@@ -18,7 +17,7 @@ class AppRouter {
           duration: animationDuration,
           settings: settings,
         );
-      case '/onboard':
+      case '/onboarding':
         return PageTransition(
           child: OnBoardScreen(),
           type: PageTransitionType.rightToLeft,
@@ -34,7 +33,7 @@ class AppRouter {
           settings: settings,
         );
 
-      case '/sigin':
+      case '/register':
         return PageTransition(
           child: RegisterScreen(),
           type: PageTransitionType.rightToLeft,
