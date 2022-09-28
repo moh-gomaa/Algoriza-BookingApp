@@ -1,21 +1,22 @@
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
-import 'package:booking_app/features/profile/pages/profile_main_screen.dart';
+import 'package:booking_app/data/models/user_model.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class ProfileInfoCard extends StatelessWidget {
-  final ProfileItem user;
+  final UserModel user;
 
   const ProfileInfoCard({required this.user});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        debugPrint('tap');
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        Navigator.pushNamed(context, '/profileDetails', arguments: user);
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,19 +36,20 @@ class ProfileInfoCard extends StatelessWidget {
               )
             ],
           ),
-          Container(
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: OwnTheme.colorPalette['gray']),
-            child: Padding(
-              padding: const EdgeInsets.all(space0),
-              child: Image.asset(
-                '${user.imgPath}',
-                width: 30.sp,
-                height: 30.sp,
-              ),
-            ),
-          )
+          user.image != null
+              ? Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: OwnTheme.colorPalette['gray']),
+                  child: Padding(
+                      padding: const EdgeInsets.all(space0),
+                      child: Image.asset(
+                        '${user.image}',
+                        width: 30.sp,
+                        height: 30.sp,
+                      )),
+                )
+              : Container(),
         ],
       ),
     );

@@ -24,6 +24,7 @@ class RegisterCubit extends Bloc<LoginCubit, RegisterStates> {
         debugPrint('UserName==${userData.name}');
         await addStringToSF('userID', '${userData.id}');
         await addStringToSF('name', '${userData.name}');
+        await addStringToSF('userToken', '${userData.apiToken}');
         emit(RegisterSuccessState(model: userData));
       }
     } catch (e) {

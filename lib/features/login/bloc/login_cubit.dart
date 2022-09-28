@@ -26,6 +26,7 @@ class LoginCubit extends Bloc<LoginCubit, LoginStates> {
         debugPrint('UserName==${userData.name}');
         await addStringToSF('userID', '${userData.id}');
         await addStringToSF('name', '${userData.name}');
+        await addStringToSF('userToken', '${userData.apiToken}');
         emit(LoginSuccessState(model: userData));
       }
     } catch (e) {

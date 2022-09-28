@@ -5,11 +5,13 @@ import 'package:booking_app/features/login/login_screen.dart';
 import 'package:booking_app/features/onboarding/pages/onboarding_screen.dart';
 import 'package:booking_app/features/profile/pages/profile_details_screen.dart';
 import 'package:booking_app/features/register/register_screen.dart';
+import 'package:booking_app/features/setting/pages/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 class AppRouter {
   static const animationDuration = Duration(milliseconds: 600);
+
   static PageTransition? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/main':
@@ -19,7 +21,7 @@ class AppRouter {
           duration: animationDuration,
           settings: settings,
         );
-        case '/tt':
+      case '/tt':
         return PageTransition(
           child: HomeScreen(),
           type: PageTransitionType.rightToLeft,
@@ -50,9 +52,17 @@ class AppRouter {
           settings: settings,
         );
 
-        case '/profileDetails':
-          UserModel obj = settings.arguments as UserModel;
-          return PageTransition(
+      case '/setting':
+        return PageTransition(
+          child: SettingScreen(),
+          type: PageTransitionType.rightToLeft,
+          duration: animationDuration,
+          settings: settings,
+        );
+
+      case '/profileDetails':
+        UserModel obj = settings.arguments as UserModel;
+        return PageTransition(
           child: ProfileDetailsScreen(user: obj),
           type: PageTransitionType.rightToLeft,
           duration: animationDuration,

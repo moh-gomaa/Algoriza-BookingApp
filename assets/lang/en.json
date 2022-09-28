@@ -7,6 +7,7 @@
   "saveBtn": "Save",
   "cancelBtn": "Cancel",
   "skip_btn": "Skip",
+  "edit_btn": "Edit",
   "ProfileScreen----------------------------": "ProfileScreen-------------------------",
   "view_edit_profile_txt": "View and Edit profile",
   "change_pass_txt": "Change Password",
@@ -43,5 +44,7 @@
   "explore": "Explore",
   "ProfileDetailsScreen----------------------------": "ProfileDetailsScreen-----------------------",
   "user_name_txt": "User Name",
-  "email_txt": "Email"
+  "email_txt": "Email",
+  "SettingScreen----------------------------": "SettingScreen-----------------------",
+  "lang_txt": "Language"
 }

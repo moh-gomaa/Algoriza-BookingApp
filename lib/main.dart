@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
       providers: BlocProviders.providers,
       child: BlocBuilder<LocaleCubit, ChangeLocaleState>(
         builder: (context, state) {
+          // print('state.locale==${state.locale}' );
           return Sizer(
             builder: (BuildContext context, Orientation orientation,
                 DeviceType deviceType) {

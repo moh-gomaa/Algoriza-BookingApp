@@ -7,6 +7,7 @@
   "saveBtn": "حفظ",
   "cancelBtn": "الغاء",
   "skip_btn": "تخطي",
+  "edit_btn": "تعديل",
   "ProfileScreen----------------------------": "ProfileScreen-------------------------",
   "view_edit_profile_txt": "عرض وتعديل الملف الشخصي",
   "change_pass_txt": "تغيير كلمة السر",
@@ -31,12 +32,10 @@
   "onboarding_desc2": "اعثر على صفقات لأي موسم من المنازل الريفية المريحة \n إلى شقق المدينة",
   "onboarding_title3_txt": "سفر افضل طوال الوقت",
   "onboarding_desc3": "اعثر على صفقات لأي موسم من المنازل الريفية المريحة \n إلى شقق المدينة",
-
   "HomeScreen----------------------------": "HomeScreen-------------------------",
   "popular_destination": "اشهر الجهات",
   "best_deals": "افضل العروض",
   "view_all": "عرض الكل",
-
   "TripsScreen----------------------------": "TripsScreen-------------------------",
   "my_trip": "رحلتي",
   "up_coming": "القادمه",
@@ -45,5 +44,7 @@
   "explore": "استكشاف",
   "ProfileDetailsScreen----------------------------": "ProfileDetailsScreen-----------------------",
   "user_name_txt": "الاسم",
-  "email_txt": "البريد الالكتروني"
+  "email_txt": "البريد الالكتروني",
+  "SettingScreen----------------------------": "SettingScreen-----------------------",
+  "lang_txt": "اللغة"
 }
