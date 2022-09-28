@@ -1,10 +1,12 @@
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 
 final ThemeData ownThemeData = ThemeData(
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor:  Color(0xff282828),
         selectedItemColor: OwnTheme.colorPalette['primary'],
         unselectedItemColor: OwnTheme.colorPalette['gray'],
         selectedLabelStyle: OwnTheme.smallTextStyle(lang: lang)
@@ -14,9 +16,13 @@ final ThemeData ownThemeData = ThemeData(
       showSelectedLabels: true,
       showUnselectedLabels: true,
     ),
-    appBarTheme: const AppBarTheme(
+    appBarTheme:  AppBarTheme(
       elevation: 0.0,
       backgroundColor: Colors.white,
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor:  OwnTheme.colorPalette['black'],
+        statusBarIconBrightness: Brightness.light
+      ),
     ),
     primarySwatch: Colors.blue,
     scaffoldBackgroundColor: OwnTheme.colorPalette['white'],
@@ -29,7 +35,7 @@ class OwnTheme {
 
   static const Map<String, Color> colorPalette = <String, Color>{
     'white': Color(0xFFFFFFFF),
-    'black': Color(0xFF000000),
+    'black': Color(0xFF181818),
     'disable': Color(0xFFe8e8e8),
     'gray': Color(0xFF555555),
     'lightGray': Color(0xFFF9F9F9),

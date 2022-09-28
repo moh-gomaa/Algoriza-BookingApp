@@ -23,7 +23,7 @@ class ProfileMainScreen extends StatelessWidget {
             child: Column(
           children: [
             ProfileInfoCard(user: x),
-            SizedBox(
+            const SizedBox(
               height: space2,
             ),
             ProfileListTile(

@@ -30,5 +30,17 @@
   "onboarding_title2_txt": "Find best deals",
   "onboarding_desc2": "اعثر على صفقات لأي موسم من المنازل الريفية المريحة \n إلى شقق المدينة",
   "onboarding_title3_txt": "Best travelling all time",
-  "onboarding_desc3": "اعثر على صفقات لأي موسم من المنازل الريفية المريحة \n إلى شقق المدينة"
+  "onboarding_desc3": "اعثر على صفقات لأي موسم من المنازل الريفية المريحة \n إلى شقق المدينة",
+
+  "HomeScreen----------------------------": "HomeScreen-------------------------",
+  "popular_destination": "اشهر الجهات",
+  "best_deals": "افضل العروض",
+  "view_all": "عرض الكل",
+
+  "TripsScreen----------------------------": "TripsScreen-------------------------",
+  "my_trip": "رحلتي",
+  "up_coming": "القادمه",
+  "finished": "انتهت",
+  "favorites": "المفضله",
+  "explore": "استكشاف"
 }

@@ -1,4 +1,6 @@
 
+import 'package:booking_app/features/home/cubit/app_cubit.dart';
+
 import 'blocs.dart';
 
   class BlocProviders {
@@ -9,6 +11,7 @@ import 'blocs.dart';
     BlocProvider<ConnectivityCubit>(create: (_) => ConnectivityCubit()),
 
     BlocProvider<NavigationCubit>(create: (_) => NavigationCubit()),
+      BlocProvider<AppCubit>(create: (_) => AppCubit()),
 
     BlocProvider<LoginCubit>(create: (_) => LoginCubit()),
 
