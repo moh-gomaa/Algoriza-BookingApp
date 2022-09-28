@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
                 home: BlocBuilder<ConnectivityCubit, ConnectivityState>(
                     builder: (context, state) {
                   if (state is InternetConnected) {
-                    return StartedScreen();
+                    return OnBoardScreen();
                   } else if (state is InternetDisconnected) {
                     return ConnectivityScreen();
                   }
