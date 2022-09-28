@@ -6,3 +6,5 @@ export 'package:booking_app/core/bottom_navigation/cubit/navigation_cubit.dart';
 export 'package:booking_app/features/login/bloc/login_cubit.dart';
 export 'package:booking_app/features/register/bloc/register_cubit.dart';
 export 'package:booking_app/features/home/cubit/app_cubit.dart';
+export 'package:booking_app/features/profile/bloc/edit_profile_cubit.dart';
+export 'package:booking_app/features/profile/bloc/profile_cubit.dart';

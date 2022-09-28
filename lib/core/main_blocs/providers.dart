@@ -1,5 +1,3 @@
-import 'package:booking_app/features/profile/bloc/profile_cubit.dart';
-
 import 'blocs.dart';
 
   class BlocProviders {
@@ -18,6 +16,8 @@ import 'blocs.dart';
     BlocProvider<AppCubit>(create: (_) => AppCubit()),
 
     BlocProvider<ProfileCubit>(create: (_) => ProfileCubit()),
+
+    BlocProvider<EditProfileCubit>(create: (_) => EditProfileCubit()),
 
 
     // .

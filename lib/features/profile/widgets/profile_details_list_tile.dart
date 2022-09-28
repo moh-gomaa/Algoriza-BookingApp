@@ -1,5 +1,7 @@
+import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/core/utils/widgets/TextBoxNormal.dart';
+import 'package:booking_app/features/profile/bloc/edit_profile_cubit.dart';
 import 'package:booking_app/features/profile/bloc/profile_cubit.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
@@ -8,15 +10,15 @@ import 'package:flutter/material.dart';
 class ProfileDetailsListTile extends StatelessWidget {
   String keyy = '';
   String value = '';
-  bool editMode = false;
+  // bool editMode = false;
 
   ProfileDetailsListTile({
-    required this.keyy, required this.value,required this.editMode
+    required this.keyy, required this.value
   });
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('editMode==$editMode');
+    // debugPrint('editMode==$editMode');
     return Column(
       children: [
         Container(
@@ -34,17 +36,18 @@ class ProfileDetailsListTile extends StatelessWidget {
               ),
               Expanded(
                 flex: 2,
-                child: editMode?
+                child:
+                // editMode?
                     CustomTextBoxNormal(
                       lang: lang,
                       title: 'rrr',
-                      tec: ProfileCubit().name,
+
                     )
-                    : Text(
-                  value,
-                  style: OwnTheme.smallBoldTextStyle(lang: lang)
-                      .colorChange(color: 'white'),
-                ),
+                //     : Text(
+                //   value,
+                //   style: OwnTheme.smallBoldTextStyle(lang: lang)
+                //       .colorChange(color: 'white'),
+                // ),
               ),
             ],
           ),
@@ -57,8 +60,7 @@ class ProfileDetailsListTile extends StatelessWidget {
         ),
 
         ElevatedButton(onPressed: (){
-          debugPrint('value==${ProfileCubit().name.text}');
-
+          context.read<EditProfileCubit>().submit();
         }, child: Text('asddsa'))
       ],
     );

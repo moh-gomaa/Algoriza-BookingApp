@@ -29,7 +29,7 @@ class ProfileDetailsScreen extends StatelessWidget {
             actionWidget: ButtonKey(
               buttonText: 'edit_btn'.tr(context),
               function: () {
-                // context.read<ProfileCubit>().editUserData();
+
               },
             ),
           ),
@@ -39,17 +39,18 @@ class ProfileDetailsScreen extends StatelessWidget {
                 bottom: bottom, right: side, left: side),
             child: BlocBuilder<ProfileCubit, ProfileState>(
               builder: (context, state) {
+                debugPrint('state==$state');
                 return Column(
                   children: [
                     ProfileDetailsListTile(
                       keyy: 'user_name_txt'.tr(context),
                       value: '${user.name}',
-                      editMode: (state is ProfileEditState),
+                      // editMode: (state is ProfileEditState),
                     ),
                     ProfileDetailsListTile(
                       keyy: 'email_txt'.tr(context),
                       value: '${user.email}',
-                      editMode: (state is ProfileEditState),
+                      // editMode: (state is ProfileEditState),
                     ),
                   ],
                 );
