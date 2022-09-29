@@ -1,6 +1,7 @@
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/features/explore/explore_screen.dart';
+import 'package:booking_app/features/home/cubit/app_states.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
 import 'package:sizer/sizer.dart';
@@ -19,280 +20,299 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
-    return Scaffold(
-        backgroundColor: OwnTheme.colorPalette['black'],
+    return BlocConsumer<AppCubit,AppStates>(
+        listener: (context,state){
 
-      body: CustomScrollView(
-        slivers: [
+        },
+      builder: (context,state){
+          return Scaffold(
+              backgroundColor: Color(0xff1D1D1D),
 
-          SliverAppBar(
-            titleSpacing: 0.0,
-            expandedHeight: size.height*.6,
-            pinned: _pinned,
-            snap: _snap,
-            floating: _floating,
-            flexibleSpace: FlexibleSpaceBar(
-              titlePadding:EdgeInsets.zero,
-              title: Stack(
-                children: [
-                  Container(
-                     child: PageView.builder(
-                       itemBuilder: (context,index){
-                         return const Image(
-                           fit: BoxFit.cover,
-                           image: AssetImage('assets/images/hotel.jpg'),
-                         );
+              body: CustomScrollView(
+                slivers: [
 
-                       },
-                       controller: pageController,
-                       itemCount: 3,
-                     ),
-                  ),
-                  Positioned(
-                    left:5 ,
-                    top: size.height*.46,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Cape Town',
-                        style: TextStyle(
-                            fontSize: 10.sp,
-                            color:  OwnTheme.colorPalette['white'],
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "fontEnBold"
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left:5 ,
-                    top: size.height*.50,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
+                  SliverAppBar(
+                    titleSpacing: 0.0,
+                    expandedHeight: size.height*.6,
+                    pinned: _pinned,
+                    snap: _snap,
+                    floating: _floating,
+                    flexibleSpace: FlexibleSpaceBar(
+                      titlePadding:EdgeInsets.zero,
+                      title: Stack(
                         children: [
-                          Text(
-                            'Extraordinary five-star \n outdoors activites',
-                            style: TextStyle(
-                                fontSize: 9.sp,
-                                color:  OwnTheme.colorPalette['white'],
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "fontEn"
+                          Container(
+                            child: PageView.builder(
+                              itemBuilder: (context,index){
+                                return Image(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage('${AppCubit.get(context).homeImages[index]}'),
+                                );
+
+                              },
+                              controller: pageController,
+                              itemCount: 3,
                             ),
                           ),
-                          SizedBox(width: size.width*.1,),
-                          SmoothPageIndicator(
-                            controller: pageController,
-                            count: 3,
-                            effect: const JumpingDotEffect(
-                              dotColor: Colors.grey,
-                              activeDotColor: Color(0xFF4FBE9F),
-                              dotWidth: 7,
-                              dotHeight: 7,
+                          Positioned(
+                            left:5 ,
+                            top: size.height*.46,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Cape Town',
+                                style: TextStyle(
+                                    fontSize: 10.sp,
+                                    color:  OwnTheme.colorPalette['white'],
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "fontEnBold"
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            left:5 ,
+                            top: size.height*.50,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Extraordinary five-star \n outdoors activites',
+                                    style: TextStyle(
+                                        fontSize: 9.sp,
+                                        color:  OwnTheme.colorPalette['white'],
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: "fontEn"
+                                    ),
+                                  ),
+                                  SizedBox(width: size.width*.1,),
+                                  SmoothPageIndicator(
+                                    controller: pageController,
+                                    count: 3,
+                                    effect: const JumpingDotEffect(
+                                      dotColor: Colors.grey,
+                                      activeDotColor: Color(0xFF4FBE9F),
+                                      dotWidth: 7,
+                                      dotHeight: 7,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            left:5 ,
+                            top: size.height*.55,
+                            child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: MaterialButton(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 7,
+                                      vertical: 2
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30)
+                                  ),
+                                  color: OwnTheme.colorPalette['primary'],
+                                  onPressed: (){
+
+                                    AppCubit.get(context).getExplore().then((value) {
+                                      Navigator.push(context, MaterialPageRoute(builder: (_){
+                                        return ExploreScreen();
+                                      }));
+                                    });
+                                  },
+                                  child:  Text(
+                                    'view_hotel'.tr(context),
+                                    style: TextStyle(
+                                        fontSize: 8.sp,
+                                        color:  OwnTheme.colorPalette['white'],
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: lang == "ar" ? "fontAr" : "fontEn"
+                                    ),
+                                  ),
+                                )
+                            ),
+                          ),
+
+                        ],
+                      ),
+
+                    ),
+                    toolbarHeight: size.height*.12,
+                    centerTitle: true,
+                    title: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Container(
+                            child: TextFormField(
+                              controller: searchController,
+                              keyboardType: TextInputType.text,
+                              onFieldSubmitted: (String value) {
+                                print(value);
+                              },
+                              onChanged: (String value) {
+                                print(value);
+                              },
+                              style: TextStyle(
+                                  fontSize: 12.sp,
+                                  color:  OwnTheme.colorPalette['white'],
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
+                              decoration: InputDecoration(
+                                prefixIcon:  Icon(
+                                  Icons.search,
+                                  color:  OwnTheme.colorPalette['primary'],
+                                  size:  size.width*.06,
+                                ),
+                                hintStyle: TextStyle(
+                                    fontSize: 12.sp,
+                                    color:  OwnTheme.colorPalette['white'],
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
+                                hintText: 'where_are_you_going'.tr(context),
+                                filled: true,
+                                fillColor: const Color(0xff282828),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                  borderSide: const BorderSide(
+                                    color: Color(0xff282828),
+                                  ),
+                                ),
+                                focusedBorder:  OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                  borderSide: const BorderSide(
+                                    color: Color(0xff282828),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  Positioned(
-                    left:5 ,
-                    top: size.height*.55,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: MaterialButton(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 7,
-                          vertical: 2
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)
-                        ),
-                        color: OwnTheme.colorPalette['primary'],
-                        onPressed: (){
-                           Navigator.push(context, MaterialPageRoute(builder: (_){
-                             return ExploreScreen();
-                           }));
-                        },
-                        child:  Text(
-                          'View Hotel',
-                          style: TextStyle(
-                              fontSize: 8.sp,
-                              color:  OwnTheme.colorPalette['white'],
-                              fontWeight: FontWeight.w500,
-                              fontFamily: lang == "ar" ? "fontAr" : "fontEn"
-                          ),
-                        ),
-                      )
-                    ),
-                  ),
 
-                ],
-              ),
-
-            ),
-            leading: const Text(''),
-
-            title: Container(
-              height: 100,
-              margin: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  const SizedBox(height: 20,),
-                  TextFormField(
-                    controller: searchController,
-                    keyboardType: TextInputType.text,
-                    onFieldSubmitted: (String value) {
-                      print(value);
-                    },
-                    onChanged: (String value) {
-                      print(value);
-                    },
-
-                    decoration: InputDecoration(
-                      prefixIcon:  Icon(
-                        Icons.search,
-                        color:  OwnTheme.colorPalette['primary'],
-                        size:  size.width*.05,
-                      ),
-                      hintStyle: const TextStyle(
-                          fontSize: 10
-                      ),
-                      hintText: 'Where are you going ?',
-                      filled: true,
-                      fillColor: const Color(0xff282828),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: const BorderSide(
-                          color: Color(0xff282828),
+                  SliverToBoxAdapter(
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: size.width*.04,
+                          vertical: size.height*.02,
                         ),
-                      ),
-                      focusedBorder:  OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: const BorderSide(
-                          color: Color(0xff282828),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width*.04,
-                  vertical: size.height*.02,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'popular_destination'.tr(context),
-                      style: TextStyle(
-                          fontSize: 14.sp,
-                          color:  OwnTheme.colorPalette['white'],
-                          fontWeight: FontWeight.w500,
-                          fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                      ),
-                    ),
-                    SizedBox(height: size.height*.02,),
-                    SizedBox(
-                      height: size.height*.2,
-                      width: size.width,
-                      child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context,index){
-                            return Stack(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'popular_destination'.tr(context),
+                              style: TextStyle(
+                                  fontSize: 14.sp,
+                                  color:  OwnTheme.colorPalette['white'],
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
+                            ),
+                            SizedBox(height: size.height*.02,),
+                            SizedBox(
+                              height: size.height*.2,
+                              width: size.width,
+                              child: ListView.separated(
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context,index){
+                                    return Stack(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                                          child: Image(
+                                            image: NetworkImage('${AppCubit.get(context).popularDestinationImages[index]}'),
+                                            fit: BoxFit.cover,
+                                            width: size.width*.72,
+                                          ),
+                                        )  ,
+                                        Positioned(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              '${AppCubit.get(context).popularDestinationTitles[index]}',
+                                              style: TextStyle(
+                                                  fontSize: 16.sp,
+                                                  color:  OwnTheme.colorPalette['white'],
+                                                  fontWeight: FontWeight.w400,
+                                                  fontFamily: "fontEnBold"
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    );
+                                  },
+                                  separatorBuilder: (context,index){
+                                    return SizedBox(width: size.width*.02,);
+                                  },
+                                  itemCount: AppCubit.get(context).popularDestinationImages.length
+                              ),
+                            ),
+                            SizedBox(height: size.height*.04,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15)
+                                Text(
+                                  'best_deals'.tr(context),
+                                  style: TextStyle(
+                                      fontSize: 13.sp,
+                                      color:  OwnTheme.colorPalette['white'],
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
                                   ),
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  child: Image(
-                                    image: const AssetImage('assets/images/paris.jpg'),
-                                    fit: BoxFit.cover,
-                                    width: size.width*.72,
+                                ),
+                                const Spacer(),
+                                Text(
+                                  'view_all'.tr(context),
+                                  style: TextStyle(
+                                      fontSize: 11.sp,
+                                      color:  OwnTheme.colorPalette['primary'],
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
                                   ),
-                                )  ,
-                                Positioned(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      'Paris',
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          color:  OwnTheme.colorPalette['white'],
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: "fontEnBold"
-                                      ),
-                                    ),
-                                  ),
-                                )
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_rounded,
+                                  color:  OwnTheme.colorPalette['primary'],
+                                  size:  size.width*.05,
+
+                                ),
+                                SizedBox(height: size.width*.02,),
+
                               ],
-                            );
-                          },
-                          separatorBuilder: (context,index){
-                            return SizedBox(width: size.width*.02,);
-                          },
-                          itemCount: 7
+                            ),
+                            SizedBox(height: size.height*.02,),
+                            ListView.separated(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (context,index){
+                                  return itemHotel(size);
+                                },
+                                separatorBuilder: (context,index){
+                                  return SizedBox(height: size.height*.02,);
+                                },
+                                itemCount: 4
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    SizedBox(height: size.height*.04,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          'best_deals'.tr(context),
-                          style: TextStyle(
-                              fontSize: 13.sp,
-                              color:  OwnTheme.colorPalette['white'],
-                              fontWeight: FontWeight.w500,
-                              fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                          ),
-                        ),
-                        const Spacer(),
-                        Text(
-                          'view_all'.tr(context),
-                          style: TextStyle(
-                              fontSize: 11.sp,
-                              color:  OwnTheme.colorPalette['primary'],
-                              fontWeight: FontWeight.w500,
-                              fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_rounded,
-                          color:  OwnTheme.colorPalette['primary'],
-                          size:  size.width*.05,
-
-                        ),
-                        SizedBox(height: size.width*.02,),
-
-                      ],
-                    ),
-                    SizedBox(height: size.height*.02,),
-                    ListView.separated(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context,index){
-                          return itemHotel(size);
-                        },
-                        separatorBuilder: (context,index){
-                          return SizedBox(height: size.height*.02,);
-                        },
-                        itemCount: 4
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
-        ],
-      )
+                  )
+                ],
+              )
+          );
+      },
     );
   }
   

@@ -36,6 +36,8 @@
   "popular_destination": "اشهر الجهات",
   "best_deals": "افضل العروض",
   "view_all": "عرض الكل",
+  "view_hotel": "شاهد الفندق",
+  "where_are_you_going": "اين تذهب",
   "TripsScreen----------------------------": "TripsScreen-------------------------",
   "my_trip": "رحلتي",
   "up_coming": "القادمه",
@@ -46,5 +48,29 @@
   "user_name_txt": "الاسم",
   "email_txt": "البريد الالكتروني",
   "SettingScreen----------------------------": "SettingScreen-----------------------",
-  "lang_txt": "اللغة"
+  "lang_txt": "اللغة",
+  "ExploreScreen----------------------------": "ExploreScreen-----------------------",
+  "choose_date": "اختر التاريخ",
+  "number_of_rooms": "عدد الغرف",
+  "hotel_found": "عدد الفنادق",
+  "filter": "تصنيف",
+
+  "ExploreScreen----------------------------": "Book Hotel-----------------------",
+  "deluxe_room": "غرفه مزدوجه",
+  "per_night": "من اجل الليله",
+  "book_now": "احجز الان",
+  "details": "نوم لشخصين و طفلين",
+  "more_details": "تفاصيل اكثر",
+
+  "premium_room": "غرفه خاصه",
+  "premium_details": "نوم لتلت اشخاص و تلت اطفال",
+
+  "queen_room": "غرفه الملكه",
+  "queen_details": "نوم لاربع اشخاص و اربع اطفال",
+
+  "king_room": "غرفه الملك",
+
+  "hooly_room": "غرفه هولي ود تون"
+
+
 }

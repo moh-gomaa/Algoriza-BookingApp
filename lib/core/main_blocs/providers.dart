@@ -13,7 +13,7 @@ import 'blocs.dart';
 
     BlocProvider<RegisterCubit>(create: (_) => RegisterCubit()),
 
-    BlocProvider<AppCubit>(create: (_) => AppCubit()),
+    BlocProvider<AppCubit>(create: (_) => AppCubit()..getExplore()),
 
     BlocProvider<ProfileCubit>(create: (_) => ProfileCubit()),
 

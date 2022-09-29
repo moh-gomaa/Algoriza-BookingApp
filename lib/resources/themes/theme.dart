@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 
 final ThemeData ownThemeData = ThemeData(
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: Color(0xff282828),
         selectedItemColor: OwnTheme.colorPalette['primary'],
         unselectedItemColor: OwnTheme.colorPalette['gray'],
         selectedLabelStyle: OwnTheme.smallTextStyle(lang: lang)

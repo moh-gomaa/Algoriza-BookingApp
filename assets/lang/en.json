@@ -36,6 +36,8 @@
   "popular_destination": "Popular Destination",
   "best_deals": "Best Deals",
   "view_all": "View All",
+  "view_hotel": "View Hotel",
+  "where_are_you_going": "Where are you going ?",
   "TripsScreen----------------------------": "TripsScreen-------------------------",
   "my_trip": "My Trip",
   "up_coming": "Up Coming",
@@ -46,5 +48,27 @@
   "user_name_txt": "User Name",
   "email_txt": "Email",
   "SettingScreen----------------------------": "SettingScreen-----------------------",
-  "lang_txt": "Language"
+  "lang_txt": "Language",
+  "ExploreScreen----------------------------": "ExploreScreen-----------------------",
+  "choose_date": "Choose Date",
+  "number_of_rooms": "Number of Room",
+  "hotel_found": "Hotel Found",
+  "filter": "Filter",
+
+  "ExploreScreen----------------------------": "Book Hotel-----------------------",
+  "deluxe_room": "Deluxe Room",
+  "per_night": "/per night",
+  "book_now": "Book now",
+  "details": "sleeps 2 people + 2 children",
+  "more_details": "More Details",
+
+  "premium_room": "Premium Room",
+  "premium_details": "sleeps 3 people + 3 children",
+
+  "queen_room": "Queen Room",
+  "queen_details": "sleeps 4 people + 4 children",
+
+  "king_room": "King Room",
+
+  "hooly_room": "Hollywood Room"
 }
