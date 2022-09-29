@@ -23,7 +23,18 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-  Future<void> editUserData(String controller, String val) async {
-    emit(ProfileEditState());
-  }
+  // changeName(String name){
+  //   emit(ProfileEditState().copyWith(name: name));
+  //
+  // }
+  //
+  // changeEmail(String email){
+  //   emit(ProfileEditState().copyWith(email: email));
+  // }
+  //
+  // submit(){
+  //   print(ProfileEditState().email);
+  //   print(ProfileEditState().name);
+  // }
+
 }

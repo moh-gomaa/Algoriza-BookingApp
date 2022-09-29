@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:booking_app/core/utils/network/remote/end_points.dart';
 import 'package:booking_app/data/models/api_response_model.dart';
 import 'package:dio/dio.dart' show BaseOptions, Dio, Response;
@@ -95,7 +94,6 @@ class DioHelper {
 
     });
   }
-
 
   static Future<Response> putData({
     required String url,
