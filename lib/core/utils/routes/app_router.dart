@@ -1,6 +1,7 @@
 import 'package:booking_app/core/bottom_navigation/pages/main_screen.dart';
 import 'package:booking_app/data/models/user_model.dart';
-import 'package:booking_app/features/home/pages/home_screen.dart';
+import 'package:booking_app/features/get_started/pages/get_started_screen.dart';
+import 'package:booking_app/features/language/pages/lang_screen.dart';
 import 'package:booking_app/features/login/login_screen.dart';
 import 'package:booking_app/features/onboarding/pages/onboarding_screen.dart';
 import 'package:booking_app/features/profile/pages/profile_details_screen.dart';
@@ -21,13 +22,22 @@ class AppRouter {
           duration: animationDuration,
           settings: settings,
         );
-      case '/tt':
+      case '/lang':
         return PageTransition(
-          child: HomeScreen(),
+          child: LangScreen(),
           type: PageTransitionType.rightToLeft,
           duration: animationDuration,
           settings: settings,
         );
+
+      case '/getStarted':
+        return PageTransition(
+          child: GetStartedScreen(),
+          type: PageTransitionType.rightToLeft,
+          duration: animationDuration,
+          settings: settings,
+        );
+
       case '/onboarding':
         return PageTransition(
           child: OnBoardScreen(),

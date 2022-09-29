@@ -16,7 +16,6 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: OwnTheme.colorPalette['black'],
       body: BlocConsumer<LocaleCubit, ChangeLocaleState>(
         listener: (context, state) {
           // TODO: implement listener

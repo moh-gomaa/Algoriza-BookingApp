@@ -20,11 +20,12 @@ class BasicModel {
     debugPrint('language=== $lang');
     userID = await getValuesSF("userID");
     debugPrint('userID==$userID');
+    debugPrint('isLogin==$isLogin');
     name = await getValuesSF("name");
     userToken = await getValuesSF("userToken");
     debugPrint('userToken==$userToken');
 
-    if (userID != null) {
+    if (userID != '') {
       isLogin = true;
     } else {
       isLogin = false;

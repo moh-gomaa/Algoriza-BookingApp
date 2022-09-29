@@ -18,8 +18,8 @@ final ThemeData ownThemeData = ThemeData(
       elevation: 0.0,
       backgroundColor: Colors.transparent,
     ),
-    primarySwatch: Colors.blue,
-    scaffoldBackgroundColor: OwnTheme.colorPalette['white'],
+    primarySwatch: OwnTheme.primaryColor,
+    scaffoldBackgroundColor: OwnTheme.colorPalette['black'],
     bottomSheetTheme: const BottomSheetThemeData(
         backgroundColor: Colors.transparent,
         modalBackgroundColor: Colors.transparent));
@@ -39,6 +39,22 @@ class OwnTheme {
     'bg': Color(0xFF7EB1F2),
     'drawer': Color(0xFF313A42)
   };
+
+  static const MaterialColor primaryColor = const MaterialColor(
+    0xFF4FBE9F, // 0% comes in here, this will be color picked if no shade is selected when defining a Color property which doesn’t require a swatch.
+    const <int, Color>{
+      50: const Color(0xFF4FBE9F ),//10%
+      100: const Color(0xFF4FBE9F),//20%
+      200: const Color(0xFF4FBE9F),//30%
+      300: const Color(0xFF4FBE9F),//40%
+      400: const Color(0xFF4FBE9F),//50%
+      500: const Color(0xFF4FBE9F),//60%
+      600: const Color(0xFF4FBE9F),//70%
+      700: const Color(0xFF4FBE9F),//80%
+      800: const Color(0xFF4FBE9F),//90%
+      900: const Color(0xFF4FBE9F),//100%
+    },
+  );
 
 //  ------------------------------- Various Fonts Style -------------------------
 
@@ -82,7 +98,7 @@ class OwnTheme {
 
   static TextStyle prNormalTextStyle({required String lang}) {
     return TextStyle(
-        fontSize: 16.sp,
+        fontSize: 12.sp,
         color: colorPalette['black'],
         height: 1.5,
         fontFamily: lang == "ar" ? "fontAr" : "fontEn");
@@ -90,7 +106,7 @@ class OwnTheme {
 
   static TextStyle prBoldTextStyle({required String lang}) {
     return TextStyle(
-        fontSize: 16.sp,
+        fontSize: 12.sp,
         color: colorPalette['black'],
         fontWeight: FontWeight.w500,
         height: 1.5,
