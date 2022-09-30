@@ -19,18 +19,7 @@ class ProfileErrorState extends ProfileState {
   ProfileErrorState({required this.error});
 }
 
-// class ProfileEditState {
-//   final String name;
-//   final String email;
-//
-//   ProfileEditState({this.name = '', this.email = ''});
-//
-//   ProfileEditState copyWith({
-//     String? name,
-//     String? email,
-//   }) =>
-//       ProfileEditState(
-//         name: name ?? this.name,
-//         email: email ?? this.email,
-//       );
-// }
+class ProfileEditState extends ProfileState {
+}
+
+

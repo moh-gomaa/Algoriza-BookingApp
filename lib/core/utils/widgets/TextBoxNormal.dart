@@ -4,7 +4,6 @@
 // index 3 password
 
 import 'package:booking_app/core/main_blocs/blocs.dart';
-import 'package:booking_app/features/profile/bloc/edit_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
@@ -86,13 +85,9 @@ class _CustomTextBoxNormalState extends State<CustomTextBoxNormal> {
               ? TextInputType.numberWithOptions()
               : TextInputType.text,
           onChanged: (val) {
-
-           context.read<EditProfileCubit>().changeName(val);
-            // widget.tec!.text = val;
-            // if(widget.onChange != null){
-            //   widget.onChange!(val);
-            //
-            // }
+            if(widget.onChange != null){
+              widget.onChange!(val);
+            }
           },
           style: OwnTheme.normalBoldTextStyle( lang: lang),
           decoration: InputDecoration(

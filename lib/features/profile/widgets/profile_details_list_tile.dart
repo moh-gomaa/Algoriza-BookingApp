@@ -1,8 +1,6 @@
 import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/core/utils/widgets/TextBoxNormal.dart';
-import 'package:booking_app/features/profile/bloc/edit_profile_cubit.dart';
-import 'package:booking_app/features/profile/bloc/profile_cubit.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -10,15 +8,19 @@ import 'package:flutter/material.dart';
 class ProfileDetailsListTile extends StatelessWidget {
   String keyy = '';
   String value = '';
-  // bool editMode = false;
+  bool editMode = false;
+  Function(String val)? onChange;
+  TextEditingController tec;
 
-  ProfileDetailsListTile({
-    required this.keyy, required this.value
-  });
+  ProfileDetailsListTile(
+      {required this.keyy,
+      required this.value,
+      required this.editMode,
+      this.onChange,
+      required this.tec});
 
   @override
   Widget build(BuildContext context) {
-    // debugPrint('editMode==$editMode');
     return Column(
       children: [
         Container(
@@ -30,24 +32,23 @@ class ProfileDetailsListTile extends StatelessWidget {
                 flex: 2,
                 child: Text(
                   keyy,
-                  style:
-                  OwnTheme.smallTextStyle(lang: lang).colorChange(color: 'gray'),
+                  style: OwnTheme.smallTextStyle(lang: lang)
+                      .colorChange(color: 'gray'),
                 ),
               ),
               Expanded(
-                flex: 2,
-                child:
-                // editMode?
-                    CustomTextBoxNormal(
-                      lang: lang,
-                      title: 'rrr',
-
-                    )
-                //     : Text(
-                //   value,
-                //   style: OwnTheme.smallBoldTextStyle(lang: lang)
-                //       .colorChange(color: 'white'),
-                // ),
+                flex: editMode ? 2 : 0,
+                child: editMode
+                    ? CustomTextBoxNormal(
+                        lang: lang,
+                        tec: tec,
+                        onChange: onChange,
+                      )
+                    : Text(
+                        value,
+                        style: OwnTheme.smallBoldTextStyle(lang: lang)
+                            .colorChange(color: 'white'),
+                      ),
               ),
             ],
           ),
@@ -58,10 +59,6 @@ class ProfileDetailsListTile extends StatelessWidget {
                       color: OwnTheme.colorPalette['gray']!,
                       style: BorderStyle.solid))),
         ),
-
-        ElevatedButton(onPressed: (){
-          context.read<EditProfileCubit>().submit();
-        }, child: Text('asddsa'))
       ],
     );
   }

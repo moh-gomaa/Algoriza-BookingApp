@@ -45,15 +45,15 @@ class DioHelper {
     required Map<String, dynamic> data,
     String? token,
   }) async {
-    debugPrint('insidePost' );
-    debugPrint('url== ${url}' );
+    debugPrint('insidePost');
+    debugPrint('url== ${url}');
 
     dio!.options.headers = {
       'Content-Type': 'application/json',
       'Authorization': token ?? '',
     };
 
-   var tmpResult = await dio!
+    var tmpResult = await dio!
         .post(
       baseUrl + url,
       queryParameters: query,
@@ -63,15 +63,15 @@ class DioHelper {
       print('error in getData Dio ${error.toString()}');
     });
 
-   debugPrint(tmpResult.statusCode.toString());
+    debugPrint(tmpResult.statusCode.toString());
 
-   ApiResponseModel result = ApiResponseModel.fromJson(tmpResult);
+    ApiResponseModel result = ApiResponseModel.fromJson(tmpResult);
 
-   return result;
-
+    return result;
   }
 
-  static Future<dynamic> post(String url, {Map<String, String>? headers, body, encoding}) async {
+  static Future<dynamic> post(String url,
+      {Map<String, String>? headers, body, encoding}) async {
     // print('here');
     // print(baseUrl + url);
     return http
@@ -91,9 +91,9 @@ class DioHelper {
       // print(res);
 // return res;
       return _decoder.convert(res);
-
     });
   }
+
 
   static Future<Response> putData({
     required String url,

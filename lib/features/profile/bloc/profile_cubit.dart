@@ -23,18 +23,11 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-  // changeName(String name){
-  //   emit(ProfileEditState().copyWith(name: name));
-  //
-  // }
-  //
-  // changeEmail(String email){
-  //   emit(ProfileEditState().copyWith(email: email));
-  // }
-  //
-  // submit(){
-  //   print(ProfileEditState().email);
-  //   print(ProfileEditState().name);
-  // }
+    emitSucess(UserModel model)=> {
+    print(model.name),
+    print(model.email),
+    emit(ProfileSuccessState(model: model))
+};
+
 
 }

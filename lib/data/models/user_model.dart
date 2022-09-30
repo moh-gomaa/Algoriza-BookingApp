@@ -52,6 +52,9 @@ class UserModel {
 
   String? get name => _name;
 
+  set name(String? name) => _name = name;
+  set email(String? email) => _email = email;
+
   String? get email => _email;
 
   String? get apiToken => _apiToken;

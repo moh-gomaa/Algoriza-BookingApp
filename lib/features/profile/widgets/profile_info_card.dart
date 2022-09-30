@@ -8,15 +8,16 @@ import 'package:sizer/sizer.dart';
 
 class ProfileInfoCard extends StatelessWidget {
   final UserModel user;
+  final Function onTap;
 
-  const ProfileInfoCard({required this.user});
+  const ProfileInfoCard({required this.user, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
-        Navigator.pushNamed(context, '/profileDetails', arguments: user);
+        onTap();
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
