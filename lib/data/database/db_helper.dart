@@ -16,7 +16,8 @@ class DBHelper {
   String id = "id";
   String name = "name";
   String email = "email";
-  String apiToken = "apiToken";
+  String apiToken = "api_Token";
+  String image = "image";
   String password = "password";
   String password_confirmation = "password_confirmation";
 
@@ -44,6 +45,7 @@ class DBHelper {
           $name TEXT,
           $email TEXT,
           $apiToken TEXT,
+          $image TEXT,
           $password TEXT,
           $password_confirmation TEXT
           )

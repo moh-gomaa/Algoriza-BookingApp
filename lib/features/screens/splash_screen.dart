@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
               context, '/main', (Route<dynamic> route) => false);
         else
           Navigator.pushNamedAndRemoveUntil(
-              context, '/onboarding', (Route<dynamic> route) => false);
+              context, '/getStarted', (Route<dynamic> route) => false);
       }
     });
 

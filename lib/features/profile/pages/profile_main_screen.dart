@@ -1,8 +1,10 @@
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/core/utils/extensions/layout_extensions.dart';
+import 'package:booking_app/core/utils/network/remote/dio_helper.dart';
 import 'package:booking_app/core/utils/shared_preferences/shared_preferences_helper.dart';
 import 'package:booking_app/data/database/user_helper.dart';
+import 'package:booking_app/data/models/basic_model.dart';
 import 'package:booking_app/data/models/user_model.dart';
 import 'package:booking_app/features/profile/widgets/profile_info_card.dart';
 import 'package:booking_app/features/profile/widgets/profile_list_tile.dart';
@@ -24,7 +26,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getUserData();
+    getProfileDateLocal();
   }
 
   @override
@@ -35,7 +37,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
         child: Container(
             child: Column(
           children: [
-            model != null
+            !isLoading
                 ? ProfileInfoCard(
                     user: model,
                     onTap: () {
@@ -46,7 +48,10 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
                       });
                     },
                   )
-                : Container(),
+                :Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [CircularProgressIndicator()],
+            ),
             const SizedBox(
               height: space2,
             ),
@@ -104,32 +109,53 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
                 Navigator.pushNamed(context, '/onboarding');
               },
             ),
-            //
-            // Container(
-            //   width: 50,
-            //   height: 50,
-            //   color: Colors.red,
-            //   child: IconButton(onPressed: (){
-            //     DioHelper.updateProfile('sadasd', 'saas', 'sdsdsd');
-            //   }, icon: Icon(Icons.ac_unit)),
-            // )
           ],
         )).safeArea().wholePadding(),
       ),
     );
   }
 
-  Future<void> getUserData() async {
+  getProfileDate() async {
+
+    var resultJson = await DioHelper.get('auth/profile-info',
+        headers: {'token': BasicModel.userToken});
+    print(resultJson);
+    if (resultJson != false) {
+
+      UserModel tmp = UserModel.fromJson(resultJson['data']);
+      setState(() {
+         model = tmp;
+        BasicModel.userImage = tmp.image!;
+      });
+
+      ProfileSaveLocal();
+    }
+  }
+
+  ProfileSaveLocal() async {
+    UserHelper db = UserHelper();
+    await db.deleteAll();
+    await db.savePost(model);
+    var x=await db.getAll();
+    debugPrint('UsersNum=${x.length}');
+  }
+
+  Future<void> getProfileDateLocal() async {
     setState(() {
       isLoading = true;
     });
-
     UserHelper db = UserHelper();
-    var user = await db.getAll();
-    if (user.length > 0)
+    var tmp = await db.getAll();
+    if (tmp.length == 0) {
+      getProfileDate();
+    } else {
       setState(() {
-        model = user.first;
+        model = tmp.first;
+        isLoading = false;
       });
+      getProfileDate();
+    }
+
   }
 
 }

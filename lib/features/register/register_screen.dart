@@ -1,7 +1,6 @@
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/data/models/user_model.dart';
-import 'package:booking_app/features/login/login_screen.dart';
 import 'package:booking_app/features/register/bloc/register_cubit.dart';
 import 'package:booking_app/features/register/bloc/register_state.dart';
 import 'package:booking_app/resources/buttonkey/button.dart';
@@ -193,6 +192,8 @@ class RegisterScreen extends StatelessWidget {
                       function: () {
                         {
                           if (formKey.currentState!.validate()) {
+                            FocusScope.of(context).requestFocus(new FocusNode());
+
                             user = UserModel(
                                 name: firstNameController.text,
                                 email: emailController.text,

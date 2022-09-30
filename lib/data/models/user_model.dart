@@ -66,8 +66,8 @@ class UserModel {
     map['id'] = _id;
     map['name'] = _name;
     map['email'] = _email;
-    // map['api_token'] = _apiToken;
-    // map['image'] = _image;
+    map['api_token'] = _apiToken;
+    map['image'] = _image;
     map['password'] = _password;
     map['password_confirmation'] = _passwordConfirmation;
     return map;

@@ -32,7 +32,7 @@ class ProfileDetailsListTile extends StatelessWidget {
                 flex: 2,
                 child: Text(
                   keyy,
-                  style: OwnTheme.smallTextStyle(lang: lang)
+                  style: OwnTheme.smallBoldTextStyle(lang: lang)
                       .colorChange(color: 'gray'),
                 ),
               ),

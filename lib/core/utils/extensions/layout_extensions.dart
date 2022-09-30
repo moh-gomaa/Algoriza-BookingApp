@@ -6,7 +6,7 @@ extension LayoutX on dynamic {
 
   Widget wholePadding() => Padding(
         padding:
-            EdgeInsets.only(right: side, left: side, top: top, bottom: bottom),
+            EdgeInsets.only(right: side, left: side, top: space1, bottom: bottom),
         child: this,
       );
 }

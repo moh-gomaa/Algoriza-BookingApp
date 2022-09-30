@@ -70,6 +70,23 @@ class DioHelper {
     return result;
   }
 
+  static Future<dynamic> get(String url, {Map<String, String>? headers}) async {
+    return http.get(Uri.parse(baseUrl + url), headers: headers).then((
+        http.Response response) {
+      final String res = response.body;
+      final int statusCode = response.statusCode;
+      // print("res");
+      // print(res);
+      // print('status' + statusCode.toString());
+      if (statusCode < 200 || statusCode >= 400 || json == null) {
+//        throw new Exception("Error while fetching data");
+        return false;
+      }
+      return _decoder.convert(res);
+    });
+  }
+
+
   static Future<dynamic> post(String url,
       {Map<String, String>? headers, body, encoding}) async {
     // print('here');

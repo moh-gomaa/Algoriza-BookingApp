@@ -7,6 +7,7 @@ class BasicModel {
   static String userID = '';
   static String name = '';
   static String userToken = '';
+  static String userImage = '';
   static bool isLogin = false;
 
   static BasicModel _instance = new BasicModel.internal();
@@ -23,6 +24,7 @@ class BasicModel {
     debugPrint('isLogin==$isLogin');
     name = await getValuesSF("name");
     userToken = await getValuesSF("userToken");
+    userImage = await getValuesSF("userImage");
     debugPrint('userToken==$userToken');
 
     if (userID != '') {
