@@ -1,5 +1,7 @@
 import 'package:booking_app/core/localization/setup/app_localization.dart';
+import 'package:booking_app/core/utils/extensions/layout_extensions.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
+import 'package:booking_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:booking_app/features/login/bloc/login_cubit.dart';
 
 import 'package:booking_app/resources/buttonkey/button.dart';
@@ -23,141 +25,181 @@ class LoginScreen extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: Color(0xFF1A1A1A),
-          appBar: AppBar(),
           body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: SingleChildScrollView(
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Login_txt'.tr(context),
-                        style: OwnTheme.hugeBoldTextStyle(lang: lang)
-                            .colorChange(color: 'white'),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Text(
-                        'email_title_txt'.tr(context),
-                        style: OwnTheme.normalTextStyle(lang: lang)
-                            .colorChange(color: 'gray'),
-                      ),
-                      TextFormField(
-                        style: OwnTheme.normalTextStyle(lang: lang)
-                            .colorChange(color: 'gray'),
-                        controller: emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        onFieldSubmitted: (String value) {
-                          print(value);
-                        },
-                        onChanged: (String value) {
-                          print(value);
-                        },
-                        validator: (String? value) {
-                          if (value!.isEmpty) {
-                            return 'Email_Table'.tr(context);
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          labelText: 'Eg.example@gmail.com',
-                          prefixIcon: Icon(
-                            Icons.email,
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Text(
-                        'password_txt'.tr(context),
-                        style: OwnTheme.normalTextStyle(lang: lang)
-                            .colorChange(color: 'gray'),
-                      ),
-                      TextFormField(
-                        style: OwnTheme.normalTextStyle(lang: lang)
-                            .colorChange(color: 'white'),
-                        controller: passwordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        obscureText: true,
-                        onFieldSubmitted: (String value) {
-                          print(value);
-                        },
-                        onChanged: (String value) {
-                          print(value);
-                        },
-                        validator: (String? value) {
-                          if (value!.isEmpty) {
-                            return 'Password_Table'.tr(context);
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: OwnTheme.colorPalette['gray'],
-                          contentPadding: const EdgeInsets.all(space1),
-                          labelText: 'Box_Password_Text'.tr(context),
-                          prefixIcon: Icon(
-                            Icons.lock,
-                          ),
-                          suffixIcon: Icon(
-                            Icons.remove_red_eye,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
-                              width: 5,
-                              color: Colors.teal,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  CustomAppBar(
+                    leadingWidget: BackIconAppBar(
+                      lang: lang,
+                    ),
+                  ).safeArea(),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: space1, right: side, left: side, bottom: bottom),
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/password');
+                          Text(
+                            'Login_txt'.tr(context),
+                            style: OwnTheme.titleBoldTextStyle(lang: lang)
+                                .colorChange(color: 'white'),
+                          ),
+                          SizedBox(
+                            height: space2,
+                          ),
+                          Text(
+                            'email_title_txt'.tr(context),
+                            style: OwnTheme.normalTextStyle(lang: lang)
+                                .colorChange(color: 'gray'),
+                          ),
+                          SizedBox(
+                            height: space0,
+                          ),
+                          TextFormField(
+                            style: OwnTheme.normalBoldTextStyle(lang: lang)
+                                .colorChange(color: 'white'),
+                            controller: emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            onFieldSubmitted: (String value) {
+                              print(value);
                             },
-                            child: Text(
-                              'Login_Title '.tr(context),
-                              style: OwnTheme.normalTextStyle(lang: lang)
-                                  .colorChange(color: 'gray'),
+                            onChanged: (String value) {
+                              print(value);
+                            },
+                            validator: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'Email_Table'.tr(context);
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              floatingLabelBehavior:
+                                  FloatingLabelBehavior.never,
+                              filled: true,
+                              fillColor: OwnTheme.colorPalette['bgGray'],
+                              labelText: 'Eg.example@gmail.com',
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: OwnTheme.colorPalette['gray'],
+                              ),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: OwnTheme.colorPalette['primary']!,
+                                    width: 1,
+                                    style: BorderStyle.solid),
+                                borderRadius: BorderRadius.circular(round),
+                              ),
+                              labelStyle:
+                                  OwnTheme.normalBoldTextStyle(lang: lang)
+                                      .colorChange(color: 'gray'),
                             ),
+                          ),
+                          SizedBox(
+                            height: space1,
+                          ),
+                          Text(
+                            'password_txt'.tr(context),
+                            style: OwnTheme.normalTextStyle(lang: lang)
+                                .colorChange(color: 'gray'),
+                          ),
+                          SizedBox(
+                            height: space0,
+                          ),
+                          TextFormField(
+                            textAlignVertical: TextAlignVertical.center,
+                            style: OwnTheme.normalBoldTextStyle(lang: lang)
+                                .colorChange(color: 'white'),
+                            controller: passwordController,
+                            keyboardType: TextInputType.visiblePassword,
+                            obscureText: true,
+                            onFieldSubmitted: (String value) {
+                              print(value);
+                            },
+                            onChanged: (String value) {
+                              print(value);
+                            },
+                            validator: (String? value) {
+                              if (value!.isEmpty) {
+                                return 'Password_Table'.tr(context);
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.never,
+                                filled: true,
+                                fillColor: OwnTheme.colorPalette['bgGray'],
+                                labelText: 'Box_Password_Text'.tr(context),
+                                prefixIcon: Icon(
+                                  Icons.lock,
+                                  color: OwnTheme.colorPalette['gray'],
+                                ),
+                                suffixIcon: Icon(
+                                  Icons.remove_red_eye,
+                                  color: OwnTheme.colorPalette['gray'],
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: OwnTheme.colorPalette['primary']!,
+                                      width: 1,
+                                      style: BorderStyle.solid),
+                                  borderRadius: BorderRadius.circular(round),
+                                ),
+                                labelStyle:
+                                    OwnTheme.normalBoldTextStyle(lang: lang)
+                                        .colorChange(color: 'gray')),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(context, '/password');
+                                },
+                                child: Text(
+                                  'Login_Title '.tr(context),
+                                  style: OwnTheme.normalTextStyle(lang: lang)
+                                      .colorChange(color: 'gray'),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          ButtonKey(
+                            //Button_Login
+                            buttonText: 'Button_Login'.tr(context),
+                            textColor: OwnTheme.colorPalette['white'],
+                            isLoading: (state is LoginLoadingState),
+                            function: () {
+                              if (formKey.currentState!.validate()) {
+                                LoginCubit.get(context).login(
+                                  email: emailController.text,
+                                  pass: passwordController.text,
+                                );
+                              }
+                            },
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      ButtonKey(//Button_Login
-                        buttonText: 'Button_Login'.tr(context),
-                        textColor: OwnTheme.colorPalette['gray'],
-                        isLoading: (state is LoginLoadingState),
-                        function: () {
-                          if (formKey.currentState!.validate()) {
-                            LoginCubit.get(context).login(
-                              email: emailController.text,
-                              pass: passwordController.text,
-                            );
-                          }
-                        },
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
           ),

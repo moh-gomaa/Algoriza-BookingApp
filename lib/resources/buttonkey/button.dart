@@ -40,7 +40,7 @@ class ButtonKey extends StatelessWidget {
           child: Center(
             child: Text(
               '${buttonText}',
-              style: OwnTheme.suitableTextStyle(lang: language ?? lang)
+              style: OwnTheme.normalBoldTextStyle(lang: language ?? lang)
                   .copyWith(color: textColor ?? OwnTheme.colorPalette['white']),
             ),
           ),
