@@ -30,13 +30,15 @@
   "onboarding_title1_txt": "Plan your trips",
   "onboarding_desc1": "Book one of your unique hotel to \n Escape the ordinary",
   "onboarding_title2_txt": "Find best deals",
-  "onboarding_desc2": "Find deals for any season from cosy \n country homes to city flats",
+  "onboarding_desc2": "Find deals for any season from cosy \n Country homes to city flats",
   "onboarding_title3_txt": "Best travelling all time",
-  "onboarding_desc3": "Find deals for any season from cosy \n country homes to city flats",
+  "onboarding_desc3": "Find deals for any season from cosy \n Country homes to city flats",
   "HomeScreen----------------------------": "HomeScreen-------------------------",
   "popular_destination": "Popular Destination",
   "best_deals": "Best Deals",
   "view_all": "View All",
+  "view_hotel": "View Hotel",
+  "where_are_you_going": "Where are you going ?",
   "TripsScreen----------------------------": "TripsScreen-------------------------",
   "my_trip": "My Trip",
   "up_coming": "Up Coming",
@@ -47,5 +49,51 @@
   "user_name_txt": "User Name",
   "email_txt": "Email",
   "SettingScreen----------------------------": "SettingScreen-----------------------",
-  "lang_txt": "Language"
+  "lang_txt": "Language",
+
+  "LoginScreen----------------------------": "LoginScreen-----------------------",
+  "Login_txt": "Login",
+  "Button_Login" : "Login ",
+  "Login_Title" : "Forgot your Password ?",
+
+  "RegisterScreen----------------------------": "RegisterScreen-----------------------",
+  "sign_up_txt": "Sign Up ",
+  "first_name_txt": "First Name",
+  "second_name_txt":"Last Name",
+  "email_title_txt": "E-mail ",
+  "password_txt": " Password ",
+  "register_title1_txt": "By Signing up,you agreed with our terms \n of  Services and privacy policy",
+  "first_table_txt": "The first Name must not be empty",
+  "last_table_txt": "The last Name must not be empty",
+  "email_table": "Email must be not be empty",
+  "Password_table" : " Password must be not be empty ",
+  "Button_Register" : "Sign Up",
+  "first_text" : "Already have an account ?",
+  "last_text" : " Login Now",
+  "Box_First_Text" : "Enter first name",
+  "Box_Last_Text" : "Enter Second name",
+  "Box_Password_Text" : "Password",
+
+
+  "ExploreScreen----------------------------": "ExploreScreen-----------------------",
+  "choose_date": "Choose Date",
+  "number_of_rooms": "Number of Room",
+  "hotel_found": "Hotel Found",
+  "filter": "Filter",
+
+  "deluxe_room": "Deluxe Room",
+  "per_night": "/per night",
+  "book_now": "Book now",
+  "details": "sleeps 2 people + 2 children",
+  "more_details": "More Details",
+
+  "premium_room": "Premium Room",
+  "premium_details": "sleeps 3 people + 3 children",
+
+  "queen_room": "Queen Room",
+  "queen_details": "sleeps 4 people + 4 children",
+
+  "king_room": "King Room",
+
+  "hooly_room": "Hollywood Room"
 }

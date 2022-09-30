@@ -30,7 +30,7 @@ class CustomAppBar extends StatelessWidget {
         padding: custom_padding ??
             EdgeInsets.only(
                 top: top ,
-                bottom: space0,
+                bottom: space1,
                 right: side,
                 left: side),
         child: Column(
@@ -71,19 +71,13 @@ class BackIconAppBar extends StatelessWidget {
           Navigator.pop(context);
         }
       },
-      child: Padding(
-        padding:  EdgeInsets.only(top: space1, bottom: space1,
-          left:lang == null ?0 :lang=='ar' ?0.0  :space0,
-          right:lang == null ?0 :lang=='en' ?space0  :0,
-        ),
-        child: Image.asset(
-          lang == 'en'
-              ? 'assets/icons/back_en.webp'
-              : 'assets/icons/back_ar.webp',
-          width: 20.sp,
-          height: 20.sp,
-          color: OwnTheme.colorPalette['white'],
-        ),
+      child: Image.asset(
+        lang == 'en'
+            ? 'assets/icons/back_en.webp'
+            : 'assets/icons/back_ar.webp',
+        width: 20.sp,
+        height: 20.sp,
+        color: OwnTheme.colorPalette['white'],
       ),
     );
   }

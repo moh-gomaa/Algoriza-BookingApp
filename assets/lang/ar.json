@@ -37,6 +37,8 @@
   "popular_destination": "اشهر الجهات",
   "best_deals": "افضل العروض",
   "view_all": "عرض الكل",
+  "view_hotel": "شاهد الفندق",
+  "where_are_you_going": "اين تذهب",
   "TripsScreen----------------------------": "TripsScreen-------------------------",
   "my_trip": "رحلتي",
   "up_coming": "القادمه",
@@ -47,5 +49,50 @@
   "user_name_txt": "الاسم",
   "email_txt": "البريد الالكتروني",
   "SettingScreen----------------------------": "SettingScreen-----------------------",
-  "lang_txt": "اللغة"
+  "lang_txt": "اللغة",
+  "LoginScreen----------------------------": "LoginScreen-----------------------",
+  "Login_txt": "تسجيل الدخول",
+  "Button_Login" : "تسجيل الدخول ",
+  "Login_Title" : "هل نسيت كلمة السر؟ ",
+  "RegisterScreen----------------------------": "RegisterScreen-----------------------",
+  "sign_up_txt": "انشاء حساب ",
+  "first_name_txt": "الاسم الاول",
+  "last_name_txt":"الاسم الاخير",
+  "email_title_txt": "البريد الالكتروني",
+  "password_txt": " كلمه المرور",
+  "Register_title1_txt":"بالتسجيل ، فإنك توافق على شروطنا  \n للخدمات وسياسة الخصوصية",
+  "first_table_txt":"يجب ألا يكون الاسم الأول فارغًا",
+  "last_table_txt" :"يجب ألا يكون الاسم الأخير فارغًا",
+  "Email_Table": "يجب ألا يكون البريد الإلكتروني فارغًا",
+  "Password_Table" : " يجب ألا تكون كلمة المرور فارغا ",
+  "Button_Register" : "التسجيل",
+  "first_text" : "هل لديك حساب؟",
+  "last_text" : " تسجيل الدخول الآن",
+  "Box_First_Text" : " أدخل الاسم الأول",
+  "Box_Last_Text" : "أدخل الاسم الأخير",
+  "Box_Password_Text" : "كلمه المرور",
+
+  "choose_date": "اختر التاريخ",
+  "number_of_rooms": "عدد الغرف",
+  "hotel_found": "عدد الفنادق",
+  "filter": "تصنيف",
+
+  "ExploreScreen----------------------------": "Book Hotel-----------------------",
+  "deluxe_room": "غرفه مزدوجه",
+  "per_night": "من اجل الليله",
+  "book_now": "احجز الان",
+  "details": "نوم لشخصين و طفلين",
+  "more_details": "تفاصيل اكثر",
+
+  "premium_room": "غرفه خاصه",
+  "premium_details": "نوم لتلت اشخاص و تلت اطفال",
+
+  "queen_room": "غرفه الملكه",
+  "queen_details": "نوم لاربع اشخاص و اربع اطفال",
+
+  "king_room": "غرفه الملك",
+
+  "hooly_room": "غرفه هولي ود تون"
+
+
 }

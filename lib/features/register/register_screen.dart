@@ -1,9 +1,12 @@
+import 'package:booking_app/core/localization/setup/app_localization.dart';
+import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/data/models/user_model.dart';
 import 'package:booking_app/features/login/login_screen.dart';
 import 'package:booking_app/features/register/bloc/register_cubit.dart';
 import 'package:booking_app/features/register/bloc/register_state.dart';
 import 'package:booking_app/resources/buttonkey/button.dart';
 import 'package:booking_app/resources/constants/constants.dart';
+import 'package:booking_app/resources/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,12 +23,13 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterCubit, RegisterStates>(
       listener: (context, state) {
-        if(state is RegisterLoadingState){
+        if (state is RegisterLoadingState) {
           Navigator.pushNamed(context, '/main');
         }
       },
       builder: (context, state) {
         return Scaffold(
+          // backgroundColor: Color(0xFFFFFFFF),
           appBar: AppBar(),
           body: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -36,26 +40,21 @@ class RegisterScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Sign up',
-                      style: TextStyle(
-                          fontSize: 40,
-                          color: Color(0xFF000000),
-                          fontWeight: FontWeight.w500,
-                          fontFamily:
-                              lang == "ar" ? "fontArBold" : "fontEnBold"),
+                      'sign_up_txt'.tr(context),
+                      style: OwnTheme.hugeBoldTextStyle(lang: lang)
+                          .colorChange(color: 'white'),
                     ),
                     SizedBox(
                       height: 10.0,
                     ),
                     Text(
-                      'First name',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFF8b8b98),
-                          fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
+                      'first_name_txt'.tr(context),
+                      style: OwnTheme.normalTextStyle(lang: lang)
+                          .colorChange(color: 'gray'),
                     ),
                     TextFormField(
+                      style: OwnTheme.normalTextStyle(lang: lang)
+                          .colorChange(color: 'gray'),
                       controller: firstNameController,
                       keyboardType: TextInputType.name,
                       onFieldSubmitted: (String value) {
@@ -66,12 +65,12 @@ class RegisterScreen extends StatelessWidget {
                       },
                       validator: (String? value) {
                         if (value!.isEmpty) {
-                          return 'First Name must be not be empty';
+                          return 'first_table_txt'.tr(context);
                         }
                         return null;
                       },
                       decoration: InputDecoration(
-                        labelText: 'Enter first name',
+                        labelText: 'Box_First_Text'.tr(context),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -81,14 +80,13 @@ class RegisterScreen extends StatelessWidget {
                       height: 10.0,
                     ),
                     Text(
-                      'Last name',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFF8b8b98),
-                          fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
+                      'last_name_txt'.tr(context),
+                      style: OwnTheme.normalTextStyle(lang: lang)
+                          .colorChange(color: 'gray'),
                     ),
                     TextFormField(
+                      style: OwnTheme.normalTextStyle(lang: lang)
+                          .colorChange(color: 'gray'),
                       controller: firstNameController,
                       keyboardType: TextInputType.text,
                       onFieldSubmitted: (String value) {
@@ -99,12 +97,12 @@ class RegisterScreen extends StatelessWidget {
                       },
                       validator: (String? value) {
                         if (value!.isEmpty) {
-                          return 'Last Name must be not be empty';
+                          return 'last_table_txt'.tr(context);
                         }
                         return null;
                       },
                       decoration: InputDecoration(
-                        labelText: 'Last name',
+                        labelText: 'Box_Last_Text'.tr(context),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -114,14 +112,13 @@ class RegisterScreen extends StatelessWidget {
                       height: 10.0,
                     ),
                     Text(
-                      'Your Email',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFF8b8b98),
-                          fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
+                      'email_title_txt'.tr(context),
+                      style: OwnTheme.normalTextStyle(lang: lang)
+                          .colorChange(color: 'gray'),
                     ),
                     TextFormField(
+                      style: OwnTheme.normalTextStyle(lang: lang)
+                          .colorChange(color: 'gray'),
                       controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       onFieldSubmitted: (String value) {
@@ -132,7 +129,7 @@ class RegisterScreen extends StatelessWidget {
                       },
                       validator: (String? value) {
                         if (value!.isEmpty) {
-                          return 'Email must be not be empty';
+                          return 'Email_Table'.tr(context);
                         }
                         return null;
                       },
@@ -151,14 +148,13 @@ class RegisterScreen extends StatelessWidget {
                       height: 10.0,
                     ),
                     Text(
-                      'Password',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFF8b8b98),
-                          fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
+                      'password_txt'.tr(context),
+                      style: OwnTheme.normalTextStyle(lang: lang)
+                          .colorChange(color: 'gray'),
                     ),
                     TextFormField(
+                      style: OwnTheme.normalTextStyle(lang: lang)
+                          .colorChange(color: 'gray'),
                       controller: passwordController,
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: true,
@@ -170,12 +166,12 @@ class RegisterScreen extends StatelessWidget {
                       },
                       validator: (String? value) {
                         if (value!.isEmpty) {
-                          return 'Password must be not be empty';
+                          return 'Password_Table'.tr(context);
                         }
                         return null;
                       },
                       decoration: InputDecoration(
-                        labelText: 'Password',
+                        labelText: 'Box_Password_Text'.tr(context),
                         prefixIcon: Icon(
                           Icons.lock,
                         ),
@@ -206,7 +202,8 @@ class RegisterScreen extends StatelessWidget {
                           }
                         }
                       },
-                      buttonText: 'Sign up',
+                      buttonText: 'Button_Register'.tr(context),
+                      textColor: OwnTheme.colorPalette['gray'],
                       isLoading: (state is RegisterLoadingState),
                     ),
                     SizedBox(
@@ -216,9 +213,9 @@ class RegisterScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'By Signing up,you agreed with our terms \n of  Services and privacy policy',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.teal),
+                          'Register_title1_txt'.tr(context),
+                          style: OwnTheme.normalTextStyle(lang: lang)
+                              .colorChange(color: 'gray'),
                         ),
                       ],
                     ),
@@ -226,23 +223,19 @@ class RegisterScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Already have an account ? ',
+                          'first_text'.tr(context),
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: Color(0xFF8b8b98),
-                              fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
+                          style: OwnTheme.prNormalTextStyle(lang: lang)
+                              .colorChange(color: 'gray'),
                         ),
                         TextButton(
                           onPressed: () {
                             Navigator.pushNamed(context, '/login');
                           },
                           child: Text(
-                            'Login',
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Color(0xFF8b8b98),
-                                fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
+                            'last_text'.tr(context),
+                            style: OwnTheme.prNormalTextStyle(lang: lang)
+                                .colorChange(color: 'gray'),
                           ),
                         ),
                       ],

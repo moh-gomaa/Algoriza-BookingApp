@@ -12,24 +12,26 @@ class OnboardingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Lottie.asset(
-          '${row.image}',
-          width: MediaQuery.of(context).size.width * 0.6,
-          height: MediaQuery.of(context).size.width * 0.6,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: space2),
-          child: Text('${row.title}',
-              style: OwnTheme.avBoldTextStyle(lang: lang)
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Lottie.asset(
+            '${row.image}',
+            width: MediaQuery.of(context).size.width * 0.6,
+            height: MediaQuery.of(context).size.width * 0.6,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: space2),
+            child: Text('${row.title}',
+                style: OwnTheme.avBoldTextStyle(lang: lang)
+                    .colorChange(color: 'white')),
+          ),
+          Text('${row.subtitle}',
+              textAlign: TextAlign.center,
+              style: OwnTheme.prNormalTextStyle(lang: lang)
                   .colorChange(color: 'white')),
-        ),
-        Text('${row.subtitle}',
-            textAlign: TextAlign.center,
-            style: OwnTheme.prNormalTextStyle(lang: lang)
-                .colorChange(color: 'white')),
-      ],
+        ],
+      ),
     );
   }
 }

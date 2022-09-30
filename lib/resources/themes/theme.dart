@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 
 final ThemeData ownThemeData = ThemeData(
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: Color(0xff282828),
         selectedItemColor: OwnTheme.colorPalette['primary'],
         unselectedItemColor: OwnTheme.colorPalette['gray'],
         selectedLabelStyle: OwnTheme.smallTextStyle(lang: lang)
@@ -19,7 +20,7 @@ final ThemeData ownThemeData = ThemeData(
       backgroundColor: Colors.transparent,
     ),
     primarySwatch: OwnTheme.primaryColor,
-    scaffoldBackgroundColor: OwnTheme.colorPalette['black'],
+    scaffoldBackgroundColor: OwnTheme.colorPalette['bg'],
     bottomSheetTheme: const BottomSheetThemeData(
         backgroundColor: Colors.transparent,
         modalBackgroundColor: Colors.transparent));
@@ -31,12 +32,12 @@ class OwnTheme {
     'white': Color(0xFFFFFFFF),
     'black': Color(0xFF000000),
     'disable': Color(0xFFe8e8e8),
-    'gray': Color(0xFF555555),
-    'lightGray': Color(0xFFF9F9F9),
+    'gray': Color(0xFF474747),
+    'bgGray': Color(0xFF2C2C2C),
     'link': Color(0xFF3784fc),
     'primary': Color(0xFF4FBE9F),
     'secondary': Color(0xFFF9C60A),
-    'bg': Color(0xFF7EB1F2),
+    'bg': Color(0xFF1A1A1A),
     'drawer': Color(0xFF313A42)
   };
 
