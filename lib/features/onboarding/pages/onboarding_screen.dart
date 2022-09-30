@@ -18,7 +18,8 @@ class OnBoardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     onBoardingLst = OnBoardingModel.fillLst(context);
     return Scaffold(
-      appBar: AppBar(actions: [
+      appBar: AppBar(
+          actions: [
         TextButton(
           child: Text(
             'skip_btn'.tr(context),

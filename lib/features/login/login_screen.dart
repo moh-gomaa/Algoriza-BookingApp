@@ -23,6 +23,7 @@ class LoginScreen extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: Color(0xFF1A1A1A),
           appBar: AppBar(),
           body: SingleChildScrollView(
             child: Padding(
@@ -34,27 +35,32 @@ class LoginScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Login',
-                        style: TextStyle(
-                            fontSize: 40,
-                            color: Color(0xFF000000),
-                            fontWeight: FontWeight.w500,
-                            fontFamily:
-                                lang == "ar" ? "fontArBold" : "fontEnBold"),
+                        'Login_txt'.tr(context),
+                        style: OwnTheme.hugeBoldTextStyle(lang: lang)
+                            .colorChange(color: 'white'),
                       ),
                       SizedBox(
                         height: 10.0,
                       ),
-                      Text('lang_txt'.tr(context),
-                          textAlign: TextAlign.start,
-                          style: OwnTheme.normalTextStyle(lang: lang)
-                              .colorChange(color: 'gray')),
+                      Text(
+                        'email_title_txt'.tr(context),
+                        style: OwnTheme.normalTextStyle(lang: lang)
+                            .colorChange(color: 'gray'),
+                      ),
                       TextFormField(
+                        style: OwnTheme.normalTextStyle(lang: lang)
+                            .colorChange(color: 'gray'),
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
+                        onFieldSubmitted: (String value) {
+                          print(value);
+                        },
+                        onChanged: (String value) {
+                          print(value);
+                        },
                         validator: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Email must be not be empty';
+                            return 'Email_Table'.tr(context);
                           }
                           return null;
                         },
@@ -73,25 +79,33 @@ class LoginScreen extends StatelessWidget {
                         height: 10.0,
                       ),
                       Text(
-                        'Password',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Color(0xFF8b8b98),
-                            fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
+                        'password_txt'.tr(context),
+                        style: OwnTheme.normalTextStyle(lang: lang)
+                            .colorChange(color: 'gray'),
                       ),
                       TextFormField(
+                        style: OwnTheme.normalTextStyle(lang: lang)
+                            .colorChange(color: 'white'),
                         controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
                         obscureText: true,
+                        onFieldSubmitted: (String value) {
+                          print(value);
+                        },
+                        onChanged: (String value) {
+                          print(value);
+                        },
                         validator: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Password must be not be empty';
+                            return 'Password_Table'.tr(context);
                           }
                           return null;
                         },
                         decoration: InputDecoration(
-                          labelText: 'Password',
+                          filled: true,
+                          fillColor: OwnTheme.colorPalette['gray'],
+                          contentPadding: const EdgeInsets.all(space1),
+                          labelText: 'Box_Password_Text'.tr(context),
                           prefixIcon: Icon(
                             Icons.lock,
                           ),
@@ -101,6 +115,7 @@ class LoginScreen extends StatelessWidget {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
                             borderSide: BorderSide(
+                              width: 5,
                               color: Colors.teal,
                             ),
                           ),
@@ -117,9 +132,9 @@ class LoginScreen extends StatelessWidget {
                               Navigator.pushNamed(context, '/password');
                             },
                             child: Text(
-                              'Forgot your Password ?  ',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.teal),
+                              'Login_Title '.tr(context),
+                              style: OwnTheme.normalTextStyle(lang: lang)
+                                  .colorChange(color: 'gray'),
                             ),
                           ),
                         ],
@@ -127,9 +142,10 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(
                         height: 15,
                       ),
-                      ButtonKey(
+                      ButtonKey(//Button_Login
+                        buttonText: 'Button_Login'.tr(context),
+                        textColor: OwnTheme.colorPalette['gray'],
                         isLoading: (state is LoginLoadingState),
-                        buttonText: 'LOGIN',
                         function: () {
                           if (formKey.currentState!.validate()) {
                             LoginCubit.get(context).login(
