@@ -271,6 +271,8 @@ class ExploreScreen extends StatelessWidget {
         itemBuilder: (context,index){
           return GestureDetector(
             onTap: (){
+              print('sssssssssssi');
+              print(model.data!.data![index].id);
               Navigator.push(context, MaterialPageRoute(builder: (_){
                  return BookHotel(
                    hotelName: (model.data!.data![index].name)!,
@@ -310,20 +312,26 @@ class ExploreScreen extends StatelessWidget {
                               height: size.height*.18,
                             ),
                             Positioned(
+                              right: 10,
                               child: IconButton(
                                 icon: const CircleAvatar(
+                                  radius: 28,
+                                  backgroundColor: Color(0xff282828),
                                   child: Icon(
                                     Icons.favorite_border,
                                     size: 20,
                                   ),
-                                  radius: 28,
-                                  backgroundColor: Color(0xff282828),
                                 ),
                                 onPressed: (){
-
+                                  AppCubit.get(context).insertDatabase(
+                                      name: '${model.data!.data![index].name}',
+                                      address: '${model.data!.data![index].address}',
+                                      price: '${model.data!.data![index].price}',
+                                      rate: '${model.data!.data![index].rate}',
+                                      image: '${model.data!.data![index].hotelImages![0].image}'
+                                  );
                                 },
                               ),
-                              right: 10,
                             )
                           ],
                         ),
@@ -331,7 +339,8 @@ class ExploreScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
-                              Container(
+                              SizedBox(
+                                width: 230,
                                 child: Text(
                                   '${model.data!.data![index].name}',
                                   style: TextStyle(
@@ -341,7 +350,6 @@ class ExploreScreen extends StatelessWidget {
                                       fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
                                   ),
                                 ),
-                                width: 230,
                               ),
                               SizedBox(width: size.width*.04,),
                               Text(
@@ -363,7 +371,8 @@ class ExploreScreen extends StatelessWidget {
                           ),
                           child: Row(
                             children: [
-                              Container(
+                              SizedBox(
+                                width: 120,
                                 child: Text(
                                   '${model.data!.data![index].address}',
                                   style: TextStyle(
@@ -375,7 +384,6 @@ class ExploreScreen extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
 
                                 ),
-                                width: 120,
                               ),
                               Icon(
                                 Icons.location_pin,
@@ -425,8 +433,6 @@ class ExploreScreen extends StatelessWidget {
                                     fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
                                 ),
                               ),
-
-
 
                             ],
                           ),

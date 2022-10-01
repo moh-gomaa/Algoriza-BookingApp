@@ -9,16 +9,26 @@ import 'package:booking_app/resources/themes/theme.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:sizer/sizer.dart';
 
-class HotelDetailsScreen extends StatelessWidget {
-
-  bool _pinned = true;
-  bool _snap = false;
-  bool _floating = false;
-  var pageController=PageController();
+class HotelDetailsScreen extends StatefulWidget {
 
   Datum ?model;
 
   HotelDetailsScreen({Key? key,required this.model}) : super(key: key);
+
+  @override
+  State<HotelDetailsScreen> createState() => _HotelDetailsScreenState();
+}
+
+class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
+  bool _pinned = true;
+
+  bool _snap = false;
+
+  bool _floating = false;
+
+  var pageController=PageController();
+
+  bool ?isFavorite=false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +59,7 @@ class HotelDetailsScreen extends StatelessWidget {
                             itemBuilder: (context,index){
                               return Image(
                                 fit: BoxFit.cover,
-                                image: NetworkImage('http://api.mahmoudtaha.com/images/${model!.hotelImages![index].image}'),
+                                image: NetworkImage('http://api.mahmoudtaha.com/images/${widget.model!.hotelImages![index].image}'),
                               );
                             },
                             controller: pageController,
@@ -75,7 +85,7 @@ class HotelDetailsScreen extends StatelessWidget {
                                 children: [
                                   const SizedBox(height: 5,),
                                   Text(
-                                    '${model!.name}',
+                                    '${widget.model!.name}',
                                     style: TextStyle(
                                         fontSize: 11.sp,
                                         color:  OwnTheme.colorPalette['white'],
@@ -87,7 +97,7 @@ class HotelDetailsScreen extends StatelessWidget {
                                     children: [
                                       Container(
                                         child: Text(
-                                          '${model!.address}',
+                                          '${widget.model!.address}',
                                           style: TextStyle(
                                               fontSize: 6.sp,
                                               color:  OwnTheme.colorPalette['white'],
@@ -115,7 +125,7 @@ class HotelDetailsScreen extends StatelessWidget {
                                       ),
                                       SizedBox(width: size.width*.03,),
                                       Text(
-                                        '\$${model!.price}',
+                                        '\$${widget.model!.price}',
                                         style: TextStyle(
                                             fontSize: 10.sp,
                                             color:  OwnTheme.colorPalette['white'],
@@ -134,7 +144,7 @@ class HotelDetailsScreen extends StatelessWidget {
                                         size:  size.width*.05,
                                       ),
                                       Text(
-                                        '${model!.rate}',
+                                        '${widget.model!.rate}',
                                         style: TextStyle(
                                             fontSize: 11.sp,
                                             color:  OwnTheme.colorPalette['gray'],
@@ -172,7 +182,7 @@ class HotelDetailsScreen extends StatelessWidget {
                                       color: OwnTheme.colorPalette['primary'],
                                       onPressed: (){
                                         AppCubit.get(context).createBook(
-                                          hotelId: model!.id!,
+                                          hotelId: widget.model!.id!,
                                           token: CashHelper.getData(key: 'token'),
                                           userId: CashHelper.getData(key: 'userId'),
                                         );
@@ -193,8 +203,6 @@ class HotelDetailsScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-
-
                       ],
                     ),
 
@@ -208,6 +216,7 @@ class HotelDetailsScreen extends StatelessWidget {
                       backgroundColor:const Color(0xdda4a4a4),
                       child: IconButton(
                         onPressed: (){
+                          Navigator.pop(context);
 
                         },
                         icon: Icon(
@@ -218,16 +227,33 @@ class HotelDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   actions: [
-                    Container(
-                      margin: const EdgeInsets.only(
-                        bottom: 5
-                      ),
-                      child: CircleAvatar(
-                        radius: 30,
-                        backgroundColor: OwnTheme.colorPalette['black'],
-                        child: Icon(
-                          Icons.favorite_border,
-                          color: OwnTheme.colorPalette['primary'],
+                    GestureDetector(
+                      onTap: (){
+                        setState(() {
+                          isFavorite =! isFavorite!;
+                        });
+                        AppCubit.get(context).insertDatabase(
+                            name: '${widget.model!.name}',
+                            address: '${widget.model!.address}',
+                            price: '${widget.model!.price}',
+                            rate: '${widget.model!.rate}',
+                            image: '${widget.model!.hotelImages![0].image}'
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(
+                          bottom: 5
+                        ),
+                        child: CircleAvatar(
+                          radius: 30,
+                          backgroundColor: OwnTheme.colorPalette['black'],
+                          child: isFavorite==false? Icon(
+                            Icons.favorite_border,
+                            color: OwnTheme.colorPalette['primary'],
+                          ):Icon(
+                            Icons.favorite,
+                            color: OwnTheme.colorPalette['primary'],
+                          ),
                         ),
                       ),
                     )
@@ -248,7 +274,7 @@ class HotelDetailsScreen extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                '${model!.name}',
+                                '${widget.model!.name}',
                                 style: TextStyle(
                                     fontSize: 15.sp,
                                     color:  OwnTheme.colorPalette['white'],
@@ -258,7 +284,7 @@ class HotelDetailsScreen extends StatelessWidget {
                               ),
                               const Spacer(),
                               Text(
-                                '\$${model!.price}',
+                                '\$${widget.model!.price}',
                                 style: TextStyle(
                                     fontSize: 14.sp,
                                     color:  OwnTheme.colorPalette['white'],
@@ -276,7 +302,7 @@ class HotelDetailsScreen extends StatelessWidget {
                             children: [
                               Container(
                                 child: Text(
-                                  '${model!.address}',
+                                  '${widget.model!.address}',
                                   style: TextStyle(
                                       fontSize: 9.sp,
                                       color:  Colors.grey.shade600,
@@ -331,7 +357,7 @@ class HotelDetailsScreen extends StatelessWidget {
                           ),
                           SizedBox(height: size.height*.005,),
                           Text(
-                            '${model!.description}',
+                            '${widget.model!.description}',
                             style: TextStyle(
                                 fontSize: 9.sp,
                                 color:  Colors.grey.shade600,
@@ -358,7 +384,7 @@ class HotelDetailsScreen extends StatelessWidget {
                                 Row(
                                   children: [
                                     Text(
-                                      '${model!.rate}',
+                                      '${widget.model!.rate}',
                                       style: TextStyle(
                                           fontSize: 20.sp,
                                           color:  OwnTheme.colorPalette['primary'],
@@ -539,7 +565,7 @@ class HotelDetailsScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                         image:  DecorationImage(
                                           fit: BoxFit.cover,
-                                          image: NetworkImage('http://api.mahmoudtaha.com/images/${model!.hotelImages![index].image}'),
+                                          image: NetworkImage('http://api.mahmoudtaha.com/images/${widget.model!.hotelImages![index].image}'),
                                         )
 
                                     ),
@@ -548,7 +574,7 @@ class HotelDetailsScreen extends StatelessWidget {
                                 separatorBuilder: (context,index){
                                   return const SizedBox(width: 10,);
                                 },
-                                itemCount:model!.hotelImages!.length
+                                itemCount:widget.model!.hotelImages!.length
                             ),
                           ),
                           SizedBox(height: size.height*.03,),
@@ -713,7 +739,7 @@ class HotelDetailsScreen extends StatelessWidget {
                               color: OwnTheme.colorPalette['primary'],
                               onPressed: (){
                                 AppCubit.get(context).createBook(
-                                  hotelId: model!.id!,
+                                  hotelId: widget.model!.id!,
                                   token: CashHelper.getData(key: 'token'),
                                   userId: CashHelper.getData(key: 'userId'),
                                 );

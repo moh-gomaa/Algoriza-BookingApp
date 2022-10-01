@@ -10,6 +10,8 @@ import 'package:booking_app/features/home/cubit/app_states.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:sqflite/sqlite_api.dart';
 
 class AppCubit extends Cubit<AppStates> {
 
@@ -73,6 +75,28 @@ class AppCubit extends Cubit<AppStates> {
     'https://www.machiya-inn-japan.com/kyoto/shinsen-en/wp-content/themes/shinsenen/asset/images/rooms/chtr/main.jpg',
     'https://www.machiya-inn-japan.com/kyoto/shinsen-en/wp-content/themes/shinsenen/asset/images/rooms/chtr/gallery_img02.jpg',
     'https://www.machiya-inn-japan.com/kyoto/shinsen-en/wp-content/themes/shinsenen/asset/images/rooms/chtr/gallery_img03.jpg'
+  ];
+
+
+
+  List searchNameTitles = [
+    'Hotel',
+    'BackPacker',
+    'Resort',
+    'Villa',
+    'Apartment',
+    'Guest House',
+    'Motel',
+     ];
+
+  List searchNameImages = [
+    'https://img.freepik.com/free-photo/beautiful-luxury-outdoor-swimming-pool-hotel-resort_74190-7433.jpg?w=740&t=st=1664634799~exp=1664635399~hmac=09385039b188b3f8e4da8dcdba210e1a967fabdde0fdc1de2a997d221df136cd',
+    'https://img.freepik.com/premium-photo/modern-minimalist-interior-living-room_33739-472.jpg?w=900',
+    'https://img.freepik.com/free-photo/swimming-pool_74190-2104.jpg?w=740&t=st=1664634862~exp=1664635462~hmac=b42e503f5fb859c7bc093baded2cd6ab17f3c298155a6210b7a60fc8e0b5f784',
+    'https://img.freepik.com/free-photo/solar-panels-roof-modern-house-harvesting-renewable-energy-with-solar-cell-panels-exterior-design-3d-rendering_41470-3654.jpg?w=900&t=st=1664634886~exp=1664635486~hmac=f57755a83d7a6ec56f099b650330aa5c69ec18190ac679c9cfeb07946e3c4f94',
+    'https://img.freepik.com/free-photo/modern-residential-building_1268-14735.jpg?w=740&t=st=1664634907~exp=1664635507~hmac=528035cf26bd41d335e7e2a6335682e5808633672c9d2c2e04c774f9d0d9ba0a',
+    'https://img.freepik.com/free-photo/house-isolated-field_1303-23773.jpg?w=740&t=st=1664634944~exp=1664635544~hmac=31f39d2220f5f6cb44039bcd85fc397c3de9b6be245308a99c87e8d9d9c40d84',
+    'https://img.freepik.com/premium-photo/interior-design-modern-studio-apartment_493343-26479.jpg?w=740',
   ];
 
   void toolbarColorSwitch(index) {
@@ -200,4 +224,151 @@ class AppCubit extends Cubit<AppStates> {
     });
 
   }
+
+
+  Database ?database;
+  String time='${DateTime.now().month}/${DateTime.now().day}/${DateTime.now().year}';
+  List <Map>  allFavorite=[];
+
+
+  void createDatabase() async {
+
+    return await openDatabase(
+        'favorite.db',
+        version: 1,
+        onCreate: (database,version){
+          database.execute(
+              'CREATE TABLE favorite (id INTEGER PRIMARY KEY , name TEXT , address TEXT, price TEXT, rate TEXT, image TEXT, favorite TEXT)'
+          ).then((value) {
+            print('Table Created');
+            emit(CreateTableState());
+          });
+        },
+        onOpen: (database){
+
+          getDatabase(database).then((value){
+            allFavorite=value;
+          }).catchError((error){
+            print('error i ${error.toString()}');
+          });
+          print('Database Opened');
+        }
+
+    ).then((value) {
+      database=value;
+      print('Database Created');
+      emit(CreateDatabaseSuccessState());
+    }).catchError((error){
+      print('error is ${error.toString()}');
+      emit(CreateDatabaseErrorState());
+
+    });
+  }
+
+  Future insertDatabase(
+      {
+        required String name,
+        required String address,
+        required String price,
+        required String rate,
+        required String image,
+      }) async{
+
+    return database?.transaction((txn) {
+      return txn.rawInsert(
+          'INSERT INTO favorite (name,address,price,rate,image,favorite) VALUES ( "${name}" , "${address}" , "${price}" , "${rate}" , "${image}" , "yes")'
+      ).then((value) {
+        print("${value} Insert Success");
+        emit(InsertDatabaseSuccessState());
+        getDatabase(database).then((value){
+          allFavorite=value;
+        });
+        customToast(title: 'Hotel add to favorite', color: OwnTheme.colorPalette['primary']!);
+        emit(InsertDatabaseSuccessState());
+
+      }).catchError((error){
+        print('Error is ${error.toString()}');
+      });
+
+    });
+
+  }
+
+
+  Future <List<Map>> getDatabase(database)async {
+
+    allFavorite=[];
+
+
+    return await database?.rawQuery(
+        'SELECT * FROM favorite'
+    ).then((value) {
+      print(value[0]['color']);
+      print(value[0]['deadline']);
+      print(time);
+
+
+      value.forEach((element){
+
+
+
+
+        if(element['favorite']=='yes')
+        {
+          print('Here');
+          allFavorite.add(element);
+
+        }
+
+
+      });
+
+      print(allFavorite);
+      emit(GetDatabaseSuccessState());
+    }).catchError((error){
+      print('GetError is ${error.toString()}');
+    });
+  }
+
+
+  // void updateFavorite(
+  //     {
+  //       required String F,
+  //       required int id,
+  //     }
+  //     ) async{
+  //
+  //   database?.rawUpdate(
+  //
+  //       'UPDATE todo SET favorite = ? WHERE id = ?',
+  //       ['$F', '$id']).then((value) {
+  //     print('Update Done');
+  //     getDatabase(database);
+  //     emit(UpdateFavoriteSuccessState());
+  //   }).catchError((error){
+  //     print('error is ${error.toString()}');
+  //   });
+  //
+  // }
+  //
+  //
+  // void deleteDatabase(
+  //     {
+  //       required int id,
+  //     }
+  //     ) async{
+  //
+  //   database?.rawDelete(
+  //       'DELETE FROM todo WHERE id = ?', ['$id'])
+  //       .then((value) {
+  //     getDatabase(database);
+  //     emit(DeleteDatabaseSuccessState());
+  //   }).catchError((error){
+  //     print('error is ${error.toString()}');
+  //   });
+  //
+  // }
+
+
+
 }

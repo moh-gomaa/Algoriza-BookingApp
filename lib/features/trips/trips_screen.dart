@@ -171,8 +171,8 @@ class TripsScreen extends StatelessWidget {
             child: Row(
               children: [
                 Image(
-                  image: const AssetImage(
-                      'assets/images/hotel.jpg'
+                  image: NetworkImage(
+                      'http://api.mahmoudtaha.com/images/${AppCubit.get(context).allFavorite[index]['image']}'
                   ),
                   fit: BoxFit.cover,
                   width: size.width*.32,
@@ -184,24 +184,34 @@ class TripsScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Grand Royal Hotel',
-                        style: TextStyle(
-                            fontSize: 12.sp,
-                            color:  OwnTheme.colorPalette['white'],
-                            fontWeight: FontWeight.w500,
-                            fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                      Container(
+                        child: Text(
+                          '${AppCubit.get(context).allFavorite[index]['name']}',
+                          style: TextStyle(
+                              fontSize: 11.sp,
+                              color:  OwnTheme.colorPalette['white'],
+                              fontWeight: FontWeight.w500,
+                              fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                          ),
+                          overflow: TextOverflow.ellipsis,
+
                         ),
+                        width: 150,
+
                       ),
                       SizedBox(height: size.height*.008,),
-                      Text(
-                        'Wembley, London',
-                        style: TextStyle(
-                            fontSize: 10.sp,
-                            color:  OwnTheme.colorPalette['gray'],
-                            fontWeight: FontWeight.w500,
-                            fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                      Container(
+                        child: Text(
+                          '${AppCubit.get(context).allFavorite[index]['address']}',
+                          style: TextStyle(
+                              fontSize: 10.sp,
+                              color:  OwnTheme.colorPalette['gray'],
+                              fontWeight: FontWeight.w500,
+                              fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
+                        width: 150,
                       ),
                       SizedBox(height: size.height*.01,),
                       SizedBox(
@@ -225,7 +235,7 @@ class TripsScreen extends StatelessWidget {
                             ),
                             SizedBox(width: size.width*.07,),
                             Text(
-                              '\$200',
+                              '${AppCubit.get(context).allFavorite[index]['price']}',
                               style: TextStyle(
                                   fontSize: 15.sp,
                                   color:  OwnTheme.colorPalette['white'],
@@ -245,27 +255,16 @@ class TripsScreen extends StatelessWidget {
                             Icon(
                               Icons.star,
                               color:  OwnTheme.colorPalette['primary'],
-                              size:  size.width*.03,
+                              size:  size.width*.05,
                             ),
-                            Icon(
-                              Icons.star,
-                              color:  OwnTheme.colorPalette['primary'],
-                              size:  size.width*.03,
-                            ),
-                            Icon(
-                              Icons.star,
-                              color:  OwnTheme.colorPalette['primary'],
-                              size:  size.width*.03,
-                            ),
-                            Icon(
-                              Icons.star,
-                              color:  OwnTheme.colorPalette['primary'],
-                              size:  size.width*.03,
-                            ),
-                            Icon(
-                              Icons.star,
-                              color:  OwnTheme.colorPalette['primary'],
-                              size:  size.width*.03,
+                            Text(
+                              '${AppCubit.get(context).allFavorite[index]['rate']}',
+                              style: TextStyle(
+                                  fontSize: 12.sp,
+                                  color:  OwnTheme.colorPalette['white'],
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
                             ),
                             SizedBox(width: size.width*.17,),
                             Text(
@@ -291,7 +290,7 @@ class TripsScreen extends StatelessWidget {
         separatorBuilder: (context,index){
           return const SizedBox(height: 10,);
         },
-        itemCount: 10
+        itemCount: AppCubit.get(context).allFavorite.length
     );
   }
 
@@ -717,7 +716,13 @@ class TripsScreen extends StatelessWidget {
                                 backgroundColor: Color(0xff282828),
                               ),
                               onPressed: (){
-
+                                AppCubit.get(context).insertDatabase(
+                                    name: '${model.data!.data![index].hotel!.name}',
+                                    address: '${model.data!.data![index].hotel!.address}',
+                                    price: '${model.data!.data![index].hotel!.price}',
+                                    rate: '${model.data!.data![index].hotel!.rate}',
+                                    image: '${model.data!.data![index].hotel!.hotelImages![0].image}'
+                                );
                               },
                             ),
                           )
@@ -761,7 +766,7 @@ class TripsScreen extends StatelessWidget {
                         child:
                         Row(
                           children: [
-                            Container(
+                            SizedBox(
                               child: Text(
                                 '${model.data!.data![index].hotel!.address}',
                                 style: TextStyle(
@@ -770,7 +775,9 @@ class TripsScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w500,
                                     fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
                                 ),
+                                overflow: TextOverflow.ellipsis,
                               ),
+                              width: 150,
                             ),
                             const Spacer(),
                             Icon(
