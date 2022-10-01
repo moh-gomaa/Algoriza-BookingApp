@@ -52,6 +52,9 @@ class UserModel {
 
   String? get name => _name;
 
+  set name(String? name) => _name = name;
+  set email(String? email) => _email = email;
+
   String? get email => _email;
 
   String? get apiToken => _apiToken;
@@ -63,8 +66,8 @@ class UserModel {
     map['id'] = _id;
     map['name'] = _name;
     map['email'] = _email;
-    // map['api_token'] = _apiToken;
-    // map['image'] = _image;
+    map['api_token'] = _apiToken;
+    map['image'] = _image;
     map['password'] = _password;
     map['password_confirmation'] = _passwordConfirmation;
     return map;

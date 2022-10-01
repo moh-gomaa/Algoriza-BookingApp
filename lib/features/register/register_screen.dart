@@ -18,6 +18,7 @@ class RegisterScreen extends StatelessWidget {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
   UserModel user = UserModel();
 
   @override
@@ -258,6 +259,65 @@ class RegisterScreen extends StatelessWidget {
                             labelStyle: OwnTheme.normalBoldTextStyle(lang: lang)
                                 .colorChange(color: 'gray')),
                       ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    ButtonKey(
+                      function: () {
+                        {
+                          if (formKey.currentState!.validate()) {
+                            FocusScope.of(context).requestFocus(new FocusNode());
+
+                            user = UserModel(
+                                name: firstNameController.text,
+                                email: emailController.text,
+                                password: passwordController.text,
+                                passwordConfirmation: passwordController.text);
+                            RegisterCubit.get(context).register(obj: user);
+                          }
+                        }
+                      },
+                      buttonText: 'Button_Register'.tr(context),
+                      textColor: OwnTheme.colorPalette['gray'],
+                      isLoading: (state is RegisterLoadingState),
+                    ),
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Register_title1_txt'.tr(context),
+                          style: OwnTheme.normalTextStyle(lang: lang)
+                              .colorChange(color: 'gray'),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'first_text'.tr(context),
+                          textAlign: TextAlign.center,
+                          style: OwnTheme.prNormalTextStyle(lang: lang)
+                              .colorChange(color: 'gray'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/login');
+                          },
+                          child: Text(
+                            'last_text'.tr(context),
+                            style: OwnTheme.prNormalTextStyle(lang: lang)
+                                .colorChange(color: 'gray'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
                       SizedBox(
                         height: 30,
                       ),

@@ -4,13 +4,11 @@
 // index 3 password
 
 import 'package:booking_app/core/main_blocs/blocs.dart';
-import 'package:booking_app/features/profile/bloc/edit_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
-
 
 class CustomTextBoxNormal extends StatefulWidget {
   final String? hint;
@@ -60,101 +58,80 @@ class _CustomTextBoxNormalState extends State<CustomTextBoxNormal> {
   @override
   Widget build(BuildContext context) {
     double bottomInsets = MediaQuery.of(context).viewInsets.bottom;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          widget.title ?? '',
-          style: OwnTheme.normalBoldTextStyle( lang: lang),
-        ),
-        SizedBox(
-          height: space1,
-        ),
-        TextFormField(
-          scrollPadding: widget.keyboardPadding != null
-              ? widget.keyboardPadding!
-                  ? EdgeInsets.only(
-                      bottom: bottomInsets + height1 * 2)
-                  : EdgeInsets.only(bottom: bottomInsets)
-              : EdgeInsets.only(bottom: bottomInsets),
-          inputFormatters: [
-            LengthLimitingTextInputFormatter(widget.maxChar)
-          ],
-          obscureText: widget.index == 3 ? true : false,
-          controller: widget.tec,
-          keyboardType: widget.index == 1 || widget.index == 4
-              ? TextInputType.numberWithOptions()
-              : TextInputType.text,
-          onChanged: (val) {
+    return TextFormField(
+      scrollPadding: widget.keyboardPadding != null
+          ? widget.keyboardPadding!
+              ? EdgeInsets.only(bottom: bottomInsets + height1 * 2)
+              : EdgeInsets.only(bottom: bottomInsets)
+          : EdgeInsets.only(bottom: bottomInsets),
+      inputFormatters: [LengthLimitingTextInputFormatter(widget.maxChar)],
+      obscureText: widget.index == 3 ? true : false,
+      controller: widget.tec,
+      keyboardType: widget.index == 1 || widget.index == 4
+          ? TextInputType.numberWithOptions()
+          : TextInputType.text,
+      onChanged: (val) {
+        if (widget.onChange != null) {
+          widget.onChange!(val);
+        }
+      },
+      style:
+          OwnTheme.normalBoldTextStyle(lang: lang).colorChange(color: 'white'),
+      decoration: InputDecoration(
+          //Good in space but not at all
+          // prefix: widget.prefix != null ? widget.prefix : null,
+          // suffix:widget.suffix != null ? widget.suffix :null ,
 
-           context.read<EditProfileCubit>().changeName(val);
-            // widget.tec!.text = val;
-            // if(widget.onChange != null){
-            //   widget.onChange!(val);
-            //
-            // }
-          },
-          style: OwnTheme.normalBoldTextStyle( lang: lang),
-          decoration: InputDecoration(
-              //Good in space but not at all
-              // prefix: widget.prefix != null ? widget.prefix : null,
-              // suffix:widget.suffix != null ? widget.suffix :null ,
-
-              suffixIcon:
-                  widget.suffix != null ? widget.suffix : null,
-              prefixIcon:
-                  widget.prefix != null ? widget.prefix : null,
-              prefixStyle:OwnTheme.normalBoldTextStyle( lang: lang).colorChange(color: 'secondary'),
-              border: const OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(round),
-                ),
-              ),
-              fillColor: OwnTheme.colorPalette['lightGray'],
-              filled: true,
-              // enabledBorder: OutlineInputBorder(
-              //   borderSide: BorderSide(
-              //       width: 1.0,
-              //       color: OwnTheme.colorPalette['gray']!),
-              // ),
-              // focusedBorder: OutlineInputBorder(
-              //   borderSide: BorderSide(
-              //       width: 1.0,
-              //       color: OwnTheme.colorPalette['primary']!),
-              // ),
-              // errorBorder: const OutlineInputBorder(
-              //   borderRadius: BorderRadius.all(
-              //     Radius.circular(round),
-              //   ),
-              // ),
-              contentPadding: EdgeInsets.all(space2),
-              errorStyle: OwnTheme.normalBoldTextStyle( lang: lang).colorChange(color: 'secondary'),
-              hintText: widget.hint,
-              hintStyle: OwnTheme.normalBoldTextStyle( lang: lang).colorChange(color: 'gray')),
-          textAlign: widget.changeAlignmet == 'center'
-              ? TextAlign.center
-              : widget.changeAlignmet == '' ||
-                      widget.changeAlignmet == null
-                  ? widget.lang == 'en'
-                      ? TextAlign.left
-                      : TextAlign.right
-                  : widget.changeAlignmet == 'ar'
-                      ? TextAlign.right
-                      : TextAlign.left,
-          textDirection: widget.changeAlignmet != '' ||
-                  widget.changeAlignmet != null
+          suffixIcon: widget.suffix != null ? widget.suffix : null,
+          prefixIcon: widget.prefix != null ? widget.prefix : null,
+          prefixStyle: OwnTheme.normalBoldTextStyle(lang: lang)
+              .colorChange(color: 'secondary'),
+          border: const OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.all(
+              Radius.circular(round),
+            ),
+          ),
+          fillColor: OwnTheme.colorPalette['bgGray'],
+          filled: true,
+          // enabledBorder: OutlineInputBorder(
+          //   borderSide: BorderSide(
+          //       width: 1.0,
+          //       color: OwnTheme.colorPalette['gray']!),
+          // ),
+          // focusedBorder: OutlineInputBorder(
+          //   borderSide: BorderSide(
+          //       width: 1.0,
+          //       color: OwnTheme.colorPalette['primary']!),
+          // ),
+          // errorBorder: const OutlineInputBorder(
+          //   borderRadius: BorderRadius.all(
+          //     Radius.circular(round),
+          //   ),
+          // ),
+          contentPadding: EdgeInsets.all(space2),
+          errorStyle: OwnTheme.normalBoldTextStyle(lang: lang)
+              .colorChange(color: 'secondary'),
+          hintText: widget.hint,
+          hintStyle: OwnTheme.normalBoldTextStyle(lang: lang)
+              .colorChange(color: 'gray')),
+      textAlign: widget.changeAlignmet == 'center'
+          ? TextAlign.center
+          : widget.changeAlignmet == '' || widget.changeAlignmet == null
+              ? widget.lang == 'en'
+                  ? TextAlign.left
+                  : TextAlign.right
+              : widget.changeAlignmet == 'ar'
+                  ? TextAlign.right
+                  : TextAlign.left,
+      textDirection:
+          widget.changeAlignmet != '' || widget.changeAlignmet != null
               ? widget.changeAlignmet == 'ar'
                   ? TextDirection.rtl
                   : TextDirection.ltr
               : widget.lang == 'en'
                   ? TextDirection.ltr
                   : TextDirection.rtl,
-        ),
-        SizedBox(
-          height: space1,
-        )
-      ],
     );
   }
 }

@@ -3,20 +3,21 @@ import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/data/models/user_model.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 
 class ProfileInfoCard extends StatelessWidget {
   final UserModel user;
+  final Function onTap;
 
-  const ProfileInfoCard({required this.user});
+  const ProfileInfoCard({required this.user, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
-        Navigator.pushNamed(context, '/profileDetails', arguments: user);
+        onTap();
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,11 +44,23 @@ class ProfileInfoCard extends StatelessWidget {
                       color: OwnTheme.colorPalette['gray']),
                   child: Padding(
                       padding: const EdgeInsets.all(space0),
-                      child: Image.asset(
-                        '${user.image}',
-                        width: 30.sp,
-                        height: 30.sp,
-                      )),
+                      child:
+                      CachedNetworkImage(
+                        imageUrl: user.image!,
+                        placeholder: (context, url) => Center(
+                            child: Container(
+                                width: 50,
+                                height: 50,
+                                child: CircularProgressIndicator())),
+                        errorWidget: (context, url, error) => Container(
+                          width: 50,
+                          height: 50,
+                        ),
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.fill,
+                      ),
+                  ),
                 )
               : Container(),
         ],

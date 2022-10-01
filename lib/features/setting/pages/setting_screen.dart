@@ -1,6 +1,7 @@
 import 'package:booking_app/core/localization/helpers/language_helper.dart';
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/main_blocs/blocs.dart';
+import 'package:booking_app/core/utils/extensions/layout_extensions.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:booking_app/features/profile/bloc/profile_cubit.dart';
@@ -31,7 +32,7 @@ class SettingScreen extends StatelessWidget {
                 leadingWidget: BackIconAppBar(
                   lang: pageLang,
                 ),
-              ),
+              ).safeArea(),
               Padding(
                 padding:
                 const EdgeInsets.only(bottom: bottom, right: side, left: side),

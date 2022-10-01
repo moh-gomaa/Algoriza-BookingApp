@@ -8,7 +8,7 @@ RegExp regexpPrefix = new RegExp(r'^0+(?=.)');
 
 //  ------------------------------- Page Padding -----------------------=------
 
-const double top = 30;
+const double top = 20;
 const double bottom = 40;
 const double side = 25;
 

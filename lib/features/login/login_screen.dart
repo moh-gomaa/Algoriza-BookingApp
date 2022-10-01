@@ -14,7 +14,6 @@ class LoginScreen extends StatelessWidget {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  bool _isSecurepassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -208,13 +207,5 @@ class LoginScreen extends StatelessWidget {
         );
       },
     );
-  }
-
-  Widget togglePassword() {
-    return IconButton(
-        onPressed: () {},
-        icon: _isSecurepassword
-            ? Icon(Icons.visibility_outlined)
-            : Icon(Icons.visibility_off_outlined));
   }
 }

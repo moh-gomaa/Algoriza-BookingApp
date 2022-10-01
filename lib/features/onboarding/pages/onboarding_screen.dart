@@ -1,6 +1,7 @@
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/utils/extensions/layout_extensions.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
+import 'package:booking_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:booking_app/features/onboarding/widgets/onboarding_bottom.dart';
 import 'package:booking_app/features/onboarding/widgets/onboarding_item.dart';
 import 'package:booking_app/resources/constants/constants.dart';
@@ -18,19 +19,24 @@ class OnBoardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     onBoardingLst = OnBoardingModel.fillLst(context);
     return Scaffold(
-      appBar: AppBar(
-          actions: [
-        TextButton(
-          child: Text(
-            'skip_btn'.tr(context),
-            style: OwnTheme.smallTextStyle(lang: lang)
-                .colorChange(color: 'primary'),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(100),
+        child: CustomAppBar(
+          leadingWidget: BackIconAppBar(
+            lang: lang,
           ),
-          onPressed: () {
-            Navigator.pushNamed(context, '/login');
-          },
-        ),
-      ]),
+          actionWidget: TextButton(
+            child: Text(
+              'skip_btn'.tr(context),
+              style: OwnTheme.smallTextStyle(lang: lang)
+                  .colorChange(color: 'primary'),
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, '/login');
+            },
+          ),
+        ).safeArea(),
+      ),
       body: Column(
         children: [
           Expanded(
