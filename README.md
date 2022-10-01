@@ -40,31 +40,9 @@ Here is our Flutter app which provides multi hotels with various facilities. The
 
 ![Screenshot_20221001_201657_com example booking_app](https://user-images.githubusercontent.com/70426380/193423352-5a85d1e9-0e2a-48da-a512-6052febefdaf.jpg)
 
-*Profile Screen
+*Home Screen with Slider of Photos
 
-![Screenshot_20221001_201733_com example booking_app](https://user-images.githubusercontent.com/70426380/193423377-37c3a52a-4b72-4bcc-b29c-f1ec29658e08.jpg)
 
-*Profile Details Screen
-
-![Screenshot_20221001_201737_com example booking_app](https://user-images.githubusercontent.com/70426380/193423392-d12a3948-91be-4bed-b41f-cbf3cd79f311.jpg)
-
-![Screenshot_20221001_201739_com example booking_app](https://user-images.githubusercontent.com/70426380/193423394-a22a163a-09ef-4d1b-9d59-bf586dae9c74.jpg)
-
-*Choose profile photo from Gallery/Camera Section
-
-![Screenshot_20221001_201743_com example booking_app](https://user-images.githubusercontent.com/70426380/193423395-d157d352-1307-4c7b-9e51-f76d081e00d8.jpg)
-
-*Setting Screen
-
-![Screenshot_20221001_201747_com example booking_app](https://user-images.githubusercontent.com/70426380/193423365-fc3bbae0-53ec-47fa-b049-bc8fed160036.jpg)
-
-*Change Language Screen
-
-![Screenshot_20221001_201749_com example booking_app](https://user-images.githubusercontent.com/70426380/193423409-d1cc9e33-aac3-4558-983c-6b4dea5e4a93.jpg)
-
-*Arabic Profile Screen
-
-![Screenshot_20221001_201754_com example booking_app](https://user-images.githubusercontent.com/70426380/193423421-b67b7cfb-e2bc-4d45-97a4-5799692b0a18.jpg)
 
 *Explore Screen
 
@@ -78,9 +56,9 @@ Here is our Flutter app which provides multi hotels with various facilities. The
 
 ![Screenshot_20221001_202301_com example booking_app](https://user-images.githubusercontent.com/70426380/193423478-5fad313e-ca03-435a-8007-6b84cd6f4e36.jpg)
 
-![Screenshot_20221001_202329_com example booking_app](https://user-images.githubusercontent.com/70426380/193423480-e2e16815-268d-4860-b8df-f1ae6fcfccc6.jpg)
-
 ![Screenshot_20221001_202246_com example booking_app](https://user-images.githubusercontent.com/70426380/193423476-f09b6807-cd87-4510-ac6d-3b8f45a336df.jpg)
+
+![Screenshot_20221001_202329_com example booking_app](https://user-images.githubusercontent.com/70426380/193423480-e2e16815-268d-4860-b8df-f1ae6fcfccc6.jpg)
 
 ![Screenshot_20221001_202331_com example booking_app](https://user-images.githubusercontent.com/70426380/193423482-41353dff-a3b3-4e2e-97b3-0f9df5a1e442.jpg)
 
@@ -106,3 +84,28 @@ Here is our Flutter app which provides multi hotels with various facilities. The
 
 
 
+*Profile Screen
+
+![Screenshot_20221001_201733_com example booking_app](https://user-images.githubusercontent.com/70426380/193423377-37c3a52a-4b72-4bcc-b29c-f1ec29658e08.jpg)
+
+*Profile Details Screen
+
+![Screenshot_20221001_201737_com example booking_app](https://user-images.githubusercontent.com/70426380/193423392-d12a3948-91be-4bed-b41f-cbf3cd79f311.jpg)
+
+![Screenshot_20221001_201739_com example booking_app](https://user-images.githubusercontent.com/70426380/193423394-a22a163a-09ef-4d1b-9d59-bf586dae9c74.jpg)
+
+*Choose profile photo from Gallery/Camera Section
+
+![Screenshot_20221001_201743_com example booking_app](https://user-images.githubusercontent.com/70426380/193423395-d157d352-1307-4c7b-9e51-f76d081e00d8.jpg)
+
+*Setting Screen
+
+![Screenshot_20221001_201747_com example booking_app](https://user-images.githubusercontent.com/70426380/193423365-fc3bbae0-53ec-47fa-b049-bc8fed160036.jpg)
+
+*Change Language Screen
+
+![Screenshot_20221001_201749_com example booking_app](https://user-images.githubusercontent.com/70426380/193423409-d1cc9e33-aac3-4558-983c-6b4dea5e4a93.jpg)
+
+*Arabic Profile Screen
+
+![Screenshot_20221001_201754_com example booking_app](https://user-images.githubusercontent.com/70426380/193423421-b67b7cfb-e2bc-4d45-97a4-5799692b0a18.jpg)
