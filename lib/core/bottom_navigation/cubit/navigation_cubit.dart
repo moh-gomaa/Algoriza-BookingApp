@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';

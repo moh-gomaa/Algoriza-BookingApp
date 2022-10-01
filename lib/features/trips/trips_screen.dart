@@ -1,5 +1,6 @@
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/main_blocs/blocs.dart';
+import 'package:booking_app/data/models/booking_model.dart';
 import 'package:booking_app/features/home/cubit/app_cubit.dart';
 import 'package:booking_app/features/home/cubit/app_states.dart';
 import 'package:booking_app/resources/constants/constants.dart';
@@ -38,10 +39,10 @@ class TripsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.symmetric(
+                      margin: const EdgeInsets.symmetric(
                           horizontal: 15
                       ),
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                           horizontal: 15,
                           vertical: 10
                       ),
@@ -105,11 +106,40 @@ class TripsScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: size.height*.04,),
-                    cubit.count==0?
-                    buildUpComingWidget(context, size):
-                    cubit.count==1?
-                    buildFinishedWidget(size,context):
+
+                    if(cubit.count==2)
                     buildFavoritesWidget(size,context),
+
+                    if(cubit.count==1)
+                      AppCubit.get(context).bookingModelComplete!=null ?
+                     AppCubit.get(context).bookingModelComplete!.data!.data!.isNotEmpty?
+                      buildFinishedWidget(size,context,AppCubit.get(context).bookingModelComplete!):
+                      Container(
+                        color:  OwnTheme.colorPalette['black'],
+                      ):
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(
+                            color: OwnTheme.colorPalette['primary'],
+                          )
+                        ],
+                      ),
+
+
+                    if(cubit.count==0)
+                    AppCubit.get(context).bookingModelUpcoming!=null?
+                    buildUpComingWidget(context, size,AppCubit.get(context).bookingModelUpcoming!):
+                   Column(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       crossAxisAlignment: CrossAxisAlignment.center,
+                       children: [
+                         CircularProgressIndicator(
+                           color: OwnTheme.colorPalette['primary'],
+                         )
+                       ],
+                    ),
 
 
 
@@ -125,10 +155,10 @@ class TripsScreen extends StatelessWidget {
   Widget buildFavoritesWidget(Size size,context){
     return ListView.separated(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context,index){
           return Container(
-            margin: EdgeInsets.symmetric(horizontal: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10),
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -174,7 +204,7 @@ class TripsScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: size.height*.01,),
-                      Container(
+                      SizedBox(
                         height: size.height*.04,
                         child: Row(
                           children: [
@@ -208,7 +238,7 @@ class TripsScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: size.height*.01,),
-                      Container(
+                      SizedBox(
                         height: size.height*.03,
                         child: Row(
                           children: [
@@ -259,17 +289,17 @@ class TripsScreen extends StatelessWidget {
           );
         },
         separatorBuilder: (context,index){
-          return SizedBox(height: 10,);
+          return const SizedBox(height: 10,);
         },
         itemCount: 10
     );
   }
 
 
-  Widget buildFinishedWidget(Size size,context){
+  Widget buildFinishedWidget(Size size,context,BookingModel ?model){
     return ListView.separated(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context,index){
           return Padding(
             padding: const EdgeInsets.all(8.0),
@@ -288,8 +318,8 @@ class TripsScreen extends StatelessWidget {
                           )
                       ),
                       child: Image(
-                        image: const AssetImage(
-                            'assets/images/hotel.jpg'
+                        image: NetworkImage(
+                            'http://api.mahmoudtaha.com/images/${model!.data!.data![index].hotel!.hotelImages![0].image}'
                         ),
                         fit: BoxFit.cover,
                         width: size.width*.36,
@@ -302,44 +332,74 @@ class TripsScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Grand Royal Hotel',
-                            style: TextStyle(
-                                fontSize: 12.sp,
-                                color:  OwnTheme.colorPalette['white'],
-                                fontWeight: FontWeight.w500,
-                                fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                          SizedBox(
+                            width: 170,
+                            child: Text(
+                              '${model!.data!.data![index].hotel!.name}',
+                              style: TextStyle(
+                                  fontSize: 11.sp,
+                                  color:  OwnTheme.colorPalette['white'],
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Text(
-                            'Wembley, London',
-                            style: TextStyle(
-                                fontSize: 10.sp,
-                                color:  OwnTheme.colorPalette['gray'],
-                                fontWeight: FontWeight.w500,
-                                fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                          SizedBox(
+                            width: 170,
+                            child: Text(
+                              '${model.data!.data![index].hotel!.address}',
+                              style: TextStyle(
+                                  fontSize: 9.sp,
+                                  color:  OwnTheme.colorPalette['gray'],
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Text(
-                            '01 Sep - 05 Sep',
-                            style: TextStyle(
-                                fontSize: 9.sp,
-                                color:  OwnTheme.colorPalette['white'],
-                                fontWeight: FontWeight.w500,
-                                fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                            ),
-                          ),
-                          Text(
-                            '1 Room 2 People',
-                            style: TextStyle(
-                                fontSize: 9.sp,
-                                color:  OwnTheme.colorPalette['white'],
-                                fontWeight: FontWeight.w500,
-                                fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                            ),
+                          Row(
+                            children: [
+                              Text(
+                                '${model.data!.data![index].hotel!.createdAt!.day}',
+                                style: TextStyle(
+                                    fontSize: 9.sp,
+                                    color:  OwnTheme.colorPalette['white'],
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
+                              ),
+                              Text(
+                                ' Sep - ',
+                                style: TextStyle(
+                                    fontSize: 9.sp,
+                                    color:  OwnTheme.colorPalette['white'],
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
+                              ),
+                              Text(
+                                '${model.data!.data![index].hotel!.updatedAt!.day}',
+                                style: TextStyle(
+                                    fontSize: 9.sp,
+                                    color:  OwnTheme.colorPalette['white'],
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
+                              ),
+                              Text(
+                                ' Sep',
+                                style: TextStyle(
+                                    fontSize: 9.sp,
+                                    color:  OwnTheme.colorPalette['white'],
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
+                              ),
+                            ],
                           ),
 
-                          Container(
+                          SizedBox(
                             height: size.height*.04,
                             child: Row(
                               children: [
@@ -362,36 +422,25 @@ class TripsScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             height: size.height*.03,
                             child: Row(
                               children: [
                                 Icon(
                                   Icons.star,
                                   color:  OwnTheme.colorPalette['primary'],
-                                  size:  size.width*.03,
+                                  size:  size.width*.06,
                                 ),
-                                Icon(
-                                  Icons.star,
-                                  color:  OwnTheme.colorPalette['primary'],
-                                  size:  size.width*.03,
+                                SizedBox(width: size.width*.01,),
+                                Text(
+                                  '${model.data!.data![index].hotel!.rate}',
+                                  style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color:  OwnTheme.colorPalette['white'],
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                  ),
                                 ),
-                                Icon(
-                                  Icons.star,
-                                  color:  OwnTheme.colorPalette['primary'],
-                                  size:  size.width*.03,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color:  OwnTheme.colorPalette['primary'],
-                                  size:  size.width*.03,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color:  OwnTheme.colorPalette['primary'],
-                                  size:  size.width*.03,
-                                ),
-                                SizedBox(width: size.width*.17,),
 
                               ],
                             ),
@@ -399,7 +448,7 @@ class TripsScreen extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                '\$200',
+                                '\$${model.data!.data![index].hotel!.price}',
                                 style: TextStyle(
                                     fontSize: 15.sp,
                                     color:  OwnTheme.colorPalette['white'],
@@ -435,44 +484,74 @@ class TripsScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Grand Royal Hotel',
-                            style: TextStyle(
-                                fontSize: 12.sp,
-                                color:  OwnTheme.colorPalette['white'],
-                                fontWeight: FontWeight.w500,
-                                fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                          SizedBox(
+                            width: 170,
+                            child: Text(
+                              '${model.data!.data![index+1].hotel!.name}',
+                              style: TextStyle(
+                                  fontSize: 11.sp,
+                                  color:  OwnTheme.colorPalette['white'],
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Text(
-                            'Wembley, London',
-                            style: TextStyle(
-                                fontSize: 10.sp,
-                                color:  OwnTheme.colorPalette['gray'],
-                                fontWeight: FontWeight.w500,
-                                fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                          SizedBox(
+                            width: 170,
+                            child: Text(
+                              '${model.data!.data![index+1].hotel!.address}',
+                              style: TextStyle(
+                                  fontSize: 9.sp,
+                                  color:  OwnTheme.colorPalette['gray'],
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Text(
-                            '01 Sep - 05 Sep',
-                            style: TextStyle(
-                                fontSize: 9.sp,
-                                color:  OwnTheme.colorPalette['white'],
-                                fontWeight: FontWeight.w500,
-                                fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                            ),
-                          ),
-                          Text(
-                            '1 Room 2 People',
-                            style: TextStyle(
-                                fontSize: 9.sp,
-                                color:  OwnTheme.colorPalette['white'],
-                                fontWeight: FontWeight.w500,
-                                fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                            ),
+                          Row(
+                            children: [
+                              Text(
+                                '${model.data!.data![index+1].hotel!.createdAt!.day}',
+                                style: TextStyle(
+                                    fontSize: 9.sp,
+                                    color:  OwnTheme.colorPalette['white'],
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
+                              ),
+                              Text(
+                                ' Sep - ',
+                                style: TextStyle(
+                                    fontSize: 9.sp,
+                                    color:  OwnTheme.colorPalette['white'],
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
+                              ),
+                              Text(
+                                '${model.data!.data![index+1].hotel!.updatedAt!.day}',
+                                style: TextStyle(
+                                    fontSize: 9.sp,
+                                    color:  OwnTheme.colorPalette['white'],
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
+                              ),
+                              Text(
+                                ' Sep',
+                                style: TextStyle(
+                                    fontSize: 9.sp,
+                                    color:  OwnTheme.colorPalette['white'],
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
+                              ),
+                            ],
                           ),
 
-                          Container(
+                          SizedBox(
                             height: size.height*.04,
                             child: Row(
                               children: [
@@ -495,36 +574,25 @@ class TripsScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             height: size.height*.03,
                             child: Row(
                               children: [
                                 Icon(
                                   Icons.star,
                                   color:  OwnTheme.colorPalette['primary'],
-                                  size:  size.width*.03,
+                                  size:  size.width*.06,
                                 ),
-                                Icon(
-                                  Icons.star,
-                                  color:  OwnTheme.colorPalette['primary'],
-                                  size:  size.width*.03,
+                                SizedBox(width: size.width*.01,),
+                                Text(
+                                  '${model.data!.data![index+1].hotel!.rate}',
+                                  style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color:  OwnTheme.colorPalette['white'],
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                  ),
                                 ),
-                                Icon(
-                                  Icons.star,
-                                  color:  OwnTheme.colorPalette['primary'],
-                                  size:  size.width*.03,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color:  OwnTheme.colorPalette['primary'],
-                                  size:  size.width*.03,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color:  OwnTheme.colorPalette['primary'],
-                                  size:  size.width*.03,
-                                ),
-                                SizedBox(width: size.width*.17,),
 
                               ],
                             ),
@@ -532,7 +600,7 @@ class TripsScreen extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                '\$200',
+                                '\$${model.data!.data![index+1].hotel!.price}',
                                 style: TextStyle(
                                     fontSize: 15.sp,
                                     color:  OwnTheme.colorPalette['white'],
@@ -568,8 +636,8 @@ class TripsScreen extends StatelessWidget {
                           )
                       ),
                       child: Image(
-                        image: const AssetImage(
-                            'assets/images/hotel.jpg'
+                        image: NetworkImage(
+                            'http://api.mahmoudtaha.com/images/${model.data!.data![index+1].hotel!.hotelImages![0].image}'
                         ),
                         fit: BoxFit.cover,
                         width: size.width*.36,
@@ -584,30 +652,30 @@ class TripsScreen extends StatelessWidget {
           );
         },
         separatorBuilder: (conext,index){
-          return SizedBox(width: 10,);
+          return const SizedBox(width: 10,);
         },
-        itemCount: 10
+        itemCount:model!.data!.data!.length-1
     );
   }
 
-  Widget buildUpComingWidget(context , size){
+  Widget buildUpComingWidget(context , size,BookingModel model){
 
     return ListView.separated(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context,index){
           return Container(
-            margin: EdgeInsets.symmetric(
+            margin: const EdgeInsets.symmetric(
                 horizontal: 10
             ),
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
                 horizontal: 10,
                 vertical: 10
             ),
             child: Column(
               children: [
                 Text(
-                  '01 Sep - 05 Sep, 1 Room 2 People',
+                  '${model.data!.data![index].createdAt}',
                   style: TextStyle(
                       fontSize: 10.sp,
                       color:  OwnTheme.colorPalette['white'],
@@ -630,14 +698,15 @@ class TripsScreen extends StatelessWidget {
                       Stack(
                         children: [
                           Image(
-                            image: const AssetImage(
-                                'assets/images/hotel.jpg'
+                            image:  NetworkImage(
+                                'http://api.mahmoudtaha.com/images/${model.data!.data![index].hotel!.hotelImages![0].image}'
                             ),
                             fit: BoxFit.cover,
                             width: size.width,
                             height: size.height*.18,
                           ),
                           Positioned(
+                            right: 10,
                             child: IconButton(
                               icon: const CircleAvatar(
                                 child: Icon(
@@ -651,7 +720,6 @@ class TripsScreen extends StatelessWidget {
 
                               },
                             ),
-                            right: 10,
                           )
                         ],
                       ),
@@ -659,18 +727,21 @@ class TripsScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: [
-                            Text(
-                              'Grand Royal Hotel',
-                              style: TextStyle(
-                                  fontSize: 13.sp,
-                                  color:  OwnTheme.colorPalette['white'],
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                            SizedBox(
+                              width: 200,
+                              child: Text(
+                                '${model.data!.data![index].hotel!.name}',
+                                style: TextStyle(
+                                    fontSize: 12.sp,
+                                    color:  OwnTheme.colorPalette['white'],
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
                             ),
-                            Spacer(),
+                            const SizedBox(width: 50,),
                             Text(
-                              '\$180',
+                              '\$${model.data!.data![index].hotel!.price}',
                               style: TextStyle(
                                   fontSize: 14.sp,
                                   color:  OwnTheme.colorPalette['white'],
@@ -690,15 +761,18 @@ class TripsScreen extends StatelessWidget {
                         child:
                         Row(
                           children: [
-                            Text(
-                              'Wembley,London ',
-                              style: TextStyle(
-                                  fontSize: 10.sp,
-                                  color:  OwnTheme.colorPalette['white'],
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                            Container(
+                              child: Text(
+                                '${model.data!.data![index].hotel!.address}',
+                                style: TextStyle(
+                                    fontSize: 8.sp,
+                                    color:  OwnTheme.colorPalette['white'],
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
                             ),
+                            const Spacer(),
                             Icon(
                               Icons.location_pin,
                               color:  OwnTheme.colorPalette['primary'],
@@ -706,16 +780,6 @@ class TripsScreen extends StatelessWidget {
                             ),
                             Text(
                               '4,0 km to city',
-                              style: TextStyle(
-                                  fontSize: 10.sp,
-                                  color:  OwnTheme.colorPalette['gray'],
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                              ),
-                            ),
-                            Spacer(),
-                            Text(
-                              '/per night ',
                               style: TextStyle(
                                   fontSize: 10.sp,
                                   color:  OwnTheme.colorPalette['gray'],
@@ -735,31 +799,12 @@ class TripsScreen extends StatelessWidget {
                             Icon(
                               Icons.star,
                               color:  OwnTheme.colorPalette['primary'],
-                              size:  size.width*.04,
+                              size:  size.width*.07,
                             ),
-                            Icon(
-                              Icons.star,
-                              color:  OwnTheme.colorPalette['primary'],
-                              size:  size.width*.04,
-                            ),
-                            Icon(
-                              Icons.star,
-                              color:  OwnTheme.colorPalette['primary'],
-                              size:  size.width*.04,
-                            ),
-                            Icon(
-                              Icons.star,
-                              color:  OwnTheme.colorPalette['primary'],
-                              size:  size.width*.04,
-                            ),
-                            Icon(
-                              Icons.star,
-                              color:  OwnTheme.colorPalette['primary'],
-                              size:  size.width*.04,
-                            ),
+
                             SizedBox(width: size.width*.04,),
                             Text(
-                              '80Reviews',
+                               '${model.data!.data![index].hotel!.rate}',
                               style: TextStyle(
                                   fontSize: 10.sp,
                                   color:  OwnTheme.colorPalette['gray'],
@@ -781,9 +826,9 @@ class TripsScreen extends StatelessWidget {
           );
         },
         separatorBuilder: (context,index){
-          return SizedBox(height: 10,);
+          return const SizedBox(height: 10,);
         },
-        itemCount: 10
+        itemCount: model.data!.data!.length
     );
 
 

@@ -1,7 +1,9 @@
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/utils/extensions/layout_extensions.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
+import 'package:booking_app/core/utils/local/cash_helper.dart';
 import 'package:booking_app/core/utils/widgets/custom_app_bar.dart';
+import 'package:booking_app/core/utils/widgets/toast.dart';
 import 'package:booking_app/data/models/user_model.dart';
 import 'package:booking_app/features/login/bloc/login_cubit.dart';
 import 'package:booking_app/features/register/bloc/register_cubit.dart';
@@ -27,7 +29,16 @@ class RegisterScreen extends StatelessWidget {
     return BlocConsumer<RegisterCubit, RegisterStates>(
       listener: (context, state) {
         if (state is RegisterSuccessState) {
-          Navigator.pushNamed(context, '/main');
+          print(state.model.apiToken);
+          CashHelper.saveData(key: 'token',value:state.model.apiToken);
+          CashHelper.saveData(key: 'userId',value:state.model.id);
+          print('Siiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+          print(CashHelper.getData(key: 'token'));
+          print(CashHelper.getData(key: 'userId'));
+          print('Siiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+          customToast(title: 'Welcome',color: OwnTheme.colorPalette['primary']!);
+          Navigator.pushReplacementNamed(context, '/main');
+
         }
       },
       builder: (context, state) {

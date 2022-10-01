@@ -1,9 +1,14 @@
 
 import 'package:bloc/bloc.dart';
+import 'package:booking_app/core/utils/local/cash_helper.dart';
 import 'package:booking_app/core/utils/network/remote/dio.dart';
 import 'package:booking_app/core/utils/network/remote/dio_helper.dart';
+import 'package:booking_app/core/utils/widgets/toast.dart';
+import 'package:booking_app/data/models/booking_model.dart';
 import 'package:booking_app/data/models/explore_model.dart';
 import 'package:booking_app/features/home/cubit/app_states.dart';
+import 'package:booking_app/resources/constants/constants.dart';
+import 'package:booking_app/resources/themes/theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppCubit extends Cubit<AppStates> {
@@ -78,6 +83,16 @@ class AppCubit extends Cubit<AppStates> {
 
   void toolbarSwitch(int value) {
     count = value;
+    if(count ==0){
+      getBookingUpcoming(
+        token: CashHelper.getData(key: 'token'),
+      );
+    }
+    else if(count ==1){
+      getBookingComplete(
+        token: CashHelper.getData(key: 'token'),
+      );
+    }
     emit(ToolBarSwitchSuccess());
   }
 
@@ -121,11 +136,68 @@ class AppCubit extends Cubit<AppStates> {
     ).then((value) {
       print('//////////////////////////////////');
       print(value.data.toString());
+      customToast(
+          title: lang == "ar" ?value.data['status']['title']['ar']: value.data['status']['title']['en'],
+          color: OwnTheme.colorPalette['primary']!
+      );
       emit(CreateBookingSuccessState());
       print('//////////////////////////////////');
     }).catchError((error) {
       print('Error in create booking is ${error.toString()}');
       emit(CreateBookingErrorState());
     });
+  }
+
+  BookingModel ?bookingModelUpcoming;
+
+  Future<void> getBookingUpcoming({
+    required String token
+   }) async {
+
+    await DioHelper2.getData(
+        token: '${token}',
+        url: '/get-bookings',
+        query: {
+          'type': 'upcomming',
+          'count': 10
+        }
+    ).then((value) {
+
+      print(value.data.toString());
+      bookingModelUpcoming = BookingModel.fromJson(value.data);
+      emit(GetBookingUpComingSuccessState());
+      print('//////////////////////////////////');
+    }).catchError((error) {
+      print('Error in get booking upcoming is ${error.toString()}');
+      emit(GetBookingUpComingErrorState());
+    });
+
+  }
+
+
+  BookingModel ?bookingModelComplete;
+
+  Future<void> getBookingComplete({
+    required String token
+  }) async {
+
+    await DioHelper2.getData(
+        token: '${token}',
+        url: '/get-bookings',
+        query: {
+          'type': 'completed',
+          'count': 10
+        }
+    ).then((value) {
+
+      print(value.data.toString());
+      bookingModelComplete = BookingModel.fromJson(value.data);
+      emit(GetBookingCompletedSuccessState());
+      print('//////////////////////////////////');
+    }).catchError((error) {
+      print('Error in get booking completed is ${error.toString()}');
+      emit(GetBookingCompletedErrorState());
+    });
+
   }
 }

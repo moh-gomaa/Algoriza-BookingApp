@@ -1,12 +1,15 @@
+import 'package:booking_app/core/bottom_navigation/pages/main_screen.dart';
 import 'package:booking_app/core/connectivity/cubit/connectivity_cubit.dart';
 import 'package:booking_app/core/connectivity/pages/connectivity_Screen.dart';
 import 'package:booking_app/core/localization/cubit/locale_cubit.dart';
 import 'package:booking_app/core/localization/setup/app_localizations_setup.dart';
 import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/core/main_blocs/providers.dart';
+import 'package:booking_app/core/utils/local/cash_helper.dart';
 import 'package:booking_app/core/utils/network/remote/dio.dart';
 import 'package:booking_app/core/utils/routes/app_router.dart';
 import 'package:booking_app/data/models/basic_model.dart';
+import 'package:booking_app/features/hotel_details/hotel_details.dart';
 import 'package:booking_app/features/screens/splash_screen.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +20,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await BasicModel.init();
   DioHelper2.init();
+  await CashHelper.init() ;
   // debugPrint('main=${BasicModel.isLogin}');
 
   runApp(MyApp(
@@ -54,11 +58,11 @@ class MyApp extends StatelessWidget {
                 home: BlocBuilder<ConnectivityCubit, ConnectivityState>(
                     builder: (context, state) {
                   if (state is InternetConnected) {
-                    return SplashScreen();
+                    return  SplashScreen();
                   } else if (state is InternetDisconnected) {
-                    return ConnectivityScreen();
+                    return const ConnectivityScreen();
                   }
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 }),
               );
             },

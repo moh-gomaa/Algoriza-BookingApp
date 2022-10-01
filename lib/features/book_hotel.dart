@@ -1,5 +1,7 @@
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/main_blocs/blocs.dart';
+import 'package:booking_app/core/utils/local/cash_helper.dart';
+import 'package:booking_app/core/utils/widgets/toast.dart';
 import 'package:booking_app/features/home/cubit/app_states.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
@@ -20,6 +22,8 @@ class BookHotel extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit,AppStates>(
         listener: (context,state){
+
+
 
         },
         builder: (context,state){
@@ -157,9 +161,10 @@ class BookHotel extends StatelessWidget {
                                            // });
                                            AppCubit.get(context).createBook(
                                              hotelId: hotelId,
-                                             token: 't0H06toGOXfM78eadSdNDVF9frlUVzEQCYsdFrXZvzozVO5vSc71zxAc7pwn',
-                                             userId: 15 ,
+                                             token: CashHelper.getData(key: 'token'),
+                                             userId: CashHelper.getData(key: 'userId'),
                                            );
+
                                          },
                                          child:  Text(
                                            'book_now'.tr(context),
@@ -314,6 +319,11 @@ class BookHotel extends StatelessWidget {
                                            //     return ExploreScreen();
                                            //   }));
                                            // });
+                                           AppCubit.get(context).createBook(
+                                             hotelId: hotelId,
+                                             token: CashHelper.getData(key: 'token'),
+                                             userId: CashHelper.getData(key: 'userId'),
+                                           );
                                          },
                                          child:  Text(
                                            'book_now'.tr(context),
@@ -468,6 +478,11 @@ class BookHotel extends StatelessWidget {
                                            //     return ExploreScreen();
                                            //   }));
                                            // });
+                                           AppCubit.get(context).createBook(
+                                             hotelId: hotelId,
+                                             token: CashHelper.getData(key: 'token'),
+                                             userId: CashHelper.getData(key: 'userId'),
+                                           );
                                          },
                                          child:  Text(
                                            'book_now'.tr(context),
@@ -622,6 +637,11 @@ class BookHotel extends StatelessWidget {
                                            //     return ExploreScreen();
                                            //   }));
                                            // });
+                                           AppCubit.get(context).createBook(
+                                             hotelId: hotelId,
+                                             token: CashHelper.getData(key: 'token'),
+                                             userId: CashHelper.getData(key: 'userId'),
+                                           );
                                          },
                                          child:  Text(
                                            'book_now'.tr(context),
@@ -778,7 +798,11 @@ class BookHotel extends StatelessWidget {
                                            //     return ExploreScreen();
                                            //   }));
                                            // });
-
+                                           AppCubit.get(context).createBook(
+                                             hotelId: hotelId,
+                                             token: CashHelper.getData(key: 'token'),
+                                             userId: CashHelper.getData(key: 'userId'),
+                                           );
                                          },
                                          child:  Text(
                                            'book_now'.tr(context),

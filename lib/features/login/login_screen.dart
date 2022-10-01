@@ -1,7 +1,9 @@
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/utils/extensions/layout_extensions.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
+import 'package:booking_app/core/utils/local/cash_helper.dart';
 import 'package:booking_app/core/utils/widgets/custom_app_bar.dart';
+import 'package:booking_app/core/utils/widgets/toast.dart';
 import 'package:booking_app/features/login/bloc/login_cubit.dart';
 
 import 'package:booking_app/resources/buttonkey/button.dart';
@@ -20,7 +22,14 @@ class LoginScreen extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
-          Navigator.pushNamed(context, '/main');
+          CashHelper.saveData(key: 'token',value:state.model.apiToken);
+          CashHelper.saveData(key: 'userId',value:state.model.id);
+          print('Siiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+          print(CashHelper.getData(key: 'token'));
+          print(CashHelper.getData(key: 'userId'));
+          print('Siiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
+          customToast(title: 'Welcome',color: OwnTheme.colorPalette['primary']!);
+          Navigator.pushReplacementNamed(context, '/main');
         }
       },
       builder: (context, state) {
