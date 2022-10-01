@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
                 home: BlocBuilder<ConnectivityCubit, ConnectivityState>(
                     builder: (context, state) {
                   if (state is InternetConnected) {
-                    return  SplashScreen();
+                    return SplashScreen();
                   } else if (state is InternetDisconnected) {
                     return const ConnectivityScreen();
                   }

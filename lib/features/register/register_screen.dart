@@ -30,15 +30,12 @@ class RegisterScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is RegisterSuccessState) {
           print(state.model.apiToken);
-          CashHelper.saveData(key: 'token',value:state.model.apiToken);
-          CashHelper.saveData(key: 'userId',value:state.model.id);
-          print('Siiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
-          print(CashHelper.getData(key: 'token'));
-          print(CashHelper.getData(key: 'userId'));
-          print('Siiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
-          customToast(title: 'Welcome',color: OwnTheme.colorPalette['primary']!);
-          Navigator.pushReplacementNamed(context, '/main');
-
+          CashHelper.saveData(key: 'token', value: state.model.apiToken);
+          CashHelper.saveData(key: 'userId', value: state.model.id);
+          customToast(
+              title: 'Welcome', color: OwnTheme.colorPalette['primary']!);
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/main', (Route<dynamic> route) => false);
         }
       },
       builder: (context, state) {
@@ -263,7 +260,8 @@ class RegisterScreen extends StatelessWidget {
                             FocusScope.of(context)
                                 .requestFocus(new FocusNode());
                             user = UserModel(
-                                name: firstNameController.text + ' ' +
+                                name: firstNameController.text +
+                                    ' ' +
                                     lastNameController.text,
                                 email: emailController.text,
                                 password: passwordController.text,
@@ -272,7 +270,8 @@ class RegisterScreen extends StatelessWidget {
                             debugPrint('UserData==${user.name}');
                             debugPrint('UserData==${user.email}');
                             debugPrint('UserData==${user.password}');
-                            debugPrint('UserData==${user.passwordConfirmation}');
+                            debugPrint(
+                                'UserData==${user.passwordConfirmation}');
 
                             RegisterCubit.get(context).register(obj: user);
                           }

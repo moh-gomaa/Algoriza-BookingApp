@@ -52,7 +52,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     Icons.map_outlined,
                     color: Colors.white,
                   ),
-                  onPressed: (){},
+                  onPressed: (){
+
+                    Navigator.pushNamed(context, '/map');
+                  },
                 ),
 
               ],
@@ -261,7 +264,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               color: OwnTheme.colorPalette['primary'],
                             ),
                             onPressed: (){
-
+                              Navigator.pushNamed(context, '/filter');
                             },
                           ),
                         ],
