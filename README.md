@@ -8,6 +8,7 @@ Here is our Flutter app which provides multi hotels with various facilities. The
 
 -Video of the app
 
+https://user-images.githubusercontent.com/70426380/193424370-95802184-203d-4bff-8d46-de2d57a78311.mp4
 
 -screen shots
 
@@ -51,6 +52,10 @@ Here is our Flutter app which provides multi hotels with various facilities. The
 
 ![Screenshot_20221001_201811_com example booking_app](https://user-images.githubusercontent.com/70426380/193423444-174fce4f-9929-4ac1-9e2e-a15e5590ec68.jpg)
 
+*Search Screen
+
+![Screenshot_2022-10-01-20-56-24-20](https://user-images.githubusercontent.com/70426380/193424404-38c798bf-894c-401a-adbc-ff788fb53055.jpeg)
+
 *Filter Screen
 
 ![Screenshot_20221001_202301_com example booking_app](https://user-images.githubusercontent.com/70426380/193423478-5fad313e-ca03-435a-8007-6b84cd6f4e36.jpg)
@@ -63,25 +68,27 @@ Here is our Flutter app which provides multi hotels with various facilities. The
 
 *Map Screen
 
-![Screenshot_20221001_201823_com example booking_app](https://user-images.githubusercontent.com/70426380/193423563-418dcbe2-02c7-493c-b301-48f0ef54b1aa.jpg)![Screenshot_20221001_201829_com example booking_app](https://user-images.githubusercontent.com/70426380/193423568-1e987e7e-c12c-4bc4-9efa-fbfa70e6b448.jpg)
-![Screenshot_20221001_201831_com example booking_app](https://user-images.githubusercontent.com/70426380/193423569-bceb061f-3b22-4d74-8071-30e84485699a.jpg)
-
-![Screenshot_20221001_201820_com example booking_app](https://user-images.githubusercontent.com/70426380/193423561-4d01abc7-b06c-40f6-9047-158318160632.jpg)![Screenshot_20221001_201827_com example booking_app](https://user-images.githubusercontent.com/70426380/193423564-567c026e-1c6d-4d7a-b2cd-b93871d5417d.jpg)
-
-![Screenshot_20221001_202400_com example booking_app](https://user-images.githubusercontent.com/70426380/193423517-9a6372f8-b0bd-43bf-9313-bc9062d01944.jpg)
-![Screenshot_20221001_202401_com example booking_app](https://user-images.githubusercontent.com/70426380/193423520-5c7ff0b7-69b7-4ad4-bdea-175ebac9db92.jpg)
-
 ![Screenshot_20221001_201931_com example booking_app](https://user-images.githubusercontent.com/70426380/193423497-8402dd63-1f9d-4c8b-acbf-c78130a84774.jpg)
+
+*Hotel Details Screen
+
+![Screenshot_20221001_201820_com example booking_app](https://user-images.githubusercontent.com/70426380/193423561-4d01abc7-b06c-40f6-9047-158318160632.jpg)
+
+![Screenshot_20221001_201823_com example booking_app](https://user-images.githubusercontent.com/70426380/193423563-418dcbe2-02c7-493c-b301-48f0ef54b1aa.jpg)
+
+![Screenshot_20221001_201827_com example booking_app](https://user-images.githubusercontent.com/70426380/193423564-567c026e-1c6d-4d7a-b2cd-b93871d5417d.jpg)
+
+![Screenshot_20221001_201829_com example booking_app](https://user-images.githubusercontent.com/70426380/193423568-1e987e7e-c12c-4bc4-9efa-fbfa70e6b448.jpg)
+
+![Screenshot_20221001_201831_com example booking_app](https://user-images.githubusercontent.com/70426380/193423569-bceb061f-3b22-4d74-8071-30e84485699a.jpg)
 
 *Trips Screen
 
 ![Screenshot_20221001_202357_com example booking_app](https://user-images.githubusercontent.com/70426380/193423512-ed552ed7-8eb0-43d5-873b-3da63fb07c0b.jpg)
 
-*Hotel Details Screen
+![Screenshot_20221001_202400_com example booking_app](https://user-images.githubusercontent.com/70426380/193423517-9a6372f8-b0bd-43bf-9313-bc9062d01944.jpg)
 
-![Screenshot_20221001_201818_com example booking_app](https://user-images.githubusercontent.com/70426380/193423558-44579e99-1836-4112-88d0-0ec5d625e6e0.jpg)
-
-
+![Screenshot_20221001_202401_com example booking_app](https://user-images.githubusercontent.com/70426380/193423520-5c7ff0b7-69b7-4ad4-bdea-175ebac9db92.jpg)
 
 *Profile Screen
 
