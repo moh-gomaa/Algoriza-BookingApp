@@ -83,6 +83,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       width: double.infinity,
                       child: Row(
                         children: [
+
                           Expanded(
                             child: GestureDetector(
                               onTap: (){
