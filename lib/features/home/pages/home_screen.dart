@@ -25,6 +25,8 @@ class HomeScreen extends StatelessWidget {
     return BlocConsumer<AppCubit,AppStates>(
         listener: (context,state){
 
+
+
         },
       builder: (context,state){
           return Scaffold(

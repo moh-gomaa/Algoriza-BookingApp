@@ -11,6 +11,7 @@ import 'package:booking_app/core/utils/routes/app_router.dart';
 import 'package:booking_app/data/models/basic_model.dart';
 import 'package:booking_app/features/hotel_details/hotel_details.dart';
 import 'package:booking_app/features/screens/splash_screen.dart';
+import 'package:booking_app/features/search_screen/search_screen.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
                 home: BlocBuilder<ConnectivityCubit, ConnectivityState>(
                     builder: (context, state) {
                   if (state is InternetConnected) {
-                    return  SplashScreen();
+                    return  SearchScreen();
                   } else if (state is InternetDisconnected) {
                     return const ConnectivityScreen();
                   }
