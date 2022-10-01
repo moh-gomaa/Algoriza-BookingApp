@@ -28,7 +28,7 @@ Here is our Flutter app which provides multi hotels with various facilities. The
 
 ![Screenshot_20221001_201647_com example booking_app](https://user-images.githubusercontent.com/70426380/193423317-7df85ff0-fda1-47fe-94ed-71c20c009918.jpg)
 
-[Screenshot_20221001_201650_com example booking_app](https://user-images.githubusercontent.com/70426380/193423321-abee4fb2-9889-4efd-9a85-9b05e3ef956a.jpg)
+![Screenshot_20221001_201650_com example booking_app](https://user-images.githubusercontent.com/70426380/193423321-abee4fb2-9889-4efd-9a85-9b05e3ef956a.jpg)
 
 *Login Screen
 
@@ -50,11 +50,15 @@ Here is our Flutter app which provides multi hotels with various facilities. The
 
 ![Screenshot_20221001_201739_com example booking_app](https://user-images.githubusercontent.com/70426380/193423394-a22a163a-09ef-4d1b-9d59-bf586dae9c74.jpg)
 
+*Choose profile photo from Gallery/Camera Section
+
 ![Screenshot_20221001_201743_com example booking_app](https://user-images.githubusercontent.com/70426380/193423395-d157d352-1307-4c7b-9e51-f76d081e00d8.jpg)
 
 *Setting Screen
 
 ![Screenshot_20221001_201747_com example booking_app](https://user-images.githubusercontent.com/70426380/193423365-fc3bbae0-53ec-47fa-b049-bc8fed160036.jpg)
+
+*Change Language Screen
 
 ![Screenshot_20221001_201749_com example booking_app](https://user-images.githubusercontent.com/70426380/193423409-d1cc9e33-aac3-4558-983c-6b4dea5e4a93.jpg)
 
@@ -81,6 +85,7 @@ Here is our Flutter app which provides multi hotels with various facilities. The
 ![Screenshot_20221001_202331_com example booking_app](https://user-images.githubusercontent.com/70426380/193423482-41353dff-a3b3-4e2e-97b3-0f9df5a1e442.jpg)
 
 *Map Screen
+
 ![Screenshot_20221001_201823_com example booking_app](https://user-images.githubusercontent.com/70426380/193423563-418dcbe2-02c7-493c-b301-48f0ef54b1aa.jpg)![Screenshot_20221001_201829_com example booking_app](https://user-images.githubusercontent.com/70426380/193423568-1e987e7e-c12c-4bc4-9efa-fbfa70e6b448.jpg)
 ![Screenshot_20221001_201831_com example booking_app](https://user-images.githubusercontent.com/70426380/193423569-bceb061f-3b22-4d74-8071-30e84485699a.jpg)
 
@@ -88,7 +93,6 @@ Here is our Flutter app which provides multi hotels with various facilities. The
 
 ![Screenshot_20221001_202400_com example booking_app](https://user-images.githubusercontent.com/70426380/193423517-9a6372f8-b0bd-43bf-9313-bc9062d01944.jpg)
 ![Screenshot_20221001_202401_com example booking_app](https://user-images.githubusercontent.com/70426380/193423520-5c7ff0b7-69b7-4ad4-bdea-175ebac9db92.jpg)
-
 
 ![Screenshot_20221001_201931_com example booking_app](https://user-images.githubusercontent.com/70426380/193423497-8402dd63-1f9d-4c8b-acbf-c78130a84774.jpg)
 
