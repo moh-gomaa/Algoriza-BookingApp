@@ -5,214 +5,185 @@ import 'package:booking_app/features/home/cubit/app_cubit.dart';
 import 'package:booking_app/features/home/cubit/app_states.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
-import 'package:lottie/lottie.dart';
 import 'package:sizer/sizer.dart';
 
-class TripsScreen extends StatelessWidget {
+class TripsScreen extends StatefulWidget {
   const TripsScreen({Key? key}) : super(key: key);
 
   @override
+  State<TripsScreen> createState() => _TripsScreenState();
+}
+
+class _TripsScreenState extends State<TripsScreen> {
+  @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return BlocConsumer<AppCubit, AppStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        var cubit = AppCubit.get(context);
-        return Scaffold(
-          backgroundColor: OwnTheme.colorPalette['black'],
-          appBar: AppBar(
-            backgroundColor: OwnTheme.colorPalette['black'],
-            title: Text(
-              'my_trip'.tr(context),
-              style: TextStyle(
-                  fontSize: 16.sp,
-                  color: OwnTheme.colorPalette['white'],
-                  fontWeight: FontWeight.w500,
-                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"),
+    Size size=MediaQuery.of(context).size;
+    return BlocConsumer<AppCubit,AppStates>(
+        listener: (context,state){
+
+        },
+      builder: (context,state){
+          var cubit=AppCubit.get(context);
+          return Scaffold(
+            backgroundColor:  OwnTheme.colorPalette['black'],
+            appBar: AppBar(
+              backgroundColor:  OwnTheme.colorPalette['black'],
+              title:  Text(
+                'my_trip'.tr(context),
+                style: TextStyle(
+                    fontSize: 16.sp,
+                    color:  OwnTheme.colorPalette['white'],
+                    fontWeight: FontWeight.w500,
+                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                ),
+              ),
+
             ),
-          ),
-          body: SingleChildScrollView(
-            child: Container(
-              child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 15),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: const Color(0xff282828),
-                        border: Border.all(color: const Color(0xff282828))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            cubit.toolbarSwitch(0);
-                            cubit.toolbarColorSwitch(0);
-                          },
-                          child: Text(
-                            'up_coming'.tr(context),
-                            style: TextStyle(
-                                fontSize: 11.sp,
-                                color: cubit.count != 0
-                                    ? OwnTheme.colorPalette['white']
-                                    : OwnTheme.colorPalette['primary'],
-                                fontWeight: FontWeight.w300,
-                                fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
+            body: SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 15
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15,
+                          vertical: 10
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color(0xff282828),
+                          border: Border.all(
+                              color: const Color(0xff282828)
+                          )
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: (){
+                              cubit.toolbarSwitch(0);
+                              cubit.toolbarColorSwitch(0);
+                            },
+                            child: Text(
+                              'up_coming'.tr(context),
+                              style: TextStyle(
+                                  fontSize: 11.sp,
+                                  color: cubit.count!=0? OwnTheme.colorPalette['white']:OwnTheme.colorPalette['primary'],
+                                  fontWeight: FontWeight.w300,
+                                  fontFamily: lang == "ar" ? "fontAr" : "fontEn"
+                              ),
+                            ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            cubit.toolbarSwitch(1);
-                            cubit.toolbarColorSwitch(1);
-                          },
-                          child: Text(
-                            'finished'.tr(context),
-                            style: TextStyle(
-                                fontSize: 11.sp,
-                                color: cubit.toolbarColors[1] == false
-                                    ? OwnTheme.colorPalette['white']
-                                    : OwnTheme.colorPalette['primary'],
-                                fontWeight: FontWeight.w300,
-                                fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
+                          GestureDetector(
+                            onTap: (){
+                              cubit.toolbarSwitch(1);
+                              cubit.toolbarColorSwitch(1);
+
+                            },
+                            child: Text(
+                              'finished'.tr(context),
+                              style: TextStyle(
+                                  fontSize: 11.sp,
+                                  color: cubit.toolbarColors[1]==false? OwnTheme.colorPalette['white']:OwnTheme.colorPalette['primary'],
+                                  fontWeight: FontWeight.w300,
+                                  fontFamily: lang == "ar" ? "fontAr" : "fontEn"
+                              ),
+                            ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            cubit.toolbarSwitch(2);
-                            cubit.toolbarColorSwitch(2);
-                          },
-                          child: Text(
-                            'favorites'.tr(context),
-                            style: TextStyle(
-                                fontSize: 11.sp,
-                                color: cubit.toolbarColors[2] == false
-                                    ? OwnTheme.colorPalette['white']
-                                    : OwnTheme.colorPalette['primary'],
-                                fontWeight: FontWeight.w300,
-                                fontFamily: lang == "ar" ? "fontAr" : "fontEn"),
+                          GestureDetector(
+                            onTap: (){
+                              cubit.toolbarSwitch(2);
+                              cubit.toolbarColorSwitch(2);
+                            },
+                            child: Text(
+                              'favorites'.tr(context),
+                              style: TextStyle(
+                                  fontSize: 11.sp,
+                                  color: cubit.toolbarColors[2]==false? OwnTheme.colorPalette['white']:OwnTheme.colorPalette['primary'],
+                                  fontWeight: FontWeight.w300,
+                                  fontFamily: lang == "ar" ? "fontAr" : "fontEn"
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: size.height * .04,
-                  ),
-                  (cubit.count == 2)
-                      ? cubit.allFavorite.length > 0
-                          ? buildFavoritesWidget(size, context)
-                          : Column(
-                              children: [
-                                SizedBox(
-                                  height: size.height * 0.2,
-                                ),
-                                Container(
-                                  color: OwnTheme.colorPalette['black'],
-                                  child: Lottie.asset(
-                                      'assets/images/no_data.json',
-                                      width: size.width * 0.8),
-                                ),
-                              ],
-                            )
-                      : Container(),
-                  if (cubit.count == 1)
-                    AppCubit.get(context).bookingModelComplete != null
-                        ? AppCubit.get(context)
-                                .bookingModelComplete!
-                                .data!
-                                .data!
-                                .isNotEmpty
-                            ? buildFinishedWidget(size, context,
-                                AppCubit.get(context).bookingModelComplete!)
-                            : Column(
-                                children: [
-                                  SizedBox(
-                                    height: size.height * 0.2,
-                                  ),
-                                  Container(
-                                    color: OwnTheme.colorPalette['black'],
-                                    child: Lottie.asset(
-                                        'assets/images/no_data.json',
-                                        width: size.width * 0.8),
-                                  ),
-                                ],
-                              )
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CircularProgressIndicator(
-                                color: OwnTheme.colorPalette['primary'],
-                              )
-                            ],
-                          ),
-                  if (cubit.count == 0)
-                    AppCubit.get(context).bookingModelUpcoming != null
-                        ? AppCubit.get(context)
-                                .bookingModelUpcoming!
-                                .data!
-                                .data!
-                                .isNotEmpty
-                            ? buildUpComingWidget(context, size,
-                                AppCubit.get(context).bookingModelUpcoming!)
-                            : Column(
-                                children: [
-                                  SizedBox(
-                                    height: size.height * 0.2,
-                                  ),
-                                  Container(
-                                    color: OwnTheme.colorPalette['black'],
-                                    child: Lottie.asset(
-                                        'assets/images/no_data.json',
-                                        width: size.width * 0.8),
-                                  ),
-                                ],
-                              )
-                        : Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              CircularProgressIndicator(
-                                color: OwnTheme.colorPalette['primary'],
-                              )
-                            ],
-                          ),
-                ],
+                    SizedBox(height: size.height*.04,),
+
+                    if(cubit.count==2)
+                    buildFavoritesWidget(size,context),
+
+                    if(cubit.count==1)
+                      AppCubit.get(context).bookingModelComplete!=null ?
+                     AppCubit.get(context).bookingModelComplete!.data!.data!.isNotEmpty?
+                      buildFinishedWidget(size,context,AppCubit.get(context).bookingModelComplete!):
+                      Container(
+                        color:  OwnTheme.colorPalette['black'],
+                      ):
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          CircularProgressIndicator(
+                            color: OwnTheme.colorPalette['primary'],
+                          )
+                        ],
+                      ),
+
+
+                    if(cubit.count==0)
+                    AppCubit.get(context).bookingModelUpcoming!=null?
+                    buildUpComingWidget(context, size,AppCubit.get(context).bookingModelUpcoming!):
+                   Column(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       crossAxisAlignment: CrossAxisAlignment.center,
+                       children: [
+                         CircularProgressIndicator(
+                           color: OwnTheme.colorPalette['primary'],
+                         )
+                       ],
+                    ),
+
+
+
+                  ],
+                ),
               ),
             ),
-          ),
-        );
+          );
       },
     );
   }
 
-  Widget buildFavoritesWidget(Size size, context) {
+  Widget buildFavoritesWidget(Size size,context){
     return ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
+        itemBuilder: (context,index){
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 10),
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: const Color(0xff282828),
-                border: Border.all(color: const Color(0xff282828))),
-            height: size.height * .18,
+                border: Border.all(
+                    color: const Color(0xff282828)
+                )
+            ),
+            height: size.height*.18,
             child: Row(
               children: [
                 Image(
                   image: NetworkImage(
-                      'http://api.mahmoudtaha.com/images/${AppCubit.get(context).allFavorite[index]['image']}'),
+                      'http://api.mahmoudtaha.com/images/${AppCubit.get(context).allFavorite[index]['image']}'
+                  ),
                   fit: BoxFit.cover,
-                  width: size.width * .32,
-                  height: size.height * .18,
+                  width: size.width*.32,
+                  height: size.height*.18,
                 ),
-                SizedBox(
-                  width: size.width * .04,
-                ),
+                SizedBox(width: size.width*.04,),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -223,106 +194,94 @@ class TripsScreen extends StatelessWidget {
                           '${AppCubit.get(context).allFavorite[index]['name']}',
                           style: TextStyle(
                               fontSize: 11.sp,
-                              color: OwnTheme.colorPalette['white'],
+                              color:  OwnTheme.colorPalette['white'],
                               fontWeight: FontWeight.w500,
-                              fontFamily:
-                                  lang == "ar" ? "fontArBold" : "fontEnBold"),
+                              fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                          ),
                           overflow: TextOverflow.ellipsis,
+
                         ),
                         width: 150,
+
                       ),
-                      SizedBox(
-                        height: size.height * .008,
-                      ),
+                      SizedBox(height: size.height*.008,),
                       Container(
                         child: Text(
                           '${AppCubit.get(context).allFavorite[index]['address']}',
                           style: TextStyle(
                               fontSize: 10.sp,
-                              color: OwnTheme.colorPalette['gray'],
+                              color:  OwnTheme.colorPalette['gray'],
                               fontWeight: FontWeight.w500,
-                              fontFamily:
-                                  lang == "ar" ? "fontArBold" : "fontEnBold"),
+                              fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                          ),
                           overflow: TextOverflow.ellipsis,
                         ),
                         width: 150,
                       ),
+                      SizedBox(height: size.height*.01,),
                       SizedBox(
-                        height: size.height * .01,
-                      ),
-                      SizedBox(
-                        height: size.height * .04,
+                        height: size.height*.04,
                         child: Row(
                           children: [
                             Icon(
                               Icons.location_pin,
-                              color: OwnTheme.colorPalette['primary'],
-                              size: size.width * .04,
+                              color:  OwnTheme.colorPalette['primary'],
+                              size:  size.width*.04,
                             ),
-                            SizedBox(
-                              width: size.width * .01,
-                            ),
+                            SizedBox(width: size.width*.01,),
                             Text(
                               '4,0 km to city',
                               style: TextStyle(
                                   fontSize: 10.sp,
-                                  color: OwnTheme.colorPalette['gray'],
+                                  color:  OwnTheme.colorPalette['gray'],
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar"
-                                      ? "fontArBold"
-                                      : "fontEnBold"),
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
                             ),
-                            SizedBox(
-                              width: size.width * .07,
-                            ),
+                            SizedBox(width: size.width*.07,),
                             Text(
                               '${AppCubit.get(context).allFavorite[index]['price']}',
                               style: TextStyle(
                                   fontSize: 15.sp,
-                                  color: OwnTheme.colorPalette['white'],
+                                  color:  OwnTheme.colorPalette['white'],
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar"
-                                      ? "fontArBold"
-                                      : "fontEnBold"),
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
                             ),
+
                           ],
                         ),
                       ),
+                      SizedBox(height: size.height*.01,),
                       SizedBox(
-                        height: size.height * .01,
-                      ),
-                      SizedBox(
-                        height: size.height * .03,
+                        height: size.height*.03,
                         child: Row(
                           children: [
                             Icon(
                               Icons.star,
-                              color: OwnTheme.colorPalette['primary'],
-                              size: size.width * .05,
+                              color:  OwnTheme.colorPalette['primary'],
+                              size:  size.width*.05,
                             ),
                             Text(
                               '${AppCubit.get(context).allFavorite[index]['rate']}',
                               style: TextStyle(
                                   fontSize: 12.sp,
-                                  color: OwnTheme.colorPalette['white'],
+                                  color:  OwnTheme.colorPalette['white'],
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar"
-                                      ? "fontArBold"
-                                      : "fontEnBold"),
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
                             ),
-                            SizedBox(
-                              width: size.width * .17,
-                            ),
+                            SizedBox(width: size.width*.17,),
                             Text(
                               '/per night',
                               style: TextStyle(
                                   fontSize: 9.sp,
-                                  color: OwnTheme.colorPalette['gray'],
+                                  color:  OwnTheme.colorPalette['gray'],
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar"
-                                      ? "fontArBold"
-                                      : "fontEnBold"),
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
                             ),
+
                           ],
                         ),
                       ),
@@ -333,19 +292,18 @@ class TripsScreen extends StatelessWidget {
             ),
           );
         },
-        separatorBuilder: (context, index) {
-          return const SizedBox(
-            height: 10,
-          );
+        separatorBuilder: (context,index){
+          return const SizedBox(height: 10,);
         },
-        itemCount: AppCubit.get(context).allFavorite.length);
+        itemCount: AppCubit.get(context).allFavorite.length
+    );
   }
 
-  Widget buildFinishedWidget(Size size, context, BookingModel? model) {
+  Widget buildFinishedWidget(Size size,context,BookingModel ?model){
     return ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
+        itemBuilder: (context,index){
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
@@ -358,18 +316,20 @@ class TripsScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: const Color(0xff282828),
-                          border: Border.all(color: const Color(0xff282828))),
+                          border: Border.all(
+                              color: const Color(0xff282828)
+                          )
+                      ),
                       child: Image(
                         image: NetworkImage(
-                            'http://api.mahmoudtaha.com/images/${model!.data!.data![index].hotel!.hotelImages![0].image}'),
+                            'http://api.mahmoudtaha.com/images/${model!.data!.data![index].hotel!.hotelImages![0].image}'
+                        ),
                         fit: BoxFit.cover,
-                        width: size.width * .36,
-                        height: size.height * .2,
+                        width: size.width*.36,
+                        height: size.height*.2,
                       ),
                     ),
-                    SizedBox(
-                      width: size.width * .04,
-                    ),
+                    SizedBox(width: size.width*.04,),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -381,11 +341,10 @@ class TripsScreen extends StatelessWidget {
                               '${model.data!.data![index].hotel!.name}',
                               style: TextStyle(
                                   fontSize: 11.sp,
-                                  color: OwnTheme.colorPalette['white'],
+                                  color:  OwnTheme.colorPalette['white'],
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar"
-                                      ? "fontArBold"
-                                      : "fontEnBold"),
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -395,11 +354,10 @@ class TripsScreen extends StatelessWidget {
                               '${model.data!.data![index].hotel!.address}',
                               style: TextStyle(
                                   fontSize: 9.sp,
-                                  color: OwnTheme.colorPalette['gray'],
+                                  color:  OwnTheme.colorPalette['gray'],
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar"
-                                      ? "fontArBold"
-                                      : "fontEnBold"),
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -409,91 +367,84 @@ class TripsScreen extends StatelessWidget {
                                 '${model.data!.data![index].hotel!.createdAt!.day}',
                                 style: TextStyle(
                                     fontSize: 9.sp,
-                                    color: OwnTheme.colorPalette['white'],
+                                    color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
                               Text(
                                 ' Sep - ',
                                 style: TextStyle(
                                     fontSize: 9.sp,
-                                    color: OwnTheme.colorPalette['white'],
+                                    color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
                               Text(
                                 '${model.data!.data![index].hotel!.updatedAt!.day}',
                                 style: TextStyle(
                                     fontSize: 9.sp,
-                                    color: OwnTheme.colorPalette['white'],
+                                    color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
                               Text(
                                 ' Sep',
                                 style: TextStyle(
                                     fontSize: 9.sp,
-                                    color: OwnTheme.colorPalette['white'],
+                                    color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
                             ],
                           ),
+
                           SizedBox(
-                            height: size.height * .04,
+                            height: size.height*.04,
                             child: Row(
                               children: [
                                 Icon(
                                   Icons.location_pin,
-                                  color: OwnTheme.colorPalette['primary'],
-                                  size: size.width * .04,
+                                  color:  OwnTheme.colorPalette['primary'],
+                                  size:  size.width*.04,
                                 ),
-                                SizedBox(
-                                  width: size.width * .01,
-                                ),
+                                SizedBox(width: size.width*.01,),
                                 Text(
                                   '4,0 km to city',
                                   style: TextStyle(
                                       fontSize: 10.sp,
-                                      color: OwnTheme.colorPalette['gray'],
+                                      color:  OwnTheme.colorPalette['gray'],
                                       fontWeight: FontWeight.w500,
-                                      fontFamily: lang == "ar"
-                                          ? "fontArBold"
-                                          : "fontEnBold"),
+                                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                  ),
                                 ),
+
                               ],
                             ),
                           ),
                           SizedBox(
-                            height: size.height * .03,
+                            height: size.height*.03,
                             child: Row(
                               children: [
                                 Icon(
                                   Icons.star,
-                                  color: OwnTheme.colorPalette['primary'],
-                                  size: size.width * .06,
+                                  color:  OwnTheme.colorPalette['primary'],
+                                  size:  size.width*.06,
                                 ),
-                                SizedBox(
-                                  width: size.width * .01,
-                                ),
+                                SizedBox(width: size.width*.01,),
                                 Text(
                                   '${model.data!.data![index].hotel!.rate}',
                                   style: TextStyle(
                                       fontSize: 12.sp,
-                                      color: OwnTheme.colorPalette['white'],
+                                      color:  OwnTheme.colorPalette['white'],
                                       fontWeight: FontWeight.w500,
-                                      fontFamily: lang == "ar"
-                                          ? "fontArBold"
-                                          : "fontEnBold"),
+                                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                  ),
                                 ),
+
                               ],
                             ),
                           ),
@@ -503,24 +454,25 @@ class TripsScreen extends StatelessWidget {
                                 '\$${model.data!.data![index].hotel!.price}',
                                 style: TextStyle(
                                     fontSize: 15.sp,
-                                    color: OwnTheme.colorPalette['white'],
+                                    color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
                               Text(
                                 '/per night',
                                 style: TextStyle(
                                     fontSize: 9.sp,
-                                    color: OwnTheme.colorPalette['gray'],
+                                    color:  OwnTheme.colorPalette['gray'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
+
                             ],
                           ),
+
+
                         ],
                       ),
                     )
@@ -529,6 +481,7 @@ class TripsScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -537,244 +490,250 @@ class TripsScreen extends StatelessWidget {
                           SizedBox(
                             width: 170,
                             child: Text(
-                              '${model.data!.data![index + 1].hotel!.name}',
+                              '${model.data!.data![index+1].hotel!.name}',
                               style: TextStyle(
                                   fontSize: 11.sp,
-                                  color: OwnTheme.colorPalette['white'],
+                                  color:  OwnTheme.colorPalette['white'],
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar"
-                                      ? "fontArBold"
-                                      : "fontEnBold"),
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           SizedBox(
                             width: 170,
                             child: Text(
-                              '${model.data!.data![index + 1].hotel!.address}',
+                              '${model.data!.data![index+1].hotel!.address}',
                               style: TextStyle(
                                   fontSize: 9.sp,
-                                  color: OwnTheme.colorPalette['gray'],
+                                  color:  OwnTheme.colorPalette['gray'],
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar"
-                                      ? "fontArBold"
-                                      : "fontEnBold"),
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           Row(
                             children: [
                               Text(
-                                '${model.data!.data![index + 1].hotel!.createdAt!.day}',
+                                '${model.data!.data![index+1].hotel!.createdAt!.day}',
                                 style: TextStyle(
                                     fontSize: 9.sp,
-                                    color: OwnTheme.colorPalette['white'],
+                                    color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
                               Text(
                                 ' Sep - ',
                                 style: TextStyle(
                                     fontSize: 9.sp,
-                                    color: OwnTheme.colorPalette['white'],
+                                    color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
                               Text(
-                                '${model.data!.data![index + 1].hotel!.updatedAt!.day}',
+                                '${model.data!.data![index+1].hotel!.updatedAt!.day}',
                                 style: TextStyle(
                                     fontSize: 9.sp,
-                                    color: OwnTheme.colorPalette['white'],
+                                    color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
                               Text(
                                 ' Sep',
                                 style: TextStyle(
                                     fontSize: 9.sp,
-                                    color: OwnTheme.colorPalette['white'],
+                                    color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
                             ],
                           ),
+
                           SizedBox(
-                            height: size.height * .04,
+                            height: size.height*.04,
                             child: Row(
                               children: [
                                 Icon(
                                   Icons.location_pin,
-                                  color: OwnTheme.colorPalette['primary'],
-                                  size: size.width * .04,
+                                  color:  OwnTheme.colorPalette['primary'],
+                                  size:  size.width*.04,
                                 ),
-                                SizedBox(
-                                  width: size.width * .01,
-                                ),
+                                SizedBox(width: size.width*.01,),
                                 Text(
                                   '4,0 km to city',
                                   style: TextStyle(
                                       fontSize: 10.sp,
-                                      color: OwnTheme.colorPalette['gray'],
+                                      color:  OwnTheme.colorPalette['gray'],
                                       fontWeight: FontWeight.w500,
-                                      fontFamily: lang == "ar"
-                                          ? "fontArBold"
-                                          : "fontEnBold"),
+                                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                  ),
                                 ),
+
                               ],
                             ),
                           ),
                           SizedBox(
-                            height: size.height * .03,
+                            height: size.height*.03,
                             child: Row(
                               children: [
                                 Icon(
                                   Icons.star,
-                                  color: OwnTheme.colorPalette['primary'],
-                                  size: size.width * .06,
+                                  color:  OwnTheme.colorPalette['primary'],
+                                  size:  size.width*.06,
                                 ),
-                                SizedBox(
-                                  width: size.width * .01,
-                                ),
+                                SizedBox(width: size.width*.01,),
                                 Text(
-                                  '${model.data!.data![index + 1].hotel!.rate}',
+                                  '${model.data!.data![index+1].hotel!.rate}',
                                   style: TextStyle(
                                       fontSize: 12.sp,
-                                      color: OwnTheme.colorPalette['white'],
+                                      color:  OwnTheme.colorPalette['white'],
                                       fontWeight: FontWeight.w500,
-                                      fontFamily: lang == "ar"
-                                          ? "fontArBold"
-                                          : "fontEnBold"),
+                                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                  ),
                                 ),
+
                               ],
                             ),
                           ),
                           Row(
                             children: [
                               Text(
-                                '\$${model.data!.data![index + 1].hotel!.price}',
+                                '\$${model.data!.data![index+1].hotel!.price}',
                                 style: TextStyle(
                                     fontSize: 15.sp,
-                                    color: OwnTheme.colorPalette['white'],
+                                    color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
                               Text(
                                 '/per night',
                                 style: TextStyle(
                                     fontSize: 9.sp,
-                                    color: OwnTheme.colorPalette['gray'],
+                                    color:  OwnTheme.colorPalette['gray'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
+
                             ],
                           ),
+
+
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: size.width * .04,
-                    ),
+                    SizedBox(width: size.width*.04,),
                     Container(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: const Color(0xff282828),
-                          border: Border.all(color: const Color(0xff282828))),
+                          border: Border.all(
+                              color: const Color(0xff282828)
+                          )
+                      ),
                       child: Image(
                         image: NetworkImage(
-                            'http://api.mahmoudtaha.com/images/${model.data!.data![index + 1].hotel!.hotelImages![0].image}'),
+                            'http://api.mahmoudtaha.com/images/${model.data!.data![index+1].hotel!.hotelImages![0].image}'
+                        ),
                         fit: BoxFit.cover,
-                        width: size.width * .36,
-                        height: size.height * .2,
+                        width: size.width*.36,
+                        height: size.height*.2,
                       ),
                     ),
                   ],
                 ),
+
               ],
             ),
           );
         },
-        separatorBuilder: (conext, index) {
-          return const SizedBox(
-            width: 10,
-          );
+        separatorBuilder: (conext,index){
+          return const SizedBox(width: 10,);
         },
-        itemCount: model!.data!.data!.length - 1);
+        itemCount:model!.data!.data!.length-1
+    );
   }
 
-  Widget buildUpComingWidget(context, Size size, BookingModel model) {
+  Widget buildUpComingWidget(context , size,BookingModel model){
+
     return ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) {
+        itemBuilder: (context,index){
           return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10),
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            margin: const EdgeInsets.symmetric(
+                horizontal: 10
+            ),
+            padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 10
+            ),
             child: Column(
               children: [
                 Text(
                   '${model.data!.data![index].createdAt}',
                   style: TextStyle(
                       fontSize: 10.sp,
-                      color: OwnTheme.colorPalette['white'],
+                      color:  OwnTheme.colorPalette['white'],
                       fontWeight: FontWeight.w500,
-                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"),
+                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                  ),
                 ),
-                SizedBox(
-                  height: size.height * .01,
-                ),
+                SizedBox(height: size.height*.01,),
                 Container(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: const Color(0xff282828),
-                      border: Border.all(color: const Color(0xff282828))),
+                      border: Border.all(
+                          color: const Color(0xff282828)
+                      )
+                  ),
                   child: Column(
                     children: [
                       Stack(
                         children: [
                           Image(
-                            image: NetworkImage(
-                                'http://api.mahmoudtaha.com/images/${model.data!.data![index].hotel!.hotelImages![0].image}'),
+                            image:  NetworkImage(
+                                'http://api.mahmoudtaha.com/images/${model.data!.data![index].hotel!.hotelImages![0].image}'
+                            ),
                             fit: BoxFit.cover,
                             width: size.width,
-                            height: size.height * .18,
+                            height: size.height*.18,
                           ),
                           Positioned(
                             right: 10,
                             child: IconButton(
-                              icon: const CircleAvatar(
-                                child: Icon(
+                              icon:  CircleAvatar(
+                                child: AppCubit.get(context).upCommingValues[index] ==false?Icon(
                                   Icons.favorite_border,
+                                  size: 20,
+                                ):Icon(
+                                  Icons.favorite,
                                   size: 20,
                                 ),
                                 radius: 28,
                                 backgroundColor: Color(0xff282828),
                               ),
-                              onPressed: () {
+                              onPressed: (){
+                                setState(() {
+                                  AppCubit.get(context).upCommingValues[index] =!AppCubit.get(context).upCommingValues[index];
+
+                                });
                                 AppCubit.get(context).insertDatabase(
-                                    name:
-                                        '${model.data!.data![index].hotel!.name}',
-                                    address:
-                                        '${model.data!.data![index].hotel!.address}',
-                                    price:
-                                        '${model.data!.data![index].hotel!.price}',
-                                    rate:
-                                        '${model.data!.data![index].hotel!.rate}',
-                                    image:
-                                        '${model.data!.data![index].hotel!.hotelImages![0].image}');
+                                    name: '${model.data!.data![index].hotel!.name}',
+                                    address: '${model.data!.data![index].hotel!.address}',
+                                    price: '${model.data!.data![index].hotel!.price}',
+                                    rate: '${model.data!.data![index].hotel!.rate}',
+                                    image: '${model.data!.data![index].hotel!.hotelImages![0].image}'
+                                );
                               },
                             ),
                           )
@@ -790,46 +749,43 @@ class TripsScreen extends StatelessWidget {
                                 '${model.data!.data![index].hotel!.name}',
                                 style: TextStyle(
                                     fontSize: 12.sp,
-                                    color: OwnTheme.colorPalette['white'],
+                                    color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                               ),
                             ),
-                            const SizedBox(
-                              width: 50,
-                            ),
+                            const SizedBox(width: 50,),
                             Text(
                               '\$${model.data!.data![index].hotel!.price}',
                               style: TextStyle(
                                   fontSize: 14.sp,
-                                  color: OwnTheme.colorPalette['white'],
+                                  color:  OwnTheme.colorPalette['white'],
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar"
-                                      ? "fontArBold"
-                                      : "fontEnBold"),
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
                             ),
-                            SizedBox(
-                              width: size.width * .02,
-                            ),
+                            SizedBox(width: size.width*.02,),
+
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Row(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8
+                        ),
+                        child:
+                        Row(
                           children: [
                             SizedBox(
                               child: Text(
                                 '${model.data!.data![index].hotel!.address}',
                                 style: TextStyle(
                                     fontSize: 8.sp,
-                                    color: OwnTheme.colorPalette['white'],
+                                    color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
-                                    fontFamily: lang == "ar"
-                                        ? "fontArBold"
-                                        : "fontEnBold"),
+                                    fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                ),
                                 overflow: TextOverflow.ellipsis,
                               ),
                               width: 150,
@@ -837,22 +793,20 @@ class TripsScreen extends StatelessWidget {
                             const Spacer(),
                             Icon(
                               Icons.location_pin,
-                              color: OwnTheme.colorPalette['primary'],
-                              size: size.width * .04,
+                              color:  OwnTheme.colorPalette['primary'],
+                              size:  size.width*.04,
                             ),
                             Text(
                               '4,0 km to city',
                               style: TextStyle(
                                   fontSize: 10.sp,
-                                  color: OwnTheme.colorPalette['gray'],
+                                  color:  OwnTheme.colorPalette['gray'],
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar"
-                                      ? "fontArBold"
-                                      : "fontEnBold"),
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
                             ),
-                            SizedBox(
-                              width: size.width * .01,
-                            ),
+                            SizedBox(width: size.width*.01,),
+
                           ],
                         ),
                       ),
@@ -862,37 +816,39 @@ class TripsScreen extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.star,
-                              color: OwnTheme.colorPalette['primary'],
-                              size: size.width * .07,
+                              color:  OwnTheme.colorPalette['primary'],
+                              size:  size.width*.07,
                             ),
-                            SizedBox(
-                              width: size.width * .04,
-                            ),
+
+                            SizedBox(width: size.width*.04,),
                             Text(
-                              '${model.data!.data![index].hotel!.rate}',
+                               '${model.data!.data![index].hotel!.rate}',
                               style: TextStyle(
                                   fontSize: 10.sp,
-                                  color: OwnTheme.colorPalette['gray'],
+                                  color:  OwnTheme.colorPalette['gray'],
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar"
-                                      ? "fontArBold"
-                                      : "fontEnBold"),
+                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                              ),
                             ),
+
                           ],
                         ),
                       ),
+
                     ],
                   ),
                 )
+
               ],
             ),
           );
         },
-        separatorBuilder: (context, index) {
-          return const SizedBox(
-            height: 10,
-          );
+        separatorBuilder: (context,index){
+          return const SizedBox(height: 10,);
         },
-        itemCount: model.data!.data!.length);
+        itemCount: model.data!.data!.length
+    );
+
+
   }
 }

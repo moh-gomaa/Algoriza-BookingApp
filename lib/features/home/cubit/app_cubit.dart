@@ -6,6 +6,7 @@ import 'package:booking_app/core/utils/network/remote/dio_helper.dart';
 import 'package:booking_app/core/utils/widgets/toast.dart';
 import 'package:booking_app/data/models/booking_model.dart';
 import 'package:booking_app/data/models/explore_model.dart';
+import 'package:booking_app/data/models/search_model.dart';
 import 'package:booking_app/features/home/cubit/app_states.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
@@ -330,44 +331,34 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
+  SearchModel ?searchModel;
 
-  // void updateFavorite(
-  //     {
-  //       required String F,
-  //       required int id,
-  //     }
-  //     ) async{
-  //
-  //   database?.rawUpdate(
-  //
-  //       'UPDATE todo SET favorite = ? WHERE id = ?',
-  //       ['$F', '$id']).then((value) {
-  //     print('Update Done');
-  //     getDatabase(database);
-  //     emit(UpdateFavoriteSuccessState());
-  //   }).catchError((error){
-  //     print('error is ${error.toString()}');
-  //   });
-  //
-  // }
-  //
-  //
-  // void deleteDatabase(
-  //     {
-  //       required int id,
-  //     }
-  //     ) async{
-  //
-  //   database?.rawDelete(
-  //       'DELETE FROM todo WHERE id = ?', ['$id'])
-  //       .then((value) {
-  //     getDatabase(database);
-  //     emit(DeleteDatabaseSuccessState());
-  //   }).catchError((error){
-  //     print('error is ${error.toString()}');
-  //   });
-  //
-  // }
+  Future<void> getSearchBooking({
+    required String name
+  }) async {
+
+    await DioHelper2.getData(
+        url: '/search-hotels',
+        query: {
+          'page': 1,
+          'count': 10,
+          'name':'${name}'
+        }
+    ).then((value) {
+
+      print(value.data.toString());
+      searchModel = SearchModel.fromJson(value.data);
+      emit(GetBookingCompletedSuccessState());
+      print('//////////////////////////////////');
+    }).catchError((error) {
+      print('Error in search booking is ${error.toString()}');
+      emit(GetBookingCompletedErrorState());
+    });
+
+  }
+
+  List<bool> exploreValues = List.generate(30, (index) => false);
+  List<bool> upCommingValues = List.generate(30, (index) => false);
 
 
 
