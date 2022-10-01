@@ -7,9 +7,14 @@ import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
 import 'package:sizer/sizer.dart';
 
-class TripsScreen extends StatelessWidget {
+class TripsScreen extends StatefulWidget {
   const TripsScreen({Key? key}) : super(key: key);
 
+  @override
+  State<TripsScreen> createState() => _TripsScreenState();
+}
+
+class _TripsScreenState extends State<TripsScreen> {
   @override
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
@@ -293,7 +298,6 @@ class TripsScreen extends StatelessWidget {
         itemCount: AppCubit.get(context).allFavorite.length
     );
   }
-
 
   Widget buildFinishedWidget(Size size,context,BookingModel ?model){
     return ListView.separated(
@@ -707,15 +711,22 @@ class TripsScreen extends StatelessWidget {
                           Positioned(
                             right: 10,
                             child: IconButton(
-                              icon: const CircleAvatar(
-                                child: Icon(
+                              icon:  CircleAvatar(
+                                child: AppCubit.get(context).upCommingValues[index] ==false?Icon(
                                   Icons.favorite_border,
+                                  size: 20,
+                                ):Icon(
+                                  Icons.favorite,
                                   size: 20,
                                 ),
                                 radius: 28,
                                 backgroundColor: Color(0xff282828),
                               ),
                               onPressed: (){
+                                setState(() {
+                                  AppCubit.get(context).upCommingValues[index] =!AppCubit.get(context).upCommingValues[index];
+
+                                });
                                 AppCubit.get(context).insertDatabase(
                                     name: '${model.data!.data![index].hotel!.name}',
                                     address: '${model.data!.data![index].hotel!.address}',

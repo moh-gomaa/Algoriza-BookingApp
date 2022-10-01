@@ -7,9 +7,14 @@ import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
 import 'package:sizer/sizer.dart';
 
-class ExploreScreen extends StatelessWidget {
-  const ExploreScreen({Key? key}) : super(key: key);
+class ExploreScreen extends StatefulWidget {
+   ExploreScreen({Key? key}) : super(key: key);
+  var searchController=TextEditingController();
+  @override
+  State<ExploreScreen> createState() => _ExploreScreenState();
+}
 
+class _ExploreScreenState extends State<ExploreScreen> {
   @override
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
@@ -76,7 +81,7 @@ class ExploreScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: TextFormField(
-                              // controller: searchController,
+                              controller: widget.searchController,
                               keyboardType: TextInputType.text,
                               onFieldSubmitted: (String value) {
                                 print(value);
@@ -117,11 +122,16 @@ class ExploreScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(width: 10,),
-                          CircleAvatar(
-                            radius: 30,
-                            child: Icon(
-                              Icons.search,
-                              color: Colors.white,
+                          GestureDetector(
+                            onTap: (){
+                              AppCubit.get(context).getSearchBooking(name: widget.searchController.text);
+                            },
+                            child: CircleAvatar(
+                              radius: 30,
+                              child: Icon(
+                                Icons.search,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
 
@@ -263,6 +273,7 @@ class ExploreScreen extends StatelessWidget {
       },
     );
   }
+
   Widget buildUpComingWidget(context , size , ExploreModel model){
 
     return ListView.separated(
@@ -314,15 +325,24 @@ class ExploreScreen extends StatelessWidget {
                             Positioned(
                               right: 10,
                               child: IconButton(
-                                icon: const CircleAvatar(
+                                icon:  CircleAvatar(
                                   radius: 28,
                                   backgroundColor: Color(0xff282828),
-                                  child: Icon(
+                                  child: AppCubit.get(context).exploreValues[index]==false? Icon(
                                     Icons.favorite_border,
                                     size: 20,
+                                    color: OwnTheme.colorPalette['primary'],
+                                  ):Icon(
+                                    Icons.favorite,
+                                    size: 20,
+                                    color: OwnTheme.colorPalette['primary'],
                                   ),
                                 ),
                                 onPressed: (){
+                                  setState(() {
+                                    AppCubit.get(context).exploreValues[index] =!AppCubit.get(context).exploreValues[index];
+
+                                  });
                                   AppCubit.get(context).insertDatabase(
                                       name: '${model.data!.data![index].name}',
                                       address: '${model.data!.data![index].address}',
