@@ -5,6 +5,7 @@ import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class ProfileInfoCard extends StatelessWidget {
   final UserModel user;
@@ -37,32 +38,25 @@ class ProfileInfoCard extends StatelessWidget {
               )
             ],
           ),
-          user.image != null
-              ? Container(
+          user.image != ''
+              ? CircleAvatar(
+                  radius: 35.sp,
+                  backgroundImage: CachedNetworkImageProvider(
+                    '${user.image}',
+                  ),
+                )
+              : Container(
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: OwnTheme.colorPalette['gray']),
                   child: Padding(
-                      padding: const EdgeInsets.all(space0),
-                      child:
-                      CachedNetworkImage(
-                        imageUrl: user.image!,
-                        placeholder: (context, url) => Center(
-                            child: Container(
-                                width: 50,
-                                height: 50,
-                                child: CircularProgressIndicator())),
-                        errorWidget: (context, url, error) => Container(
-                          width: 50,
-                          height: 50,
-                        ),
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.fill,
-                      ),
-                  ),
-                )
-              : Container(),
+                    padding: const EdgeInsets.all(space1),
+                    child: Image.asset(
+                      'assets/icons/no_img_icon.webp',
+                      width: 35.sp,
+                      height: 35.sp,
+                    ),
+                  ))
         ],
       ),
     );

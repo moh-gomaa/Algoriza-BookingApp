@@ -10,7 +10,9 @@ import 'package:booking_app/data/models/hotel_model.dart';
 import 'package:booking_app/resources/buttonkey/button.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({Key? key}) : super(key: key);
@@ -222,6 +224,40 @@ class _FilterScreenState extends State<FilterScreen> {
                         children: [
                           ...facilitiesLst.map((e) => Row(
                                 children: [
+                                  // GestureDetector(
+                                  //   onTap: () {
+                                  //     if (selectedFacilitiesLst
+                                  //         .contains(e.id)) {
+                                  //       selectedFacilitiesLst.remove(e.id);
+                                  //     } else {
+                                  //       selectedFacilitiesLst.add(e.id!);
+                                  //     }
+                                  //     setState(() {
+                                  //       e.isSelected = !e.isSelected!;
+                                  //     });
+                                  //   },
+                                  //   child: Container(
+                                  //     decoration: BoxDecoration(
+                                  //         shape: BoxShape.circle,
+                                  //         color:
+                                  //             OwnTheme.colorPalette['primary']),
+                                  //     child: Padding(
+                                  //       padding: const EdgeInsets.all(space0),
+                                  //       child:
+                                  //       e.isSelected!
+                                  //           ? Icon(
+                                  //               Icons.check,
+                                  //               size: 30.0,
+                                  //               color: Colors.white,
+                                  //             )
+                                  //           : Icon(
+                                  //               Icons.check_box_outline_blank,
+                                  //               size: 30.0,
+                                  //               color: OwnTheme
+                                  //                   .colorPalette['primary']),
+                                  //     ),
+                                  //   ),
+                                  // ),
                                   GestureDetector(
                                     onTap: () {
                                       if (selectedFacilitiesLst
@@ -234,27 +270,40 @@ class _FilterScreenState extends State<FilterScreen> {
                                         e.isSelected = !e.isSelected!;
                                       });
                                     },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color:
-                                              OwnTheme.colorPalette['primary']),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(space0),
-                                        child: e.isSelected!
-                                            ? Icon(
-                                                Icons.check,
-                                                size: 30.0,
-                                                color: Colors.white,
+                                    child: Stack(
+                                      clipBehavior: Clip.none,
+                                      fit: StackFit.loose,
+                                      children: [
+                                        CircleAvatar(
+                                            radius: 20.sp,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(space0),
+                                              child: CachedNetworkImage(
+                                                imageUrl: '${e.image}',
+                                              ),
+                                            )),
+                                        e.isSelected!
+                                            ? CircleAvatar(
+                                                radius: 20.sp,
+                                                backgroundColor: OwnTheme
+                                                    .colorPalette['gray']!
+                                                    .withOpacity(0.7),
+                                                child: Icon(
+                                                  Icons.check,
+                                                  size: 30,
+                                                  color: Colors.white,
+                                                ),
                                               )
-                                            : Icon(
-                                                Icons.check_box_outline_blank,
-                                                size: 30.0,
-                                                color: OwnTheme
-                                                    .colorPalette['primary']),
-                                      ),
+                                            : CircleAvatar(
+                                                radius: 20.sp,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                              )
+                                      ],
                                     ),
                                   ),
+
                                   SizedBox(
                                     width: space0,
                                   ),

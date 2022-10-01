@@ -16,7 +16,7 @@ class UserHelper {
   Future<int> savePost(UserModel row) async {
     var dbClient = await (DBHelper().db);
 //    row.logoImage =await getImageLogo(row.memberID.toString());
-    var res = await dbClient.insert("$tableName", row.toJson());
+    var res = await dbClient.insert("$tableName", row.toJsonDB());
     return res;
   }
 
@@ -47,7 +47,7 @@ class UserHelper {
 
   Future<int> update(UserModel row) async {
     var dbClient = await (DBHelper().db);
-    return await dbClient.update(tableName, row.toJson(),
+    return await dbClient.update(tableName, row.toJsonDB(),
         where: "${tablePrimaryKey} =?", whereArgs: [row.id]);
   }
 

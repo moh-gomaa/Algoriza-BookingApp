@@ -50,18 +50,43 @@ class UserModel {
 
   int? get id => _id;
 
+  set id(int? id) => _id = id;
+
   String? get name => _name;
 
   set name(String? name) => _name = name;
-  set email(String? email) => _email = email;
 
   String? get email => _email;
 
+  set email(String? email) => _email = email;
+
   String? get apiToken => _apiToken;
+
+  set apiToken(String? apiToken) => _apiToken = apiToken;
 
   String? get image => _image;
 
+  set image(String? image) => _image = image;
+
+  String? get password => _password;
+
+  set password(String? password) => _password = password;
+
+  String? get passwordConfirmation => _passwordConfirmation;
+
+  set passwordConfirmation(String? passwordConfirmation) =>
+      _passwordConfirmation = passwordConfirmation;
+
   Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['name'] = _name;
+    map['email'] = _email;
+    map['password'] = _password;
+    map['password_confirmation'] = _passwordConfirmation;
+    return map;
+  }
+
+  Map<String, dynamic> toJsonDB() {
     final map = <String, dynamic>{};
     map['id'] = _id;
     map['name'] = _name;

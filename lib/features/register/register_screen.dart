@@ -3,6 +3,7 @@ import 'package:booking_app/core/utils/extensions/layout_extensions.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:booking_app/data/models/user_model.dart';
+import 'package:booking_app/features/login/bloc/login_cubit.dart';
 import 'package:booking_app/features/register/bloc/register_cubit.dart';
 import 'package:booking_app/features/register/bloc/register_state.dart';
 import 'package:booking_app/resources/buttonkey/button.dart';
@@ -22,9 +23,10 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(LoginCubit.get(context).isPassword.toString());
     return BlocConsumer<RegisterCubit, RegisterStates>(
       listener: (context, state) {
-        if (state is RegisterLoadingState) {
+        if (state is RegisterSuccessState) {
           Navigator.pushNamed(context, '/main');
         }
       },
@@ -65,12 +67,8 @@ class RegisterScreen extends StatelessWidget {
                             .colorChange(color: 'white'),
                         controller: firstNameController,
                         keyboardType: TextInputType.name,
-                        onFieldSubmitted: (String value) {
-                          print(value);
-                        },
-                        onChanged: (String value) {
-                          print(value);
-                        },
+                        onFieldSubmitted: (String value) {},
+                        onChanged: (String value) {},
                         validator: (String? value) {
                           if (value!.isEmpty) {
                             return 'first_table_txt'.tr(context);
@@ -112,12 +110,8 @@ class RegisterScreen extends StatelessWidget {
                             .colorChange(color: 'white'),
                         controller: lastNameController,
                         keyboardType: TextInputType.text,
-                        onFieldSubmitted: (String value) {
-                          print(value);
-                        },
-                        onChanged: (String value) {
-                          print(value);
-                        },
+                        onFieldSubmitted: (String value) {},
+                        onChanged: (String value) {},
                         validator: (String? value) {
                           if (value!.isEmpty) {
                             return 'last_table_txt'.tr(context);
@@ -159,15 +153,11 @@ class RegisterScreen extends StatelessWidget {
                             .colorChange(color: 'white'),
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
-                        onFieldSubmitted: (String value) {
-                          print(value);
-                        },
-                        onChanged: (String value) {
-                          print(value);
-                        },
+                        onFieldSubmitted: (String value) {},
+                        onChanged: (String value) {},
                         validator: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Email_Table'.tr(context);
+                            return 'email_table'.tr(context);
                           }
                           return null;
                         },
@@ -212,16 +202,12 @@ class RegisterScreen extends StatelessWidget {
                             .colorChange(color: 'white'),
                         controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
-                        obscureText: true,
-                        onFieldSubmitted: (String value) {
-                          print(value);
-                        },
-                        onChanged: (String value) {
-                          print(value);
-                        },
+                        obscureText: RegisterCubit.get(context).isPassword,
+                        onFieldSubmitted: (String value) {},
+                        onChanged: (String value) {},
                         validator: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Password_Table'.tr(context);
+                            return 'password_table'.tr(context);
                           }
                           return null;
                         },
@@ -234,9 +220,14 @@ class RegisterScreen extends StatelessWidget {
                               Icons.lock,
                               color: OwnTheme.colorPalette['gray'],
                             ),
-                            suffixIcon: Icon(
-                              Icons.remove_red_eye,
-                              color: OwnTheme.colorPalette['gray'],
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                RegisterCubit.get(context).ChangePassword();
+                              },
+                              child: Icon(
+                                RegisterCubit.get(context).suffix,
+                                color: OwnTheme.colorPalette['gray'],
+                              ),
                             ),
                             border: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.white),
@@ -253,79 +244,26 @@ class RegisterScreen extends StatelessWidget {
                                 .colorChange(color: 'gray')),
                       ),
                       SizedBox(
-                        height: 15,
-                      ),
-                      ButtonKey(
-                        function: () {
-                          {
-                            if (formKey.currentState!.validate()) {
-                              FocusScope.of(context)
-                                  .requestFocus(new FocusNode());
-
-                              user = UserModel(
-                                  name: firstNameController.text,
-                                  email: emailController.text,
-                                  password: passwordController.text,
-                                  passwordConfirmation:
-                                      passwordController.text);
-                              RegisterCubit.get(context).register(obj: user);
-                            }
-                          }
-                        },
-                        buttonText: 'Button_Register'.tr(context),
-                        textColor: OwnTheme.colorPalette['gray'],
-                        isLoading: (state is RegisterLoadingState),
-                      ),
-                      SizedBox(
-                        height: 15.0,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Register_title1_txt'.tr(context),
-                            style: OwnTheme.normalTextStyle(lang: lang)
-                                .colorChange(color: 'gray'),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'first_text'.tr(context),
-                            textAlign: TextAlign.center,
-                            style: OwnTheme.prNormalTextStyle(lang: lang)
-                                .colorChange(color: 'gray'),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/login');
-                            },
-                            child: Text(
-                              'last_text'.tr(context),
-                              style: OwnTheme.prNormalTextStyle(lang: lang)
-                                  .colorChange(color: 'gray'),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
                         height: 30,
                       ),
                       ButtonKey(
                         function: () {
-                          {
-                            if (formKey.currentState!.validate()) {
-                              FocusScope.of(context).requestFocus(new FocusNode());
-                              user = UserModel(
-                                  name: firstNameController.text,
-                                  email: emailController.text,
-                                  password: passwordController.text,
-                                  passwordConfirmation:
-                                      passwordController.text);
-                              RegisterCubit.get(context).register(obj: user);
-                            }
+                          if (formKey.currentState!.validate()) {
+                            FocusScope.of(context)
+                                .requestFocus(new FocusNode());
+                            user = UserModel(
+                                name: firstNameController.text + ' ' +
+                                    lastNameController.text,
+                                email: emailController.text,
+                                password: passwordController.text,
+                                passwordConfirmation: passwordController.text);
+
+                            debugPrint('UserData==${user.name}');
+                            debugPrint('UserData==${user.email}');
+                            debugPrint('UserData==${user.password}');
+                            debugPrint('UserData==${user.passwordConfirmation}');
+
+                            RegisterCubit.get(context).register(obj: user);
                           }
                         },
                         buttonText: 'Button_Register'.tr(context),
@@ -339,9 +277,10 @@ class RegisterScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Register_title1_txt'.tr(context),
+                            'register_title1_txt'.tr(context),
                             style: OwnTheme.normalTextStyle(lang: lang)
                                 .colorChange(color: 'gray'),
+                            textAlign: TextAlign.center,
                           ),
                         ],
                       ),

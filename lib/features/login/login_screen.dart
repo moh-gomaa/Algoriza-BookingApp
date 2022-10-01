@@ -63,14 +63,12 @@ class LoginScreen extends StatelessWidget {
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           onFieldSubmitted: (String value) {
-                            print(value);
                           },
                           onChanged: (String value) {
-                            print(value);
                           },
                           validator: (String? value) {
                             if (value!.isEmpty) {
-                              return 'Email_Table'.tr(context);
+                              return 'email_table'.tr(context);
                             }
                             return null;
                           },
@@ -117,14 +115,12 @@ class LoginScreen extends StatelessWidget {
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: LoginCubit.get(context).isPassword,
                           onFieldSubmitted: (String value) {
-                            print(value);
                           },
                           onChanged: (String value) {
-                            print(value);
                           },
                           validator: (String? value) {
                             if (value!.isEmpty) {
-                              return 'Password_Table'.tr(context);
+                              return 'password_table'.tr(context);
                             }
                             return null;
                           },
@@ -168,15 +164,10 @@ class LoginScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/password');
-                              },
-                              child: Text(
-                                'Login_Title '.tr(context),
-                                style: OwnTheme.normalTextStyle(lang: lang)
-                                    .colorChange(color: 'gray'),
-                              ),
+                            Text(
+                              'Login_Title'.tr(context),
+                              style: OwnTheme.normalTextStyle(lang: lang)
+                                  .colorChange(color: 'gray'),
                             ),
                           ],
                         ),

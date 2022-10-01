@@ -5,7 +5,6 @@ import 'package:dio/dio.dart' show BaseOptions, Dio, Response;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-
 class DioHelper {
   static Dio? dio;
   static final JsonDecoder _decoder = new JsonDecoder();
@@ -71,8 +70,9 @@ class DioHelper {
   }
 
   static Future<dynamic> get(String url, {Map<String, String>? headers}) async {
-    return http.get(Uri.parse(baseUrl + url), headers: headers).then((
-        http.Response response) {
+    return http
+        .get(Uri.parse(baseUrl + url), headers: headers)
+        .then((http.Response response) {
       final String res = response.body;
       final int statusCode = response.statusCode;
       // print(baseUrl + url);
@@ -87,16 +87,13 @@ class DioHelper {
     });
   }
 
-
   static Future<dynamic> post(String url,
       {Map<String, String>? headers, body, encoding}) async {
     // print('here');
     // print(baseUrl + url);
     return http
         .post(Uri.parse(baseUrl + url),
-        body: body,
-        headers: headers,
-        encoding: encoding)
+            body: body, headers: headers, encoding: encoding)
         .then((http.Response response) {
       final String res = response.body;
       final int statusCode = response.statusCode;
@@ -106,12 +103,11 @@ class DioHelper {
 //        throw new Exception("Error while fetching data");
       }
       // print(statusCode);
-      // print(res);
-// return res;
+      print(res);
+      // return res;
       return _decoder.convert(res);
     });
   }
-
 
   static Future<Response> putData({
     required String url,

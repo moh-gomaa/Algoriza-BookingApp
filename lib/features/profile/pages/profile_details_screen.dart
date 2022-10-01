@@ -51,6 +51,9 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
     print(resultJson);
     if (resultJson != false) {
       UserModel tmp = UserModel.fromJson(resultJson['data']);
+      if (tmp.image == 'http://api.mahmoudtaha.com/images') {
+        tmp.image = '';
+      }
       setState(() {
         widget.user = tmp;
         BasicModel.userImage = tmp.image!;
@@ -81,6 +84,7 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // debugPrint('img===${widget.user.image}');
     return Scaffold(
         backgroundColor: OwnTheme.colorPalette['black'],
         body: SingleChildScrollView(
@@ -112,25 +116,46 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
               Column(
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      editMode ? selectImageFrom(context) : null;
-                    },
-                    child: CachedNetworkImage(
-                      imageUrl: BasicModel.userImage,
-                      placeholder: (context, url) => Center(
-                          child: Container(
-                              width: 50,
-                              height: 50,
-                              child: CircularProgressIndicator())),
-                      errorWidget: (context, url, error) => Container(
-                        width: 50,
-                        height: 50,
-                      ),
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        editMode ? selectImageFrom(context) : null;
+                      },
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          widget.user.image != ''
+                              ? CircleAvatar(
+                                  radius: 35.sp,
+                                  backgroundImage: CachedNetworkImageProvider(
+                                    '${widget.user.image}',
+                                  ),
+                                )
+                              : Container(
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: OwnTheme.colorPalette['gray']),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(space1),
+                                    child: Image.asset(
+                                      'assets/icons/no_img_icon.webp',
+                                      width: 35.sp,
+                                      height: 35.sp,
+                                    ),
+                                  )),
+                          Positioned(
+                            bottom: -25,
+                            left: 30,
+                            child: CircleAvatar(
+                              backgroundColor: Colors.white,
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.image),
+                                color: OwnTheme.colorPalette['black'],
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
                   SizedBox(
                     height: space2,
                   ),
@@ -207,8 +232,9 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('camera_txt'.tr(ctx),
-                                  style: OwnTheme.normalBoldTextStyle(lang: lang)
-                                      .colorChange(color: 'white')),
+                                  style:
+                                      OwnTheme.normalBoldTextStyle(lang: lang)
+                                          .colorChange(color: 'white')),
                               Image.asset(
                                 'assets/icons/camera_icon.webp',
                                 width: 15.sp,
@@ -231,8 +257,9 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('gallery_txt'.tr(ctx),
-                                  style: OwnTheme.normalBoldTextStyle(lang: lang)
-                                      .colorChange(color: 'white')),
+                                  style:
+                                      OwnTheme.normalBoldTextStyle(lang: lang)
+                                          .colorChange(color: 'white')),
                               Image.asset(
                                 'assets/icons/gallery_icon.webp',
                                 width: 15.sp,
@@ -256,7 +283,6 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
   File? file;
 
   Future getImageFromCamera() async {
-
     var image = await ImagePicker().pickImage(
       source: ImageSource.camera,
     );

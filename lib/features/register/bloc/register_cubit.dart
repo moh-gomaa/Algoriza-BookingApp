@@ -20,7 +20,11 @@ class RegisterCubit extends Bloc<LoginCubit, RegisterStates> {
     try {
       UserModel userData = await AuthenticationRepository().register(obj);
       if (userData != null) {
-        String userImg = '${imgBaseUrl}${userData.image}';
+        String userImg = '';
+        if(userData.image !=null){
+          debugPrint('hasImage');
+          userImg = '${imgBaseUrl}${userData.image}';
+        }
         UserHelper db = UserHelper();
         await db.deleteAll();
         db.savePost(UserModel(
@@ -45,4 +49,15 @@ class RegisterCubit extends Bloc<LoginCubit, RegisterStates> {
       emit(RegisterErrorState(error: e.toString()));
     }
   }
+
+  IconData suffix =Icons.visibility_outlined;
+  bool isPassword=true;
+
+
+  void ChangePassword(){
+    isPassword =!isPassword;
+    suffix = isPassword ? Icons.visibility_outlined :Icons.visibility_off_outlined;
+    emit(RegisterChangePasswordState());
+  }
+
 }

@@ -22,7 +22,11 @@ class LoginCubit extends Bloc<LoginCubit, LoginStates> {
     try {
       UserModel userData = await AuthenticationRepository().login(email, pass);
       if (userData != null) {
-        String userImg = '${imgBaseUrl}${userData.image}';
+        String userImg = '';
+        if(userData.image !=null){
+          debugPrint('hasImage');
+          userImg = '${imgBaseUrl}${userData.image}';
+        }
         UserHelper db = UserHelper();
         await db.deleteAll();
 

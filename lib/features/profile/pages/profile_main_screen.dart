@@ -31,6 +31,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // debugPrint('profileImg==${model.image}');
     return Scaffold(
       backgroundColor: OwnTheme.colorPalette['black'],
       body: SingleChildScrollView(
@@ -45,13 +46,14 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
                               arguments: model)
                           .then((value) {
                         setState(() {});
+                        getProfileDate();
                       });
                     },
                   )
-                :Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [CircularProgressIndicator()],
-            ),
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [CircularProgressIndicator()],
+                  ),
             const SizedBox(
               height: space2,
             ),
@@ -67,7 +69,6 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
               icon: 'assets/icons/group_icon.webp',
               onTap: () {
                 Navigator.pushNamed(context, '/filter');
-
               },
             ),
             ProfileListTile(
@@ -117,15 +118,16 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
   }
 
   getProfileDate() async {
-
     var resultJson = await DioHelper.get('auth/profile-info',
         headers: {'token': BasicModel.userToken});
     print(resultJson);
     if (resultJson != false) {
-
       UserModel tmp = UserModel.fromJson(resultJson['data']);
+      if(tmp.image == 'http://api.mahmoudtaha.com/images'){
+       tmp.image = '';
+      }
       setState(() {
-         model = tmp;
+        model = tmp;
         BasicModel.userImage = tmp.image!;
       });
 
@@ -137,8 +139,8 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
     UserHelper db = UserHelper();
     await db.deleteAll();
     await db.savePost(model);
-    var x=await db.getAll();
-    debugPrint('UsersNum=${x.length}');
+    var x = await db.getAll();
+    // debugPrint('UsersNum=${x.length}');
   }
 
   Future<void> getProfileDateLocal() async {
@@ -154,9 +156,11 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
         model = tmp.first;
         isLoading = false;
       });
+      //
+      // var xx =await db.getAll();
+      // debugPrint('usersLength== ${xx.length}');
+
       getProfileDate();
     }
-
   }
-
 }

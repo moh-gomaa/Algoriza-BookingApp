@@ -16,3 +16,5 @@ class RegisterErrorState extends RegisterStates {
   final String error;
     RegisterErrorState({required this.error});
 }
+
+class RegisterChangePasswordState extends RegisterStates {}
