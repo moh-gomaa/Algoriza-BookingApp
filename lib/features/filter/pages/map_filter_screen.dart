@@ -349,7 +349,7 @@ class _MapFilterScreen extends State<MapFilterScreen> {
 
   Widget widgetList1(BuildContext context) {
     var blockSize = (MediaQuery.of(context).size.width - side) * 0.9;
-    var size = height5;
+    var size = height4;
     return Padding(
       padding: const EdgeInsets.only(right: 0, left: 0, bottom: bottom),
       child: Container(
@@ -509,7 +509,7 @@ class _MapFilterScreen extends State<MapFilterScreen> {
                               itemCount: 5,
                               itemBuilder: (context, _) => Icon(
                                 Icons.star,
-                                color: Colors.amber,
+                                color: OwnTheme.colorPalette['primary'],
                               ),
                               updateOnDrag: false,
                               onRatingUpdate: (rating) {
@@ -518,7 +518,7 @@ class _MapFilterScreen extends State<MapFilterScreen> {
                             )
                           ],
                         ),
-                        // Spacer(),
+                        Spacer(),
                         Column(
                           children: [
                             Text(
@@ -543,6 +543,9 @@ class _MapFilterScreen extends State<MapFilterScreen> {
                   ],
                 ),
               )),
+              SizedBox(
+                width: space0,
+              ),
             ],
           ),
         ));
