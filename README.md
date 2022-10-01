@@ -8,7 +8,6 @@ Here is our Flutter app which provides multi hotels with various facilities. The
 
 -Video of the app
 
-[weather_app.webm](https://user-images.githubusercontent.com/70426380/189499344-7d19b49d-61cb-430d-8c8d-db01cc2261f8.webm)
 
 -screen shots
 
