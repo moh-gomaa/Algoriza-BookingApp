@@ -42,19 +42,33 @@ https://user-images.githubusercontent.com/70426380/193424370-95802184-203d-4bff-
 
 *Home Screen with Slider of Photos
 
+![Screenshot_2022-10-01-21-09-45-50](https://user-images.githubusercontent.com/70426380/193424700-1e93e976-290f-456a-8b3a-900afd0aabac.jpeg)
 
+![Screenshot_2022-10-01-21-09-56-34](https://user-images.githubusercontent.com/70426380/193424703-6188ed76-1f57-468c-bf26-1f48b9b36062.jpeg)
 
-*Explore Screen
+*Search Screen
 
-![Screenshot_20221001_202007_com example booking_app](https://user-images.githubusercontent.com/70426380/193423539-4738c8ad-cebd-4fe6-8c26-ca257fb46096.jpg)
+![Screenshot_2022-10-01-20-56-24-20](https://user-images.githubusercontent.com/70426380/193424404-38c798bf-894c-401a-adbc-ff788fb53055.jpeg)
 
 *Best Deals Section
 
 ![Screenshot_20221001_201811_com example booking_app](https://user-images.githubusercontent.com/70426380/193423444-174fce4f-9929-4ac1-9e2e-a15e5590ec68.jpg)
 
-*Search Screen
+*Hotel Details Screen
 
-![Screenshot_2022-10-01-20-56-24-20](https://user-images.githubusercontent.com/70426380/193424404-38c798bf-894c-401a-adbc-ff788fb53055.jpeg)
+![Screenshot_20221001_201820_com example booking_app](https://user-images.githubusercontent.com/70426380/193423561-4d01abc7-b06c-40f6-9047-158318160632.jpg)
+
+![Screenshot_20221001_201823_com example booking_app](https://user-images.githubusercontent.com/70426380/193423563-418dcbe2-02c7-493c-b301-48f0ef54b1aa.jpg)
+
+![Screenshot_20221001_201827_com example booking_app](https://user-images.githubusercontent.com/70426380/193423564-567c026e-1c6d-4d7a-b2cd-b93871d5417d.jpg)
+
+![Screenshot_20221001_201829_com example booking_app](https://user-images.githubusercontent.com/70426380/193423568-1e987e7e-c12c-4bc4-9efa-fbfa70e6b448.jpg)
+
+![Screenshot_20221001_201831_com example booking_app](https://user-images.githubusercontent.com/70426380/193423569-bceb061f-3b22-4d74-8071-30e84485699a.jpg)
+
+*Explore Screen
+
+![Screenshot_20221001_202007_com example booking_app](https://user-images.githubusercontent.com/70426380/193423539-4738c8ad-cebd-4fe6-8c26-ca257fb46096.jpg)
 
 *Filter Screen
 
@@ -69,18 +83,6 @@ https://user-images.githubusercontent.com/70426380/193424370-95802184-203d-4bff-
 *Map Screen
 
 ![Screenshot_20221001_201931_com example booking_app](https://user-images.githubusercontent.com/70426380/193423497-8402dd63-1f9d-4c8b-acbf-c78130a84774.jpg)
-
-*Hotel Details Screen
-
-![Screenshot_20221001_201820_com example booking_app](https://user-images.githubusercontent.com/70426380/193423561-4d01abc7-b06c-40f6-9047-158318160632.jpg)
-
-![Screenshot_20221001_201823_com example booking_app](https://user-images.githubusercontent.com/70426380/193423563-418dcbe2-02c7-493c-b301-48f0ef54b1aa.jpg)
-
-![Screenshot_20221001_201827_com example booking_app](https://user-images.githubusercontent.com/70426380/193423564-567c026e-1c6d-4d7a-b2cd-b93871d5417d.jpg)
-
-![Screenshot_20221001_201829_com example booking_app](https://user-images.githubusercontent.com/70426380/193423568-1e987e7e-c12c-4bc4-9efa-fbfa70e6b448.jpg)
-
-![Screenshot_20221001_201831_com example booking_app](https://user-images.githubusercontent.com/70426380/193423569-bceb061f-3b22-4d74-8071-30e84485699a.jpg)
 
 *Trips Screen
 
