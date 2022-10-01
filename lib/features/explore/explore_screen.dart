@@ -3,6 +3,7 @@ import 'package:booking_app/core/main_blocs/blocs.dart';
 import 'package:booking_app/data/models/explore_model.dart';
 import 'package:booking_app/features/book_hotel.dart';
 import 'package:booking_app/features/home/cubit/app_states.dart';
+import 'package:booking_app/features/search_screen/search_screen.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
 import 'package:sizer/sizer.dart';
@@ -82,43 +83,52 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       width: double.infinity,
                       child: Row(
                         children: [
-                          Expanded(
-                            child: TextFormField(
-                              controller: widget.searchController,
-                              keyboardType: TextInputType.text,
-                              onFieldSubmitted: (String value) {
-                                print(value);
-                              },
-                              onChanged: (String value) {
-                                print(value);
-                              },
-                              style: TextStyle(
-                                  fontSize: 12.sp,
-                                  color:  OwnTheme.colorPalette['white'],
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                              ),
-                              decoration: InputDecoration(
 
-                                hintStyle: TextStyle(
-                                    fontSize: 11.sp,
-                                    color:  Colors.grey[100],
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (_){
+                                  return SearchScreen();
+                                }));
+                              },
+                              child: TextFormField(
+                                enabled: false,
+                                // controller: widget.searchController,
+                                keyboardType: TextInputType.text,
+                                onFieldSubmitted: (String value) {
+                                  print(value);
+                                },
+                                onChanged: (String value) {
+                                  print(value);
+                                },
+                                style: TextStyle(
+                                    fontSize: 12.sp,
+                                    color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
                                     fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
                                 ),
-                                hintText: 'London..',
-                                filled: true,
-                                fillColor: const Color(0xff282828),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                  borderSide: const BorderSide(
-                                    color: Color(0xff191919),
+                                decoration: InputDecoration(
+
+                                  hintStyle: TextStyle(
+                                      fontSize: 11.sp,
+                                      color:  Colors.grey[100],
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
                                   ),
-                                ),
-                                focusedBorder:  OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                  borderSide: const BorderSide(
-                                    color: Color(0xff191919),
+                                  hintText: 'London..',
+                                  filled: true,
+                                  fillColor: const Color(0xff282828),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    borderSide: const BorderSide(
+                                      color: Color(0xff191919),
+                                    ),
+                                  ),
+                                  focusedBorder:  OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    borderSide: const BorderSide(
+                                      color: Color(0xff191919),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -127,7 +137,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           SizedBox(width: 10,),
                           GestureDetector(
                             onTap: (){
-                              AppCubit.get(context).getSearchBooking(name: widget.searchController.text);
+                              // AppCubit.get(context).getSearchBooking(name: widget.searchController.text);
                             },
                             child: CircleAvatar(
                               radius: 30,

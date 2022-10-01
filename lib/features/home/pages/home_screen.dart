@@ -4,6 +4,7 @@ import 'package:booking_app/data/models/explore_model.dart';
 import 'package:booking_app/features/explore/explore_screen.dart';
 import 'package:booking_app/features/home/cubit/app_states.dart';
 import 'package:booking_app/features/hotel_details/hotel_details.dart';
+import 'package:booking_app/features/search_screen/search_screen.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
 import 'package:sizer/sizer.dart';
@@ -149,51 +150,59 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
                         children: [
-                          Container(
-                            child: TextFormField(
-                              controller: searchController,
-                              keyboardType: TextInputType.text,
-                              onFieldSubmitted: (String value) {
-                                print(value);
-                              },
-                              onChanged: (String value) {
-                                print(value);
-                              },
-                              style: TextStyle(
-                                  fontSize: 12.sp,
-                                  color:  OwnTheme.colorPalette['white'],
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                              ),
-                              decoration: InputDecoration(
-                                prefixIcon:  Icon(
-                                  Icons.search,
-                                  color:  OwnTheme.colorPalette['primary'],
-                                  size:  size.width*.06,
-                                ),
-                                hintStyle: TextStyle(
+                          GestureDetector(
+                            child: Container(
+                              child: TextFormField(
+                                enabled: false,
+                                // controller: searchController,
+                                keyboardType: TextInputType.text,
+                                onFieldSubmitted: (String value) {
+                                  print(value);
+                                },
+                                onChanged: (String value) {
+                                  print(value);
+                                },
+                                style: TextStyle(
                                     fontSize: 12.sp,
                                     color:  OwnTheme.colorPalette['white'],
                                     fontWeight: FontWeight.w500,
                                     fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
                                 ),
-                                hintText: 'where_are_you_going'.tr(context),
-                                filled: true,
-                                fillColor: const Color(0xff282828),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                  borderSide: const BorderSide(
-                                    color: Color(0xff282828),
+                                decoration: InputDecoration(
+                                  prefixIcon:  Icon(
+                                    Icons.search,
+                                    color:  OwnTheme.colorPalette['primary'],
+                                    size:  size.width*.06,
                                   ),
-                                ),
-                                focusedBorder:  OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                  borderSide: const BorderSide(
-                                    color: Color(0xff282828),
+                                  hintStyle: TextStyle(
+                                      fontSize: 12.sp,
+                                      color:  OwnTheme.colorPalette['white'],
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                                  ),
+                                  hintText: 'where_are_you_going'.tr(context),
+                                  filled: true,
+                                  fillColor: const Color(0xff282828),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    borderSide: const BorderSide(
+                                      color: Color(0xff282828),
+                                    ),
+                                  ),
+                                  focusedBorder:  OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    borderSide: const BorderSide(
+                                      color: Color(0xff282828),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (_){
+                                return SearchScreen();
+                              }));
+                            },
                           ),
                         ],
                       ),
