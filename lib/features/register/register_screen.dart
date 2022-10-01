@@ -3,7 +3,6 @@ import 'package:booking_app/core/utils/extensions/layout_extensions.dart';
 import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/core/utils/widgets/custom_app_bar.dart';
 import 'package:booking_app/data/models/user_model.dart';
-import 'package:booking_app/features/login/login_screen.dart';
 import 'package:booking_app/features/register/bloc/register_cubit.dart';
 import 'package:booking_app/features/register/bloc/register_state.dart';
 import 'package:booking_app/resources/buttonkey/button.dart';
@@ -79,25 +78,23 @@ class RegisterScreen extends StatelessWidget {
                           return null;
                         },
                         decoration: InputDecoration(
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          filled: true,
-                          fillColor: OwnTheme.colorPalette['bgGray'],
-                          labelText: 'Box_First_Text'.tr(context),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: OwnTheme.colorPalette['primary']!,
-                                width: 1,
-                                style: BorderStyle.solid),
-                            borderRadius: BorderRadius.circular(round),
-                          ),
-                            labelStyle:
-                            OwnTheme.normalBoldTextStyle(lang: lang)
-                                .colorChange(color: 'gray')
-                        ),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            filled: true,
+                            fillColor: OwnTheme.colorPalette['bgGray'],
+                            labelText: 'Box_First_Text'.tr(context),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: OwnTheme.colorPalette['primary']!,
+                                  width: 1,
+                                  style: BorderStyle.solid),
+                              borderRadius: BorderRadius.circular(round),
+                            ),
+                            labelStyle: OwnTheme.normalBoldTextStyle(lang: lang)
+                                .colorChange(color: 'gray')),
                       ),
                       SizedBox(
                         height: space0,
@@ -128,27 +125,23 @@ class RegisterScreen extends StatelessWidget {
                           return null;
                         },
                         decoration: InputDecoration(
-                          floatingLabelBehavior: FloatingLabelBehavior.never,
-                          filled: true,
-                          fillColor: OwnTheme.colorPalette['bgGray'],
-                          labelText: 'Box_Last_Text'.tr(context),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: OwnTheme.colorPalette['primary']!,
-                                width: 1,
-                                style: BorderStyle.solid),
-                            borderRadius: BorderRadius.circular(round),
-
-                          ),
-                            labelStyle:
-                            OwnTheme.normalBoldTextStyle(lang: lang)
-                                .colorChange(color: 'gray')
-                        ),
-
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            filled: true,
+                            fillColor: OwnTheme.colorPalette['bgGray'],
+                            labelText: 'Box_Last_Text'.tr(context),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: OwnTheme.colorPalette['primary']!,
+                                  width: 1,
+                                  style: BorderStyle.solid),
+                              borderRadius: BorderRadius.circular(round),
+                            ),
+                            labelStyle: OwnTheme.normalBoldTextStyle(lang: lang)
+                                .colorChange(color: 'gray')),
                       ),
                       SizedBox(
                         height: space0,
@@ -259,65 +252,64 @@ class RegisterScreen extends StatelessWidget {
                             labelStyle: OwnTheme.normalBoldTextStyle(lang: lang)
                                 .colorChange(color: 'gray')),
                       ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    ButtonKey(
-                      function: () {
-                        {
-                          if (formKey.currentState!.validate()) {
-                            FocusScope.of(context).requestFocus(new FocusNode());
+                      SizedBox(
+                        height: 15,
+                      ),
+                      ButtonKey(
+                        function: () {
+                          {
+                            if (formKey.currentState!.validate()) {
+                              FocusScope.of(context)
+                                  .requestFocus(new FocusNode());
 
-                            user = UserModel(
-                                name: firstNameController.text,
-                                email: emailController.text,
-                                password: passwordController.text,
-                                passwordConfirmation: passwordController.text);
-                            RegisterCubit.get(context).register(obj: user);
+                              user = UserModel(
+                                  name: firstNameController.text,
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                  passwordConfirmation:
+                                      passwordController.text);
+                              RegisterCubit.get(context).register(obj: user);
+                            }
                           }
-                        }
-                      },
-                      buttonText: 'Button_Register'.tr(context),
-                      textColor: OwnTheme.colorPalette['gray'],
-                      isLoading: (state is RegisterLoadingState),
-                    ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Register_title1_txt'.tr(context),
-                          style: OwnTheme.normalTextStyle(lang: lang)
-                              .colorChange(color: 'gray'),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'first_text'.tr(context),
-                          textAlign: TextAlign.center,
-                          style: OwnTheme.prNormalTextStyle(lang: lang)
-                              .colorChange(color: 'gray'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/login');
-                          },
-                          child: Text(
-                            'last_text'.tr(context),
+                        },
+                        buttonText: 'Button_Register'.tr(context),
+                        textColor: OwnTheme.colorPalette['gray'],
+                        isLoading: (state is RegisterLoadingState),
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Register_title1_txt'.tr(context),
+                            style: OwnTheme.normalTextStyle(lang: lang)
+                                .colorChange(color: 'gray'),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'first_text'.tr(context),
+                            textAlign: TextAlign.center,
                             style: OwnTheme.prNormalTextStyle(lang: lang)
                                 .colorChange(color: 'gray'),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/login');
+                            },
+                            child: Text(
+                              'last_text'.tr(context),
+                              style: OwnTheme.prNormalTextStyle(lang: lang)
+                                  .colorChange(color: 'gray'),
+                            ),
+                          ),
+                        ],
+                      ),
                       SizedBox(
                         height: 30,
                       ),
@@ -325,11 +317,13 @@ class RegisterScreen extends StatelessWidget {
                         function: () {
                           {
                             if (formKey.currentState!.validate()) {
+                              FocusScope.of(context).requestFocus(new FocusNode());
                               user = UserModel(
                                   name: firstNameController.text,
                                   email: emailController.text,
                                   password: passwordController.text,
-                                  passwordConfirmation: passwordController.text);
+                                  passwordConfirmation:
+                                      passwordController.text);
                               RegisterCubit.get(context).register(obj: user);
                             }
                           }

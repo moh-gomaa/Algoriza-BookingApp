@@ -190,6 +190,7 @@ class LoginScreen extends StatelessWidget {
                           isLoading: (state is LoginLoadingState),
                           function: () {
                             if (formKey.currentState!.validate()) {
+                              FocusScope.of(context).requestFocus(new FocusNode());
                               LoginCubit.get(context).login(
                                 email: emailController.text,
                                 pass: passwordController.text,
