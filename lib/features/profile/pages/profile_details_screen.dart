@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:booking_app/core/utils/extensions/layout_extensions.dart';
+import 'package:booking_app/core/utils/extensions/theme_extensions.dart';
 import 'package:booking_app/core/utils/network/remote/dio_helper.dart';
 import 'package:booking_app/core/utils/network/remote/end_points.dart';
 import 'package:booking_app/data/database/user_helper.dart';
@@ -14,6 +15,7 @@ import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:sizer/sizer.dart';
 
 import '../widgets/profile_details_list_tile.dart';
 
@@ -48,7 +50,6 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
         headers: {'token': BasicModel.userToken});
     print(resultJson);
     if (resultJson != false) {
-
       UserModel tmp = UserModel.fromJson(resultJson['data']);
       setState(() {
         widget.user = tmp;
@@ -112,10 +113,9 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      editMode ? getImageFromGallery() : null;
+                      editMode ? selectImageFrom(context) : null;
                     },
-                    child:
-                    CachedNetworkImage(
+                    child: CachedNetworkImage(
                       imageUrl: BasicModel.userImage,
                       placeholder: (context, url) => Center(
                           child: Container(
@@ -153,14 +153,123 @@ class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
         ));
   }
 
+  void selectImageFrom(BuildContext ctx) {
+    showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.vertical(top: Radius.circular(2 * round))),
+        backgroundColor: OwnTheme.colorPalette['bgGray'],
+        isScrollControlled: true,
+        elevation: 5,
+        context: ctx,
+        builder: (ctx) => Padding(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 50,
+                        height: 8,
+                        decoration: BoxDecoration(
+                            color: OwnTheme.colorPalette['primary'],
+                            borderRadius: BorderRadius.circular(5)),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: side,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('choose_img_desc'.tr(ctx),
+                          style: OwnTheme.suitableBoldTextStyle(lang: lang)
+                              .colorChange(color: 'white')),
+                    ],
+                  ),
+                  SizedBox(
+                    height: space2,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(space1),
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            Navigator.pop(context);
+                            getImageFromCamera();
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('camera_txt'.tr(ctx),
+                                  style: OwnTheme.normalBoldTextStyle(lang: lang)
+                                      .colorChange(color: 'white')),
+                              Image.asset(
+                                'assets/icons/camera_icon.webp',
+                                width: 15.sp,
+                                height: 15.sp,
+                                color: OwnTheme.colorPalette['white'],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: space2,
+                        ),
+                        GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            Navigator.pop(context);
+                            getImageFromGallery();
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('gallery_txt'.tr(ctx),
+                                  style: OwnTheme.normalBoldTextStyle(lang: lang)
+                                      .colorChange(color: 'white')),
+                              Image.asset(
+                                'assets/icons/gallery_icon.webp',
+                                width: 15.sp,
+                                height: 15.sp,
+                                color: OwnTheme.colorPalette['white'],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: space2,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ));
+  }
+
   File? file;
 
-  Future getImageFromGallery() async {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.width * 0.50;
+  Future getImageFromCamera() async {
 
     var image = await ImagePicker().pickImage(
-        source: ImageSource.gallery, maxWidth: 500.0, maxHeight: 300.0);
+      source: ImageSource.camera,
+    );
+    if (image != null) {
+      file = File(image.path);
+      updateProfile(img: file!.path);
+    }
+  }
+
+  Future getImageFromGallery() async {
+    var image = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
     if (image != null) {
       file = File(image.path);
       updateProfile(img: file!.path);

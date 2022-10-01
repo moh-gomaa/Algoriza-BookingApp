@@ -66,7 +66,8 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
               text: 'invite_friend_txt'.tr(context),
               icon: 'assets/icons/group_icon.webp',
               onTap: () {
-                debugPrint('tap');
+                Navigator.pushNamed(context, '/filter');
+
               },
             ),
             ProfileListTile(

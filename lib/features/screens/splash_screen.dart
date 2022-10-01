@@ -1,4 +1,5 @@
 import 'package:booking_app/core/localization/setup/app_localization.dart';
+import 'package:booking_app/data/database/facility_helper.dart';
 import 'package:booking_app/data/models/basic_model.dart';
 import 'package:booking_app/resources/assets_manager/assets_manager.dart';
 import 'package:booking_app/resources/constants/constants.dart';
@@ -17,6 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    getStarted();
     new Future.delayed(const Duration(seconds: 4), () {
       if (mounted) {
         if (lang == '')
@@ -31,6 +33,11 @@ class _SplashScreenState extends State<SplashScreen> {
       }
     });
 
+  }
+
+  getStarted() async {
+    FacilityHelper db = FacilityHelper();
+    await db.getData();
   }
 
   @override

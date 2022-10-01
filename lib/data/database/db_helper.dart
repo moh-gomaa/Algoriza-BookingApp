@@ -21,6 +21,12 @@ class DBHelper {
   String password = "password";
   String password_confirmation = "password_confirmation";
 
+  final facilityTable = "facilityTable";
+  String facilityID = "id";
+  String facilityName = "name";
+  String facilityImage = "image";
+
+
   static Database? _db;
 
   Future<Database> get db async {
@@ -48,6 +54,14 @@ class DBHelper {
           $image TEXT,
           $password TEXT,
           $password_confirmation TEXT
+          )
+        ''');
+
+    db.execute('''
+          CREATE TABLE $facilityTable (
+          $facilityID INTEGER, 
+          $facilityName TEXT,
+          $facilityImage TEXT
           )
         ''');
   }
