@@ -96,6 +96,8 @@
   "facilities_txt": "الخدمات",
   "address_txt": "عنوان",
   "address_desc": "ادخل عنوان",
-  "apply_txt": "تنفيذ"
-
+  "apply_txt": "تنفيذ",
+  "MapScreen----------------------------": "MapScreen-----------------------",
+  "search_txt": "بحث",
+  "per_night_txt": "/ليلة"
 }

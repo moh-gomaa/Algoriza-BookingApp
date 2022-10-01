@@ -96,5 +96,8 @@
   "facilities_txt": "Facilities",
   "address_txt": "Address",
   "address_desc": "Enter Address",
-  "apply_txt": "Apply"
+  "apply_txt": "Apply",
+  "MapScreen----------------------------": "MapScreen-----------------------",
+  "search_txt": "Search",
+  "per_night_txt": "/per night"
 }

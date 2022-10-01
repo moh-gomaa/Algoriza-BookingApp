@@ -56,38 +56,6 @@ class SettingScreen extends StatelessWidget {
                             String languageCode = lang == 'ar' ? 'en' : 'ar';
                             LanguageHelper().setLang(languageCode);
                           },
-                          // widget: Container(
-                          //   height: 50,
-                          //   decoration: BoxDecoration(
-                          //       borderRadius:
-                          //       BorderRadius.circular(round),
-                          //       border: Border.all(
-                          //           color: OwnTheme.colorPalette['primary']!,
-                          //           width: 0.2),
-                          //       color: OwnTheme.colorPalette['white']),
-                          //   child: Padding(
-                          //     padding: const EdgeInsets.only(
-                          //         right: space1, left: space1),
-                          //     child: Row(
-                          //       mainAxisAlignment:
-                          //       MainAxisAlignment.spaceBetween,
-                          //       children: [
-                          //         Text(
-                          //           '44',
-                          //           // AppLocalizations.of(context)!.setting3,
-                          //           style:
-                          //           OwnTheme.suitableBoldTextStyle(lang: lang),
-                          //         ),
-                          //         Text(
-                          //           'en',
-                          //           // AppLocalizations.of(context)!.lang,
-                          //           style:
-                          //           OwnTheme.suitableBoldTextStyle(lang: lang),
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
                         ),
                       ],
                     );

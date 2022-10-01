@@ -1,3 +1,5 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class HotelModel {
   HotelModel({
     Status? status,
@@ -253,6 +255,7 @@ class HotelDataModel {
     String? updatedAt,
     List<HotelImages>? hotelImages,
     List<Facilities>? facilities,
+    BitmapDescriptor? icon,
   }) {
     _id = id;
     _name = name;
@@ -266,6 +269,7 @@ class HotelDataModel {
     _updatedAt = updatedAt;
     _hotelImages = hotelImages;
     _facilities = facilities;
+    _icon = icon;
   }
 
   HotelDataModel.fromJson(dynamic json) {
@@ -305,6 +309,7 @@ class HotelDataModel {
   String? _updatedAt;
   List<HotelImages>? _hotelImages;
   List<Facilities>? _facilities;
+  BitmapDescriptor? _icon;
 
   HotelDataModel copyWith({
     int? id,
@@ -358,6 +363,10 @@ class HotelDataModel {
   List<HotelImages>? get hotelImages => _hotelImages;
 
   List<Facilities>? get facilities => _facilities;
+
+  BitmapDescriptor? get icon => _icon;
+
+   set icon(BitmapDescriptor? icon) => _icon = icon;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

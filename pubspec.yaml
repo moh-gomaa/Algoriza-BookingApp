@@ -35,6 +35,9 @@ dependencies:
   sqflite:
   path_provider:
   cached_network_image:
+  geolocator:
+  google_maps_flutter:
+  flutter_rating_bar:
 #  firebase_auth: ^3.10.0
 #  firebase_core: ^1.23.0
 

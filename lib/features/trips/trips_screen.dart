@@ -687,7 +687,8 @@ class TripsScreen extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8
                         ),
-                        child: Row(
+                        child:
+                        Row(
                           children: [
                             Text(
                               'Wembley,London ',

@@ -61,7 +61,7 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
               text: 'change_pass_txt'.tr(context),
               icon: 'assets/icons/lock_icon.webp',
               onTap: () {
-                debugPrint('tap');
+                Navigator.pushNamed(context, '/map');
               },
             ),
             ProfileListTile(
