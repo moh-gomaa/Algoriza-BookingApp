@@ -10,6 +10,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAbCeJmWjprZkI5wM0PBMvLRqG942TxL1M" />
         <activity
+            android:name="io.flutter.embedding.android.FlutterActivity"/>
+        <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:exported="true"

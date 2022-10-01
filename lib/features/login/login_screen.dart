@@ -22,14 +22,12 @@ class LoginScreen extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) {
         if (state is LoginSuccessState) {
-          CashHelper.saveData(key: 'token',value:state.model.apiToken);
-          CashHelper.saveData(key: 'userId',value:state.model.id);
-          print('Siiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
-          print(CashHelper.getData(key: 'token'));
-          print(CashHelper.getData(key: 'userId'));
-          print('Siiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii');
-          customToast(title: 'Welcome',color: OwnTheme.colorPalette['primary']!);
-          Navigator.pushReplacementNamed(context, '/main');
+          CashHelper.saveData(key: 'token', value: state.model.apiToken);
+          CashHelper.saveData(key: 'userId', value: state.model.id);
+          customToast(
+              title: 'Welcome', color: OwnTheme.colorPalette['primary']!);
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/main', (Route<dynamic> route) => false);
         }
       },
       builder: (context, state) {
@@ -71,10 +69,8 @@ class LoginScreen extends StatelessWidget {
                               .colorChange(color: 'white'),
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
-                          onFieldSubmitted: (String value) {
-                          },
-                          onChanged: (String value) {
-                          },
+                          onFieldSubmitted: (String value) {},
+                          onChanged: (String value) {},
                           validator: (String? value) {
                             if (value!.isEmpty) {
                               return 'email_table'.tr(context);
@@ -123,10 +119,8 @@ class LoginScreen extends StatelessWidget {
                           controller: passwordController,
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: LoginCubit.get(context).isPassword,
-                          onFieldSubmitted: (String value) {
-                          },
-                          onChanged: (String value) {
-                          },
+                          onFieldSubmitted: (String value) {},
+                          onChanged: (String value) {},
                           validator: (String? value) {
                             if (value!.isEmpty) {
                               return 'password_table'.tr(context);
@@ -143,13 +137,13 @@ class LoginScreen extends StatelessWidget {
                                 Icons.lock,
                                 color: OwnTheme.colorPalette['gray'],
                               ),
-
                               suffixIcon: GestureDetector(
-                                onTap: (){
+                                onTap: () {
                                   LoginCubit.get(context).ChangePassword();
                                 },
                                 child: Icon(
-                                  LoginCubit.get(context).suffix,                                color: OwnTheme.colorPalette['gray'],
+                                  LoginCubit.get(context).suffix,
+                                  color: OwnTheme.colorPalette['gray'],
                                 ),
                               ),
                               border: OutlineInputBorder(
@@ -190,7 +184,8 @@ class LoginScreen extends StatelessWidget {
                           isLoading: (state is LoginLoadingState),
                           function: () {
                             if (formKey.currentState!.validate()) {
-                              FocusScope.of(context).requestFocus(new FocusNode());
+                              FocusScope.of(context)
+                                  .requestFocus(new FocusNode());
                               LoginCubit.get(context).login(
                                 email: emailController.text,
                                 pass: passwordController.text,

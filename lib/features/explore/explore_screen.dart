@@ -46,7 +46,10 @@ class ExploreScreen extends StatelessWidget {
                     Icons.map_outlined,
                     color: Colors.white,
                   ),
-                  onPressed: (){},
+                  onPressed: (){
+
+                    Navigator.pushNamed(context, '/map');
+                  },
                 ),
 
               ],
@@ -242,7 +245,7 @@ class ExploreScreen extends StatelessWidget {
                               color: OwnTheme.colorPalette['primary'],
                             ),
                             onPressed: (){
-
+                              Navigator.pushNamed(context, '/filter');
                             },
                           ),
                         ],

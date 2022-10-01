@@ -40,6 +40,7 @@ dependencies:
   flutter_rating_bar:
   fluttertoast: ^8.0.9
   percent_indicator: ^4.2.2
+  map_launcher:
 #  firebase_auth: ^3.10.0
 #  firebase_core: ^1.23.0
 
