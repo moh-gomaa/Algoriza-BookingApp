@@ -201,7 +201,7 @@ class _FilterScreenState extends State<FilterScreen> {
                           divisions:
                               pricesLst.length > 0 ? pricesLst.length : 4,
                           labels: RangeLabels(
-                              '${low.round()} EGP', '${high.round()} EGP'),
+                              '\$${low.round()}', '\$${high.round()} EGP'),
                           onChanged: (values) => setState(() {
                             low = values.start;
                             high = values.end;

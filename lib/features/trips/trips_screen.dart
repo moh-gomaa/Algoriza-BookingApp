@@ -335,7 +335,7 @@ class TripsScreen extends StatelessWidget {
                           SizedBox(
                             width: 170,
                             child: Text(
-                              '${model!.data!.data![index].hotel!.name}',
+                              '${model.data!.data![index].hotel!.name}',
                               style: TextStyle(
                                   fontSize: 11.sp,
                                   color:  OwnTheme.colorPalette['white'],
