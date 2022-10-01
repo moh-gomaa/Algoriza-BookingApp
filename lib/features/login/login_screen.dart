@@ -75,8 +75,7 @@ class LoginScreen extends StatelessWidget {
                             return null;
                           },
                           decoration: InputDecoration(
-                            floatingLabelBehavior:
-                                FloatingLabelBehavior.never,
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
                             filled: true,
                             fillColor: OwnTheme.colorPalette['bgGray'],
                             labelText: 'Eg.example@gmail.com',
@@ -95,9 +94,8 @@ class LoginScreen extends StatelessWidget {
                                   style: BorderStyle.solid),
                               borderRadius: BorderRadius.circular(round),
                             ),
-                            labelStyle:
-                                OwnTheme.normalBoldTextStyle(lang: lang)
-                                    .colorChange(color: 'gray'),
+                            labelStyle: OwnTheme.normalBoldTextStyle(lang: lang)
+                                .colorChange(color: 'gray'),
                           ),
                         ),
                         SizedBox(
@@ -117,7 +115,7 @@ class LoginScreen extends StatelessWidget {
                               .colorChange(color: 'white'),
                           controller: passwordController,
                           keyboardType: TextInputType.visiblePassword,
-                          obscureText: true,
+                          obscureText: LoginCubit.get(context).isPassword,
                           onFieldSubmitted: (String value) {
                             print(value);
                           },
@@ -140,9 +138,14 @@ class LoginScreen extends StatelessWidget {
                                 Icons.lock,
                                 color: OwnTheme.colorPalette['gray'],
                               ),
-                              suffixIcon: Icon(
-                                Icons.remove_red_eye,
-                                color: OwnTheme.colorPalette['gray'],
+
+                              suffixIcon: GestureDetector(
+                                onTap: (){
+                                  LoginCubit.get(context).ChangePassword();
+                                },
+                                child: Icon(
+                                  LoginCubit.get(context).suffix,                                color: OwnTheme.colorPalette['gray'],
+                                ),
                               ),
                               border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white),

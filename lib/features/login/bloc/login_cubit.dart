@@ -55,4 +55,16 @@ class LoginCubit extends Bloc<LoginCubit, LoginStates> {
       emit(LoginErrorState(error: e.toString()));
     }
   }
+
+  IconData suffix =Icons.visibility_outlined;
+  bool isPassword=true;
+
+
+ void ChangePassword(){
+   isPassword =!isPassword;
+   suffix = isPassword ? Icons.visibility_outlined :Icons.visibility_off_outlined;
+   emit(LoginChangePasswordState());
+ }
+
+
 }
