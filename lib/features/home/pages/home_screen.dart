@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
 
                   SliverAppBar(
                     titleSpacing: 0.0,
-                    expandedHeight: size.height*.6,
+                    expandedHeight: size.height*.65,
                     pinned: _pinned,
                     snap: _snap,
                     floating: _floating,
