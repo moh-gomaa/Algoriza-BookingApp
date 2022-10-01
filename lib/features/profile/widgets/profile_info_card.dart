@@ -31,6 +31,7 @@ class ProfileInfoCard extends StatelessWidget {
                 style: OwnTheme.suitableBoldTextStyle(lang: lang)
                     .colorChange(color: 'white'),
               ),
+              SizedBox(height: space0),
               Text(
                 'view_edit_profile_txt'.tr(context),
                 style: OwnTheme.normalBoldTextStyle(lang: lang)

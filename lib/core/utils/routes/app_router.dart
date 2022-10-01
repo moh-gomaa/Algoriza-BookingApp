@@ -2,6 +2,7 @@ import 'package:booking_app/core/bottom_navigation/pages/main_screen.dart';
 import 'package:booking_app/data/models/user_model.dart';
 import 'package:booking_app/features/filter/pages/filter_screen.dart';
 import 'package:booking_app/features/filter/pages/map_filter_screen.dart';
+import 'package:booking_app/features/filter/pages/view_filter_list.dart';
 import 'package:booking_app/features/get_started/pages/get_started_screen.dart';
 import 'package:booking_app/features/language/pages/lang_screen.dart';
 import 'package:booking_app/features/login/login_screen.dart';
@@ -92,6 +93,14 @@ class AppRouter {
         case '/map':
         return PageTransition(
           child: MapFilterScreen(),
+          type: PageTransitionType.rightToLeft,
+          duration: animationDuration,
+          settings: settings,
+        );
+
+        case '/viewFilter':
+        return PageTransition(
+          child: ViewFilterList(),
           type: PageTransitionType.rightToLeft,
           duration: animationDuration,
           settings: settings,

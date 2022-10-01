@@ -13,6 +13,7 @@ import 'package:booking_app/resources/themes/theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+List<HotelDataModel> filteredHotelList = [];
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({Key? key}) : super(key: key);
@@ -31,7 +32,6 @@ class _FilterScreenState extends State<FilterScreen> {
   double max = 10.0;
   late double low;
   late double high;
-  List<HotelDataModel> filteredHotelList = [];
   TextEditingController address = TextEditingController();
 
   @override
@@ -347,7 +347,12 @@ class _FilterScreenState extends State<FilterScreen> {
       for (var item in resultJson['data']['data']) {
         filteredHotelList.add(HotelDataModel.fromJson(item));
       }
+      debugPrint('filteredHotelList.length');
       debugPrint(filteredHotelList.length.toString());
+      Navigator.pushReplacementNamed(context, '/viewFilter');
+
+
+
     }
   }
 }

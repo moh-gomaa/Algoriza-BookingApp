@@ -61,14 +61,14 @@ class _ProfileMainScreenState extends State<ProfileMainScreen> {
               text: 'change_pass_txt'.tr(context),
               icon: 'assets/icons/lock_icon.webp',
               onTap: () {
-                Navigator.pushNamed(context, '/map');
+                debugPrint('tap');
               },
             ),
             ProfileListTile(
               text: 'invite_friend_txt'.tr(context),
               icon: 'assets/icons/group_icon.webp',
               onTap: () {
-                Navigator.pushNamed(context, '/filter');
+                debugPrint('tap');
               },
             ),
             ProfileListTile(
