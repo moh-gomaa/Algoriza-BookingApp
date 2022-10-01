@@ -35,6 +35,8 @@ dependencies:
   sqflite:
   path_provider:
   cached_network_image:
+  fluttertoast: ^8.0.9
+  percent_indicator: ^4.2.2
 #  firebase_auth: ^3.10.0
 #  firebase_core: ^1.23.0
 

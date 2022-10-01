@@ -1,7 +1,9 @@
 import 'package:booking_app/core/localization/setup/app_localization.dart';
 import 'package:booking_app/core/main_blocs/blocs.dart';
+import 'package:booking_app/data/models/explore_model.dart';
 import 'package:booking_app/features/explore/explore_screen.dart';
 import 'package:booking_app/features/home/cubit/app_states.dart';
+import 'package:booking_app/features/hotel_details/hotel_details.dart';
 import 'package:booking_app/resources/constants/constants.dart';
 import 'package:booking_app/resources/themes/theme.dart';
 import 'package:sizer/sizer.dart';
@@ -117,11 +119,10 @@ class HomeScreen extends StatelessWidget {
                                   color: OwnTheme.colorPalette['primary'],
                                   onPressed: (){
 
-                                    AppCubit.get(context).getExplore().then((value) {
-                                      Navigator.push(context, MaterialPageRoute(builder: (_){
-                                        return ExploreScreen();
-                                      }));
-                                    });
+                                    AppCubit.get(context).getExplore().then((value) {});
+                                    Navigator.push(context, MaterialPageRoute(builder: (_){
+                                      return ExploreScreen();
+                                    }));
                                   },
                                   child:  Text(
                                     'view_hotel'.tr(context),
@@ -293,17 +294,23 @@ class HomeScreen extends StatelessWidget {
                               ],
                             ),
                             SizedBox(height: size.height*.02,),
+                            AppCubit.get(context).exploreModel!=null?
                             ListView.separated(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
                                 itemBuilder: (context,index){
-                                  return itemHotel(size);
+                                  return itemHotel(size,AppCubit.get(context).exploreModel!,index,context);
                                 },
                                 separatorBuilder: (context,index){
                                   return SizedBox(height: size.height*.02,);
                                 },
-                                itemCount: 4
-                            ),
+                                itemCount: AppCubit.get(context).exploreModel!.data!.data!.length
+                            ):
+                             Center(
+                               child: CircularProgressIndicator(
+                                 color: OwnTheme.colorPalette['primary'],
+                               ),
+                             )
                           ],
                         ),
                       ),
@@ -316,135 +323,143 @@ class HomeScreen extends StatelessWidget {
     );
   }
   
-  Widget itemHotel(Size size){
-    return Container(
+  Widget itemHotel(Size size,ExploreModel model,index,context){
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (_){
 
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-          color: const Color(0xff282828),
-          border: Border.all(
-          color: const Color(0xff282828)
-        )
-      ),
-      height: size.height*.18,
-      child: Row(
-        children: [
-          Image(
-            image: const AssetImage(
-                'assets/images/hotel.jpg'
-            ),
-            fit: BoxFit.cover,
-            width: size.width*.32,
-            height: size.height*.18,
-          ),
-          SizedBox(width: size.width*.04,),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Grand Royal Hotel',
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      color:  OwnTheme.colorPalette['white'],
-                      fontWeight: FontWeight.w500,
-                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                  ),
-                ),
-                SizedBox(height: size.height*.008,),
-                Text(
-                  'Wembley, London',
-                  style: TextStyle(
-                      fontSize: 10.sp,
-                      color:  OwnTheme.colorPalette['gray'],
-                      fontWeight: FontWeight.w500,
-                      fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                  ),
-                ),
-                SizedBox(height: size.height*.01,),
-                Container(
-                  height: size.height*.04,
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.location_pin,
-                        color:  OwnTheme.colorPalette['primary'],
-                        size:  size.width*.04,
-                      ),
-                      SizedBox(width: size.width*.01,),
-                      Text(
-                        '4,0 km to city',
-                        style: TextStyle(
-                            fontSize: 10.sp,
-                            color:  OwnTheme.colorPalette['gray'],
-                            fontWeight: FontWeight.w500,
-                            fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                        ),
-                      ),
-                      SizedBox(width: size.width*.07,),
-                      Text(
-                        '\$200',
-                        style: TextStyle(
-                            fontSize: 15.sp,
-                            color:  OwnTheme.colorPalette['white'],
-                            fontWeight: FontWeight.w500,
-                            fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                        ),
-                      ),
+          return HotelDetailsScreen(model: model.data!.data![index]);
 
-                    ],
-                  ),
-                ),
-                SizedBox(height: size.height*.01,),
-                Container(
-                  height: size.height*.03,
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.star,
-                        color:  OwnTheme.colorPalette['primary'],
-                        size:  size.width*.03,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color:  OwnTheme.colorPalette['primary'],
-                        size:  size.width*.03,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color:  OwnTheme.colorPalette['primary'],
-                        size:  size.width*.03,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color:  OwnTheme.colorPalette['primary'],
-                        size:  size.width*.03,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color:  OwnTheme.colorPalette['primary'],
-                        size:  size.width*.03,
-                      ),
-                      SizedBox(width: size.width*.17,),
-                      Text(
-                        '/per night',
-                        style: TextStyle(
-                            fontSize: 9.sp,
-                            color:  OwnTheme.colorPalette['gray'],
-                            fontWeight: FontWeight.w500,
-                            fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
-                        ),
-                      ),
+        }));
+      },
+      child: Container(
 
-                    ],
-                  ),
-                ),
-              ],
-            ),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+            color: const Color(0xff282828),
+            border: Border.all(
+            color: const Color(0xff282828)
           )
-        ],
+        ),
+        height: size.height*.18,
+        child: Row(
+          children: [
+            Image(
+              image:  NetworkImage(
+                  'http://api.mahmoudtaha.com/images/${model.data!.data![index].hotelImages![0].image}'
+              ),
+              fit: BoxFit.cover,
+              width: size.width*.32,
+              height: size.height*.18,
+            ),
+            SizedBox(width: size.width*.04,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Text(
+                     '${model.data!.data![index].name}',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          color:  OwnTheme.colorPalette['white'],
+                          fontWeight: FontWeight.w500,
+                          fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    width: 150,
+
+                  ),
+                  SizedBox(height: size.height*.008,),
+                  Container(
+                    child: Text(
+                      '${model.data!.data![index].address}',
+                      style: TextStyle(
+                          fontSize: 10.sp,
+                          color:  OwnTheme.colorPalette['gray'],
+                          fontWeight: FontWeight.w500,
+                          fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    width: 150,
+                  ),
+                  SizedBox(height: size.height*.01,),
+                  Container(
+                    height: size.height*.04,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.location_pin,
+                          color:  OwnTheme.colorPalette['primary'],
+                          size:  size.width*.04,
+                        ),
+                        SizedBox(width: size.width*.01,),
+                        Text(
+                          '4,0 km to city',
+                          style: TextStyle(
+                              fontSize: 10.sp,
+                              color:  OwnTheme.colorPalette['gray'],
+                              fontWeight: FontWeight.w500,
+                              fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                          ),
+                        ),
+                        SizedBox(width: size.width*.07,),
+                        Text(
+                          '\$ ${model.data!.data![index].price}',
+                          style: TextStyle(
+                              fontSize: 15.sp,
+                              color:  OwnTheme.colorPalette['white'],
+                              fontWeight: FontWeight.w500,
+                              fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: size.height*.01,),
+                  Container(
+                    height: size.height*.03,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.star,
+                          color:  OwnTheme.colorPalette['primary'],
+                          size:  size.width*.05,
+                        ),
+                        Text(
+                          '${model.data!.data![index].rate}',
+                          style: TextStyle(
+                              fontSize: 11.sp,
+                              color:  OwnTheme.colorPalette['gray'],
+                              fontWeight: FontWeight.w500,
+                              fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                          ),
+                        ),
+
+                        SizedBox(width: size.width*.17,),
+                        Text(
+                          '/per night',
+                          style: TextStyle(
+                              fontSize: 9.sp,
+                              color:  OwnTheme.colorPalette['gray'],
+                              fontWeight: FontWeight.w500,
+                              fontFamily: lang == "ar" ? "fontArBold" : "fontEnBold"
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

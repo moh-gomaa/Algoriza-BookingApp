@@ -20,7 +20,7 @@ class DioHelper2 {
 
     dio!.options.headers = {
       'Content-Type':'application/json',
-      'Authorization': 'Bearer ''$token',
+      'token': token??'',
     };
 
     return await dio!.get(
