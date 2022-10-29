@@ -1,5 +1,4 @@
-# Flutter Booking App - Team 14
-# Algoriza Phase 3
+# Flutter Booking App
 
 -App Description
 
